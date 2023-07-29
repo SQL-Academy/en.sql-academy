@@ -21,6 +21,16 @@ output the data from one of the tables.
 SELECT * FROM FamilyMembers
 ```
 
+| member_id | status    | member_name        | birthday              | 
+| --------- | --------- | ------------------ | --------------------- | 
+| 1         | father    | Headley Quincey    | 1960-05-13T00:00:00Z  | 
+| 2         | mother    | Flavia Quincey     | 1963-02-16T00:00:00Z  | 
+| 3         | son       | Andie Quincey      | 1983-06-05T00:00:00Z  | 
+| 4         | daughter  | Lela Quincey       | 1985-06-07T00:00:00Z  | 
+| 5         | daughter  | Annie Quincey      | 1988-04-10T00:00:00Z  | 
+| 6         | father    | Ernest Forrest     | 1961-09-11T00:00:00Z  | 
+| 7         | mother    | Constance Forrest  | 1968-09-06T00:00:00Z  | 
+
 ## Output of data from certain columns of the table
 
 If it is necessary to display information only on certain columns of the table, and not all at once, then
@@ -29,6 +39,16 @@ this can be done by listing the column names separated by commas:
 ```sql
 SELECT member_id, member_name FROM FamilyMembers
 ```
+
+| member_id | member_name        | 
+| --------- | ------------------ | 
+| 1         | Headley Quincey    | 
+| 2         | Flavia Quincey     | 
+| 3         | Andie Quincey      | 
+| 4         | Lela Quincey       | 
+| 5         | Annie Quincey      | 
+| 6         | Ernest Forrest     | 
+| 7         | Constance Forrest  | 
 
 ## Aliases
 
