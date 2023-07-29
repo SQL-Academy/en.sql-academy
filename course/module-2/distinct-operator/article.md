@@ -8,6 +8,81 @@ For example, let's retrieve the `class` field from the `Student_in_class` table 
 SELECT class FROM Student_in_class;
 ```
 
+| class |
+| ----- |
+| 9     |
+| 9     |
+| 9     |
+| 9     |
+| 9     |
+| 9     |
+| 9     |
+| 9     |
+| 9     |
+| 9     |
+| 9     |
+| 9     |
+| 8     |
+| 8     |
+| 8     |
+| 8     |
+| 8     |
+| 8     |
+| 8     |
+| 8     |
+| 8     |
+| 8     |
+| 8     |
+| 6     |
+| 6     |
+| 6     |
+| 6     |
+| 6     |
+| 6     |
+| 6     |
+| 6     |
+| 6     |
+| 6     |
+| 5     |
+| 5     |
+| 5     |
+| 5     |
+| 5     |
+| 5     |
+| 5     |
+| 5     |
+| 4     |
+| 4     |
+| 4     |
+| 4     |
+| 4     |
+| 4     |
+| 4     |
+| 4     |
+| 4     |
+| 3     |
+| 3     |
+| 3     |
+| 3     |
+| 3     |
+| 3     |
+| 3     |
+| 3     |
+| 2     |
+| 2     |
+| 2     |
+| 2     |
+| 2     |
+| 2     |
+| 2     |
+| 1     |
+| 1     |
+| 1     |
+| 1     |
+| 1     |
+| 1     |
+| 1     |
+
 Since there may be several students in one class, it is not surprising that when outputting data, we can observe identical values.
 To avoid such duplication when selecting data, there is the `DISTINCT` operator.
 
@@ -22,6 +97,18 @@ So in our case, the query to retrieve unique classes that have at least one stud
 ```sql
 SELECT DISTINCT class FROM Student_in_class;
 ```
+
+| class |
+| ----- |
+| 9     |
+| 8     |
+| 7     |
+| 6     |
+| 5     |
+| 4     |
+| 3     |
+| 2     |
+| 1     |
 
 ## DISTINCT for multiple column
 
