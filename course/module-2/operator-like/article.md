@@ -71,7 +71,7 @@ WHERE email LIKE '%@hotmail.%'
   ... WHERE table_field LIKE '_ext'
   ```
 
-  Matches strings with a length of 4 characters, with the last 3 characters required to be {/_ yaspeller ignore:start _/}"ext"{/_ yaspeller ignore:end _/}. For example, the words "text" and "next"
+  Matches strings with a length of 4 characters, with the last 3 characters required to be "ext". For example, the words "text" and "next"
 
 - ```sql
   ... WHERE table_field LIKE 'begin%end'
