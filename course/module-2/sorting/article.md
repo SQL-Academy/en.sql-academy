@@ -9,7 +9,7 @@ so it cannot be relied upon. The `ORDER BY` construct is used to order the recor
 ```sql
 SELECT table_fields FROM table_name
 WHERE ...
-ORDER BY столбец_1 [ASC | DESC][, столбец_n [ASC | DESC]]
+ORDER BY column_1 [ASC | DESC][, column_n [ASC | DESC]]
 ```
 
 Where `ASC` and `DESC` are sorting directions:
