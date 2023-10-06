@@ -3,15 +3,17 @@
 We understand that communication is a very important part of the educational process, so we offer to join our community, where
 you can get help and support from other students or suggest yourself in case of questions from other members of the community.
 
-Communication is organized through the VK community:
+Communication is organized through:
 
-- **<a href="https://vk.com/sqlacademy" target="_blank">VK community</a>**
+-   **<a href="https://t.me/sqlacademyorg/21" target="_blank">chat on Telegram</a>**
+-   **<a href="https://vk.com/sqlacademy" target="_blank">VK community</a>**
 
 On the community page, we post information on the latest and most important updates.
 
-There is a chat for communication between the participants:
+There are chats for communication between participants:
 
-- **<a href="https://vk.me/join/y/IAK_wStur/l1LcaoxiT/0CTPpktaD/WJM=" target="_blank">chat for communication between the participants: </a>**
+-   **<a href="https://t.me/sqlacademyorg/21" target="_blank">on Telegram</a>**
+-   **<a href="https://vk.me/join/y/IAK_wStur/l1LcaoxiT/0CTPpktaD/WJM=" target="_blank">on Vkontakte</a>**
 
 ## Problem solving
 
