@@ -29,7 +29,7 @@ SELECT family_member, amount * unit_price AS price FROM Payments
 | 3             | 100   |
 | 3             | 1200  |
 
-The `family_member` field in the resulting selection displays the record identifiers from the `FamilyMembers` table, but they mean little to us.
+The `family_member` field in the resulting selection displays the record identifiers from the `Payments` table, but they mean little to us.
 
 Instead of these identifiers, it would be much more informative to output the names of those who made the purchases (the `member_name` field from the `FamilyMember` table).
 This is exactly why table joining and the JOIN operator exist.
@@ -47,8 +47,8 @@ FROM table_1
 
 As can be seen from the structure, joining can be:
 
-- internal `INNER` (by default)
-- outer `OUTER`, in which case the outer connection is divided into `LEFT`, `RIGHT`, and `FULL`.
+-   internal `INNER` (by default)
+-   outer `OUTER`, in which case the outer connection is divided into `LEFT`, `RIGHT`, and `FULL`.
 
 We will learn in more detail in the next articles what the difference is between internal and external joining and how they work.
 
