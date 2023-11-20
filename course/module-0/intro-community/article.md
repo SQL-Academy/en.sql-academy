@@ -20,9 +20,9 @@ There are chats for communication between participants:
 For questions that arise during the operation of the service, comments and recommendations on the content of the course, or if there are problems with paying for a premium account, you can use
 the following communication methods:
 
-- Write a message to the community
-  **<a href="https://vk.com/sqlacademy" target="_blank"> VK community</a>**
-- Write a letter to
-  **[admin@sql-academy.org](mailto:admin@sql-academy.org)**
+-   Write a message to the community
+    **<a href="https://vk.com/sqlacademy" target="_blank"> VK community</a>**
+-   Write a letter to
+    **[feedback@sql-academy.org](mailto:feedback@sql-academy.org)**
 
 We are glad to see you in our community 😍
