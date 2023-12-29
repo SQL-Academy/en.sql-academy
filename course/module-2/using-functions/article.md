@@ -20,68 +20,68 @@ For example, the function `NOW()` takes zero arguments and returns a literal in 
 
 ## Examples of Functions
 
-There are many functions, but the main ones can always be found using the search bar in the header or on the <a href="/handbook/SUBSTRING" target="_blank">function reference page</a>.
+There are many functions, but the main ones can always be found using the search bar in the header or on the <a href="/handbook/substring" target="_blank">function reference page</a>.
 
 Here are some examples:
 
-- <a href="/handbook/LOWER" target="_blank">
-    **LOWER**
-  </a>
+-   <a href="/handbook/lower" target="_blank">
+      **LOWER**
+    </a>
 
-  Returns a string in which all characters are written in lowercase
+    Returns a string in which all characters are written in lowercase
 
-  ```sql
-  SELECT LOWER('SQL Academy') AS lower_string;
-  ```
+    ```sql
+    SELECT LOWER('SQL Academy') AS lower_string;
+    ```
 
-  | lower_string |
-  | ------------ |
-  | sql academy  |
+    | lower_string |
+    | ------------ |
+    | sql academy  |
 
-- <a href="/handbook/YEAR" target="_blank">
-    **YEAR**
-  </a>
+-   <a href="/handbook/year" target="_blank">
+      **YEAR**
+    </a>
 
-  Returns the year for a given date.
+    Returns the year for a given date.
 
-  ```sql
-  SELECT YEAR("2022-06-16") AS year;
-  ```
+    ```sql
+    SELECT YEAR("2022-06-16") AS year;
+    ```
 
-  | year |
-  | ---- |
-  | 2022 |
+    | year |
+    | ---- |
+    | 2022 |
 
-- <a href="/handbook/INSTR" target="_blank">
-    **INSTR**
-  </a>
+-   <a href="/handbook/instr" target="_blank">
+      **INSTR**
+    </a>
 
-  Searches for a substring in a string, returning the position of its first character. At the same time, the countdown
-  it starts with one, not zero, as in most programming languages.
+    Searches for a substring in a string, returning the position of its first character. At the same time, the countdown
+    it starts with one, not zero, as in most programming languages.
 
-  The function works by character-by-character comparison of the source string with the desired one. For example, in the string `sql-academy`, the substring `academy` appears starting from the fifth character.
+    The function works by character-by-character comparison of the source string with the desired one. For example, in the string `sql-academy`, the substring `academy` appears starting from the fifth character.
 
-  ```sql
-  SELECT INSTR('sql-academy', 'academy') AS idx;
-  ```
+    ```sql
+    SELECT INSTR('sql-academy', 'academy') AS idx;
+    ```
 
-  | idx |
-  | --- |
-  | 5   |
+    | idx |
+    | --- |
+    | 5   |
 
-- <a href="/handbook/LENGTH" target="_blank">
-    **LENGTH**
-  </a>
+-   <a href="/handbook/length" target="_blank">
+      **LENGTH**
+    </a>
 
-  Returns the length of the specified string.
+    Returns the length of the specified string.
 
-  ```sql
-  SELECT LENGTH('sql-academy') AS str_length;
-  ```
+    ```sql
+    SELECT LENGTH('sql-academy') AS str_length;
+    ```
 
-  | str_length |
-  | ---------- |
-  | 11         |
+    | str_length |
+    | ---------- |
+    | 11         |
 
 ## Applying functions over table field values
 
@@ -123,8 +123,8 @@ SELECT UPPER(LEFT('sql-academy', 3)) AS str;
 
 Or we want to calculate the length of a person's last name by having a string in the format `first name<space>last name`. One of the possible ways to calculate the length of the last name can be using the functions `LENGTH` and `INSTR`, using the formula `<length of the last name> = <length of the entire string> - (<length of the name> + <length of the space>)`:
 
-- The value `<length of the entire string>` can be obtained using the `LENGTH` function
-- For `<length of the name> + <length of the space>`, you need to calculate the position of the character where the name ends and add one, because the space has a length of "1". We can do this using only the `INSTR` function, focusing on the "space" character
+-   The value `<length of the entire string>` can be obtained using the `LENGTH` function
+-   For `<length of the name> + <length of the space>`, you need to calculate the position of the character where the name ends and add one, because the space has a length of "1". We can do this using only the `INSTR` function, focusing on the "space" character
 
 Since both functions return numeric literals, we can perform arithmetic operations on them. Let's subtract one from the other and get the length of the last name (lastname_length):
 

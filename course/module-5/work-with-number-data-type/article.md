@@ -20,15 +20,15 @@ there are built-in numeric functions. Here are some examples of these functions:
 
 | Function name                                                                        | Description                                                |
 | :----------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| <a href="https://sql-academy.org/handbook/POW" target="_blank">`POW(num, power)`</a> | Calculates a number to the specified power                 |
-| <a href="https://sql-academy.org/handbook/SQRT" target="_blank">`SQRT(num)`</a>      | Calculates the square root of a number                     |
-| <a href="https://sql-academy.org/handbook/LOG" target="_blank">`LOG(base, num)`</a>  | Calculates the logarithm of a number to the specified base |
-| <a href="https://sql-academy.org/handbook/EXP" target="_blank">`EXP(num)`</a>        | Calculates e<sup>num</sup>                                 |
-| <a href="https://sql-academy.org/handbook/SIN" target="_blank">`SIN(num)`</a>        | Calculates the sine of a number                            |
-| <a href="https://sql-academy.org/handbook/COS" target="_blank">`COS(num)`</a>        | Calculates the cosine of a number                          |
-| <a href="https://sql-academy.org/handbook/TAN" target="_blank">`TAN(num)`</a>        | Calculates the tangent of a number                         |
+| <a href="https://sql-academy.org/handbook/pow" target="_blank">`POW(num, power)`</a> | Calculates a number to the specified power                 |
+| <a href="https://sql-academy.org/handbook/sqrt" target="_blank">`SQRT(num)`</a>      | Calculates the square root of a number                     |
+| <a href="https://sql-academy.org/handbook/log" target="_blank">`LOG(base, num)`</a>  | Calculates the logarithm of a number to the specified base |
+| <a href="https://sql-academy.org/handbook/exp" target="_blank">`EXP(num)`</a>        | Calculates e<sup>num</sup>                                 |
+| <a href="https://sql-academy.org/handbook/sin" target="_blank">`SIN(num)`</a>        | Calculates the sine of a number                            |
+| <a href="https://sql-academy.org/handbook/cos" target="_blank">`COS(num)`</a>        | Calculates the cosine of a number                          |
+| <a href="https://sql-academy.org/handbook/tan" target="_blank">`TAN(num)`</a>        | Calculates the tangent of a number                         |
 
-A list of all numeric functions, their descriptions and examples can be found in the <a href="https://sql-academy.org/handbook/CEILING" target="_blank">handbook</a>.
+A list of all numeric functions, their descriptions and examples can be found in the <a href="https://sql-academy.org/handbook/ceiling" target="_blank">handbook</a>.
 
 ## Round numbers
 

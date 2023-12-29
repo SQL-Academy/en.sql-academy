@@ -3,18 +3,18 @@
 Among all the data types in SQL, date and time data is the most complex 🤯.
 The complexity arises due to several reasons, and here are some of them:
 
-- many ways to set the date and time
-- availability of time zones
-- non-obviousness of calculations of some values ​​based on date and time.
-  For example, the complexity of calculating age.
+-   many ways to set the date and time
+-   availability of time zones
+-   non-obviousness of calculations of some values ​​based on date and time.
+    For example, the complexity of calculating age.
 
 ## Generation of date and time data
 
 Date and time data can be retrieved in one of the following ways:
 
-- copy data from existing column with date and time type
-- set date and time via string representation
-- get date and time by calling built-in functions that return a date and time data type
+-   copy data from existing column with date and time type
+-   set date and time via string representation
+-   get date and time by calling built-in functions that return a date and time data type
 
 ### String representation of date and time
 
@@ -63,7 +63,7 @@ SELECT STR_TO_DATE('November 13, 1998', '%M %d, %Y') AS date;
 | ------------------------ |
 | 1998-11-13T00:00:00.000Z |
 
-For a more detailed description of the `STR_TO_DATE` function and its arguments, see <a href="https://sql-academy.org/handbook/STR_TO_DATE" target="_blank">in the reference</a>.
+For a more detailed description of the `STR_TO_DATE` function and its arguments, see <a href="https://sql-academy.org/handbook/str_to_date" target="_blank">in the reference</a>.
 
 To generate the current date or time, there is no need to create a string for its subsequent conversion to a date,
 because there are built-in functions for getting given values: `CURDATE`, `CURTIME` and `NOW`.
@@ -81,11 +81,11 @@ To do this, SQL has the following functions:
 
 | Function                                                                       | Description                                                                  |
 | :----------------------------------------------------------------------------- | :--------------------------------------------------------------------------- |
-| <a href="https://sql-academy.org/handbook/YEAR" target="_blank">`YEAR`</a>     | Returns the year for the specified date                                      |
-| <a href="https://sql-academy.org/handbook/MONTH" target="_blank">`MONTH`</a>   | Returns the numeric value of the month of the year (from 1 to 12) for a date |
-| <a href="https://sql-academy.org/handbook/DAY" target="_blank">`DAY`</a>       | Returns the ordinal number of the day in the month (from 1 to 31)            |
-| <a href="https://sql-academy.org/handbook/HOUR" target="_blank">`HOUR`</a>     | Returns the hour value (between 0 and 23) for the time                       |
-| <a href="https://sql-academy.org/handbook/MINUTE" target="_blank">`MINUTE`</a> | Returns the minutes value (from 0 to 59) for the time                        |
+| <a href="https://sql-academy.org/handbook/year" target="_blank">`YEAR`</a>     | Returns the year for the specified date                                      |
+| <a href="https://sql-academy.org/handbook/month" target="_blank">`MONTH`</a>   | Returns the numeric value of the month of the year (from 1 to 12) for a date |
+| <a href="https://sql-academy.org/handbook/day" target="_blank">`DAY`</a>       | Returns the ordinal number of the day in the month (from 1 to 31)            |
+| <a href="https://sql-academy.org/handbook/hour" target="_blank">`HOUR`</a>     | Returns the hour value (between 0 and 23) for the time                       |
+| <a href="https://sql-academy.org/handbook/minute" target="_blank">`MINUTE`</a> | Returns the minutes value (from 0 to 59) for the time                        |
 
 ## The difference between DATETIME and TIMESTAMP
 
@@ -107,9 +107,9 @@ number of hours offset from UTC. For example, the Moscow time zone can be descri
 
 The time zone is one of the database server settings and can be set:
 
-- globally
-- for the current user
-- for the current user session
+-   globally
+-   for the current user
+-   for the current user session
 
 ```sql
 SET GLOBAL time_zone = '+03:00';    // globally
@@ -149,7 +149,7 @@ And this solution will be much more accurate than the previous one. But it will 
 Although the error in calculating the age for 1 person due to the presence of a leap year is quite small, in the calculations for determining, say,
 average age among a certain list of people, the error can accumulate and distort the real values.
 
-And how then is it correct to determine the age? There is a built-in function for this - <a href="https://sql-academy.org/handbook/TIMESTAMPDIFF" target="_blank">`TIMESTAMPDIFF`</a>,
+And how then is it correct to determine the age? There is a built-in function for this - <a href="https://sql-academy.org/handbook/timestampdiff" target="_blank">`TIMESTAMPDIFF`</a>,
 which takes as its first argument the unit in which to return the difference between two time values.
 
 ```sql
