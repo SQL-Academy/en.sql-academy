@@ -14,18 +14,21 @@ Values can be inserted by enumeration using the word `VALUES` listing them in pa
 
 Thus, You can add new entries in the following ways:
 
-```sql
-INSERT INTO Goods (good_id, good_name, type)
-VALUES (20, 'Table', 2);
-```
+-   Using the syntax `INSERT INTO ... SELECT`
 
-```sql
-INSERT INTO Goods (good_id, good_name, type)
-VALUES (20, 'Table', 2);
+    ```sql-executable-Family-targetTable:Goods
+    INSERT INTO Goods (good_id, good_name, type)
+    SELECT 20, 'Table', 2;
+    ```
 
--- and immediately check the result
-SELECT * FROM Goods;
-```
+-   Using the syntax `INSERT INTO ... VALUES (...)`
+
+    ```sql-executable-Family-targetTable:Goods
+    INSERT INTO Goods (good_id, good_name, type)
+    VALUES (20, 'Table', 2);
+    ```
+
+Each of these queries will give the same result:
 
 | good_id | good_name          | type |
 | ------- | ------------------ | ---- |
@@ -60,13 +63,13 @@ INSERT INTO Goods SELECT COUNT(*) + 1, 'Table', 2 FROM Goods;
 ## MySQL
 
 MySQL introduced a mechanism for its automatic generation. To do this, just provide the primary key `good_id` attribute `AUTO_INCREMENT`.
-Then when creating a new record as the value `good_id` just pass `NULL` or `0` - the field will automatically receive a value, equal to the maximum value of the `good_id` column, plus one.
+Then when creating a new record as the value `good_id` just pass `NULL` or `0` - the field will automatically get a value greater than the previous one by one.
 
 ```sql
 CREATE TABLE Goods (
 	good_id INT NOT NULL AUTO_INCREMENT
 	...
- );
+);
 ```
 
 ```sql
@@ -83,7 +86,7 @@ A column with one of the above types will be integer and will automatically grow
 CREATE TABLE Goods (
 	good_id SERIAL
 	...
- );
+);
 ```
 
 ```sql

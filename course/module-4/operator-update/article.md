@@ -17,9 +17,6 @@ So, for example, if you need to change the name, the request will look like this
 UPDATE FamilyMembers
 SET member_name = "Andie Anthony"
 WHERE member_name = "Andie Quincey";
-
--- and immediately check the result
-SELECT * FROM FamilyMembers;
 ```
 
 | member_id | status      | member_name       | birthday             |
@@ -41,7 +38,7 @@ In data update requests, you can change values based on previous values.
 
 ```sql
 UPDATE Payments
-SET unit_price = unit_price * 2
+SET unit_price = unit_price * 2;
 ```
 
 It is also allowed to assign values of some columns to other columns. But at the same time, of course, column types must be compatible.
