@@ -6,7 +6,7 @@ In the previous articles, we described working with only one table of a database
 In reality, however, it is very often necessary to make a selection from several tables, somehow combining them.
 In this article, you will learn the main ways to join tables.
 
-For example, if we want to get information about expenses on purchases, we can get it as follows:
+For example, if we want to find out about expenses on purchases, we can do so as follows:
 
 ```sql
 SELECT family_member, amount * unit_price AS price FROM Payments
@@ -41,7 +41,7 @@ SELECT table_fields
 FROM table_1
 [INNER] | [[LEFT | RIGHT | FULL][OUTER]] JOIN table_2
     ON join_condition
-[INNER] | [[LEFT | RIGHT | FULL][OUTER]] JOIN table_n
+[[INNER] | [[LEFT | RIGHT | FULL][OUTER]] JOIN table_n
     ON join_condition]
 ```
 
@@ -57,7 +57,8 @@ we will need an internal connection query that will look like this:
 
 ```sql
 SELECT family_member, member_name, amount * unit_price AS price FROM Payments
-INNER JOIN FamilyMembers ON Payments.family_member = FamilyMembers.member_id
+INNER JOIN FamilyMembers
+    ON Payments.family_member = FamilyMembers.member_id
 ```
 
 | family_member | member_name     | price |
@@ -88,3 +89,35 @@ ON Payments.family_member = FamilyMembers.member_id
 In our case, the `family_member` field points to the identifier in the `FamilyMembers` table and thus helps to unambiguously match.
 
 > In most cases, the connection condition is the equality of columns in tables `(table_1.field = table_2.field)`, but other comparison operators can also be used.
+
+## Output of all columns from a table in a multi-table query
+
+    Previously, when all queries were executed on one table, it was enough to specify the `*` character to output all fields from this table. Now, when there can be several tables, `*` will mean "output all columns from the tables listed in the expression `FROM`".
+
+In some cases, we may need to output columns belonging only to a particular table. For example, the connection of the `Payments` and `FamilyMembers` tables is given, and only the fields from the `FamilyMembers` table should be output to the final selection. How to do it? It's very simple! It is necessary to add the name of the table before the `*` symbol:
+
+```sql
+SELECT FamilyMembers.* FROM Payments
+INNER JOIN FamilyMembers
+    ON Payments.family_member = FamilyMembers.member_id
+```
+
+> Remember this option, you will need it in future tasks 😉
+
+In the same way, you can output **all columns from multiple tables**:
+
+```sql
+SELECT Payments.*, FamilyMembers.* FROM Payments
+INNER JOIN FamilyMembers
+    ON Payments.family_member = FamilyMembers.member_id
+```
+
+> In this case, instead of `Payments.*, Family Members.*` you can use `*`, because only these two tables are listed in the `FROM` clause. The output will be the same in both cases.
+
+But what if you need to output **several columns from one table and all from another**? This is also possible! Output the `payment_id` and `family_member` fields from `Payments`, as well as the fields from `FamilyMembers`:
+
+```sql
+SELECT payment_id, family_member, FamilyMembers.* FROM Payments
+INNER JOIN FamilyMembers
+    ON Payments.family_member = FamilyMembers.member_id
+```

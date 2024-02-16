@@ -7,7 +7,7 @@ SELECT table_fields
 FROM table_1
 [INNER] | [[LEFT | RIGHT | FULL][OUTER]] JOIN table_2
     ON join_condition
-[INNER] | [[LEFT | RIGHT | FULL][OUTER]] JOIN table_n
+[[INNER] | [[LEFT | RIGHT | FULL][OUTER]] JOIN table_n
     ON join_condition]
 ```
 
@@ -18,7 +18,7 @@ SELECT table_fields
 FROM table_1
 [INNER] JOIN table_2
     ON join_condition
-[INNER] JOIN table_n
+[[INNER] JOIN table_n
     ON join_condition]
 ```
 
@@ -56,7 +56,7 @@ It creates a new table that includes fields from both the first and second table
 
 Visually, this looks like:
 
-![Concept of Inner Join](https://sql-academy.org/static/guidePage/inner-join/inner-join-example.png "Concept of Inner Join")
+![Concept of Inner Join](https://sql-academy.org/static/guidePage/inner-join/inner-join-example.png 'Concept of Inner Join')
 
 Since our condition specifies that `Payments.good_id` is equal to `Goods.good_id`,
 only the records where both tables have the same `good_id` value will be included in the resulting query.
