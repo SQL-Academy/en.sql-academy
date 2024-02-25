@@ -6,7 +6,7 @@ So far, we have only considered subqueries that return a single column. However,
 
 SQL supports comparison not only with a single column, but also allows pairwise comparison of values in the main query with values in the subquery.
 
-For example, if we want to get information about all reservations where the accommodation price at the time of booking (`Reservations.price`) matches the current price of the accommodation (`Room.price`), we can do it as follows:
+For example, if we want to get information about all reservations where the accommodation price at the time of booking (`Reservations.price`) matches the current price of the accommodation (`Rooms.price`), we can do it as follows:
 
 ```sql
 SELECT * FROM Reservations
@@ -97,7 +97,7 @@ SELECT id, price FROM Rooms
 
 And then, using this table, we limit all bookings only to those where the pair of values `room_id` and `price` can be found in the subquery table.
 
-This same solution could be executed without comparison by multiple columns, but it would be more verbose:
+The same solution can be applied without the need for comparison across multiple columns, although it would be less concise:
 
 ```sql
 SELECT Reservations.* FROM Reservations

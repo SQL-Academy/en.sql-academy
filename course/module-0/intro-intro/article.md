@@ -24,18 +24,18 @@ but some functionality may not be available or work incorrectly. Please treat th
 
 ## How our site is organized
 
-![How our site is organized](https://sql-academy.orghttps://sql-academy.org/static/guidePage/intro-intro/connections.webp "How our site is organized")
+![How our site is organized](https://sql-academy.orghttps://sql-academy.org/static/guidePage/intro-intro/connections.webp 'How our site is organized')
 
 There are 3 main sections on our resource, each of which will be useful in different ways:
 
-- **<a href="https://sql-academy.org/guide" target="_blank"> Course </a>** - is your step-by-step assistant when learning SQL. It presents consistent, structured materials, as well as related exercises to consolidate knowledge.
-- **<a href="https://sql-academy.org/trainer" target="_blank">Trainer </a>** the simulator is a tool to test your knowledge. The tasks in it are ranked by difficulty, so you can choose the ones that are suitable for your current level.
-  Also, solving tasks from the simulator is necessary to obtain a certificate confirming knowledge in the field of SQL.
-- **<a href="https://sql-academy.org/sandbox" target="_blank">Sandbox </a>** - is a space for free acquaintance with the structure of our databases.
+-   **<a href="https://sql-academy.org/guide" target="_blank"> Course </a>** - is your step-by-step assistant when learning SQL. It presents consistent, structured materials, as well as related exercises to consolidate knowledge.
+-   **<a href="https://sql-academy.org/trainer" target="_blank">Trainer </a>** the simulator is a tool to test your knowledge. The tasks in it are ranked by difficulty, so you can choose the ones that are suitable for your current level.
+    Also, solving tasks from the simulator is necessary to obtain a certificate confirming knowledge in the field of SQL.
+-   **<a href="https://sql-academy.org/sandbox" target="_blank">Sandbox </a>** - is a space for free acquaintance with the structure of our databases.
 
 In addition, while using all the sections, you can use our reference guide on SQL functions, the opening of which is available in the header of our resource.
 
 ## Premium account
 
 The purchase of <a href="https://sql-academy.org/premium" target="_blank"> premium account </a> is an optional part, we provide the course for everyone absolutely free of charge. But it opens up more opportunities for you
-to study more productively and gives you the opportunity to get a certificate. In addition, this is a great opportunity to support us in the development of this service.
+to study more productively, access to tasks from real interviews at top companies and gives you the opportunity to get a certificate. In addition, this is a great opportunity to support us in the development of this service.

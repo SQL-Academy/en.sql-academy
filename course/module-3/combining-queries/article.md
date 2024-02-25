@@ -12,19 +12,19 @@ SELECT table_fields FROM list_of_tables ... ;
 
 `UNION` removes repetitions in the resulting table by default. There is an optional `ALL` parameter for repeat display.
 
-- Do not confuse query join operations with table join operations. To do this, use the `JOIN` operator.
-- Do not confuse query merge operations with subqueries. Subqueries are executed for linked tables.
+-   Do not confuse query join operations with table join operations. To do this, use the `JOIN` operator.
+-   Do not confuse query merge operations with subqueries. Subqueries are executed for linked tables.
 
 Table joining with the `UNION` operator is performed for tables that are not related in any way, but with a similar structure.
 
-To `UNION` it worked correctly needed: so that the resulting tables of each of SQL queries had the same number of columns, with the same data type and in the same sequence.
+In order for `UNION` to function correctly, it is essential that the resulting tables from each of the SQL queries contain the same number of columns with the same data types and in the same order.
 
 There are two other operators whose behavior is very similar to `UNION`:
 
-- `INTERSECT`
-  Combines two SELECT queries, but returns only the first SELECT records that have matches in the second SELECT element.
-- `EXCEPT`
-  Combines two SELECT queries, but returns only the first SELECT records, which do not match in the second SELECT element.
+-   `INTERSECT`
+    Combines two SELECT queries, but returns only the first SELECT records that have matches in the second SELECT element.
+-   `EXCEPT`
+    Combines two SELECT queries, but returns only the first SELECT records, which do not match in the second SELECT element.
 
 ## Examples of using
 
