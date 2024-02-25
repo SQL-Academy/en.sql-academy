@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Numeric data type in SQL'
+    description: 'Working with numbers in SQL. Mathematical functions, control of the precision of numbers in SQL, as well as working with signed data.'
+---
+
 # Numeric data type in SQL
 
 Creating numeric data in SQL is quite simple: you can enter a number as a literal, you can get it from a table column, or

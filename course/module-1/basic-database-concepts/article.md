@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Databases and DBMS'
+    description: 'Definition of database and database management system. How databases work. Rating and popularity of relational databases. Features of relational databases. SQL query language.'
+---
+
 # Databases and DBMS
 
 Before we start learning SQL, let's get acquainted with the basic concepts

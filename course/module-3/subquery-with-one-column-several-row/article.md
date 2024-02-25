@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Subqueries with multiple rows and one column'
+    description: 'Subqueries using ANY, IN, ALL operators'
+---
+
 # Subqueries with multiple rows and one column
 
 If a subquery returns more than one row, it cannot be used with comparison operators in the same way as scalar subqueries could be used <a href="https://sql-academy.org/guide/subquery-with-one-column-one-row" target="_blank">as described here</a>.

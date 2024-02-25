@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'operator HAVING'
+    description: 'Using the HAVING statement in SQL'
+---
+
 # operator HAVING
 
 We have already looked at a query to obtain the average rental cost of residential properties depending on the type of housing:

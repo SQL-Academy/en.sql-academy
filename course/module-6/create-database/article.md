@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Creating and deleting databases'
+    description: 'SQL syntax for creating and dropping databases, CREATE DATABASE, DROP DATABASE. IF NOT EXIST.'
+---
+
 # Creating and deleting databases
 
 When writing SQL queries, we actively use tables. The tables themselves are stored within specific databases, which will be discussed in this article.

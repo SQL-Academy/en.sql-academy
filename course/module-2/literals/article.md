@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Literals in SQL'
+    description: 'Literal — an explicitly specified fixed value, for example, the number 12 or the string "SQL". In MySQL, there are the following types of literals: numeric, string, boolean, NULL, bit, hexadecimal, and date and time literal.'
+---
+
 # Literals in SQL
 
 In the last lesson, a string was output, and if we speak in a more formal language, then the so-called string literal.

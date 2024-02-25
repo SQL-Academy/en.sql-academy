@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Conditional IF function, ISNULL, NULLIF functions'
+    description: 'Syntax and examples of conditional functions IF, IFNULL, NULLIF in MySQL'
+---
+
 # Conditional IF function
 
 In the previous lesson, we looked at the `CASE` statement for implementing conditional logic in SQL.

@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Data types for table columns'
+    description: 'Data types for table columns in SQL'
+---
+
 # Data types for table columns
 
 In SQL, each column in a table must have a specific data type that specifies what type of information can be stored in that column.

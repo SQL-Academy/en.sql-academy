@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Partitions in window functions'
+    description: 'Partitions in SQL window functions. Using partitions across multiple columns. Partition syntax.'
+---
+
 # Partitions in SQL Window Functions
 
 In the [previous article](https://sql-academy.org//guide/windows-functions), we briefly mentioned what partitions

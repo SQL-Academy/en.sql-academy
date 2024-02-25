@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Adding data, insert statement'
+    description: 'Adding a new record in sql. Auto-increment of the primary key when creating a row in the table. SQL insert into statement.'
+---
+
 # Adding data, INSERT operator
 
 The operator `INSERT` is used to add new records to the table.

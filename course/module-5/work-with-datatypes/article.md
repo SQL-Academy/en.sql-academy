@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Working with Data Types'
+    description: 'Advanced exploration of working with data types in SQL'
+---
+
 # Working with Data Types
 
 We have already familiarized ourselves with data types in SQL and

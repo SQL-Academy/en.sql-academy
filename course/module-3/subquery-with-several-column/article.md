@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Multi-column subqueries'
+    description: 'Multi-column subqueries in SQL, subqueries with arbitrary table and comparison with multiple columns in SQL.'
+---
+
 # Multi-column subqueries
 
 So far, we have only considered subqueries that return a single column. However, we can also work with subqueries that return multiple columns and multiple rows (derived tables).

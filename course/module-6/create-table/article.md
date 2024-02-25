@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Creating and deleting tables'
+    description: 'SQL create and delete tables. The describe operator.'
+---
+
 # Creating and deleting tables
 
 ## Creating a table

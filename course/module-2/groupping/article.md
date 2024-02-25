@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Grouping, GROUP BY operator'
+    description: 'The structure of an SQL query with the group by operator, grouping by multiple fields, and examples.'
+---
+
 # Grouping, GROUP BY operator
 
 Let's run a query:

@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Using functions'
+    description: 'Examples of scalar SQL functions and their applications on literals and field values from tables.'
+---
+
 # Using Functions
 
 When creating SQL queries, we can use built-in functions. For example, if we want to output a string in uppercase, we can use the `UPPER` function.

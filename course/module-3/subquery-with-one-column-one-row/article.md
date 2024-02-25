@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Subquery with one row and one column'
+    description: 'Scalar subqueries in SQL, examples and syntax'
+---
+
 # Subquery with one row and one column
 
 In this lesson, let's take a closer look at a subquery that returns one row and one column.

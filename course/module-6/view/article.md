@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'VIEW in SQL '
+    description: 'Syntax for creating views in MySQL, description of how views work and why they are needed.'
+---
+
 # Views
 
 Well-designed applications usually provide an open interface, hiding implementation details,

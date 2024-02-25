@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Relational databases'
+    description: 'The concept of relational databases, their features and principles of operation. Ranking relational databases by popularity.'
+---
+
 # Relational databases
 
 > Relational databases are databases based on the relational model.

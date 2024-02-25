@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Sorting, ORDER BY operator'
+    description: 'SQL ORDER BY operator, sorting by multiple columns, examples of usage'
+---
+
 # Sorting, ORDER BY operator
 
 When executing a `SELECT` query, the rows are returned by default in an undefined order.

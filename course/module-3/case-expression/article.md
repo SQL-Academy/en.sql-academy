@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Conditional logic, CASE statement'
+    description: 'Conditional logic in SQL using the CASE WHEN THEN END statement'
+---
+
 # Conditional logic, CASE statement
 
 SQL, like many programming languages, allows you to write conditional logic so that behavior

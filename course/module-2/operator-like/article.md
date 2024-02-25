@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'LIKE operator'
+    description: 'SQL syntax of the LIKE operator to search for records by a patterned string'
+---
+
 # LIKE operator
 
 The `LIKE` operator is used in conditional queries when we want to find out whether a string matches a certain pattern.

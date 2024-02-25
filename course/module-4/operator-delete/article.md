@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Syntax of DELETE operator'
+    description: 'Delete records in sql. SQL operators delete, truncate and their differences. Delete query c join'
+---
+
 # Syntax of DELETE operator
 
 From time to time the task of deleting records from the table arises.

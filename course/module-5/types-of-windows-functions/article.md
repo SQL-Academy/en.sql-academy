@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Fundamental window functions'
+    description: 'Fundamental window functions in SQL - aggregate, ranking, and offset functions. Learn how to use aggregate functions such as SUM, COUNT, AVG, MAX, and MIN to calculate total values. Ranking functions like ROW_NUMBER, RANK, and DENSE_RANK allow for ranking values within a window. Offset functions like LAG, LEAD, FIRST_VALUE, and LAST_VALUE enable access to data from previous and following rows of the window.'
+---
+
 # Fundamental window functions
 
 In previous articles, we have examined how window functions work and introduced the concept of a data window,

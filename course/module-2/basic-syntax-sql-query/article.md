@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Basic SQL query syntax'
+    description: 'An example of simple SQL queries to a database. Using aliases in SQL queries.'
+---
+
 # Basic SQL query syntax
 
 One of the main functions of SQL is to get data samples from the DBMS.

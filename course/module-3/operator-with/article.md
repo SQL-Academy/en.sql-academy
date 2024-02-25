@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Common Table Expressions, operator WITH'
+    description: 'Common Table Expression in SQL. Syntax of the WITH statement and examples of its use.'
+---
+
 # Common Table Expressions, operator WITH
 
 Common Table Expressions is a temporary dataset that can be accessed in subsequent queries.

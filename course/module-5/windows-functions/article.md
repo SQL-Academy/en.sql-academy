@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'SQL Window Functions'
+    description: 'SQL window functions, OVER syntax of a data window, window function, example of using a window function, execution queue of window functions in a select query'
+---
+
 # SQL Window Functions
 
 Window functions are a powerful tool in SQL that allow you to perform complex calculations on groups of rows that are related to the current row.

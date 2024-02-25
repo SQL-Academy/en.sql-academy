@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Numeric data type in SQL'
+    description: 'Working with numbers in MySQL. Basic functions for working with numbers. INTEGER. DECIMAL. BIT.'
+---
+
 # Numeric data type
 
 Numerical data are divided into exact and approximate, integer and real. Bit values are a separate category.

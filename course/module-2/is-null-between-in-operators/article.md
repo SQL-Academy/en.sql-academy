@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'IS NULL, BETWEEN, IN Operators'
+    description: 'Syntax and usage examples of SQL IS NULL, BETWEEN, IN operators'
+---
+
 # IS NULL, BETWEEN, IN Operators
 
 We have already familiarized ourselves with the syntax of the `WHERE` operator and comparison operators,

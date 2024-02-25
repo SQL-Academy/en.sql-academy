@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Key-value databases'
+    description: 'Key-value databases are a type of database that store data as a collection of key-value pairs, where the key serves as a unique identifier. Learn about their advantages, disadvantages, and a ranking of popular key-value databases.'
+---
+
 # Key-value databases
 
 > Key-value databases are a type of databases that store data as a collection of key–value pairs in which the key serves as a unique identifier.

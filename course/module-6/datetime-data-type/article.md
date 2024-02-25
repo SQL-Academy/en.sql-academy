@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Date and time in SQL'
+    description: 'Functions for working with dates and times in SQL. DATE, TIME, DATETIME, TIMESTAMP data types and their differences.'
+---
+
 # Date and Time data types
 
 MySQL has several data types for working with dates and times: `DATE`, `TIME`, `DATETIME` and `TIMESTAMP`.

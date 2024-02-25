@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Conditional operator WHERE'
+    description: 'Conditional operator WHERE in an SQL query. Logical and comparison operators. SELECT FROM WHERE examples'
+---
+
 # Conditional operator WHERE
 
 The situation where a selection needs to be made based on a specific condition is very common.

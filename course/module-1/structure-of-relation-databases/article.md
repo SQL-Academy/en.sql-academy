@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Structure of Relational Databases'
+    description: 'Structure of tables in relational databases, concepts of records and attributes. Definition of primary and foreign keys.'
+---
+
 # Structure of Relational Databases
 
 We have briefly introduced ourselves to relational databases in the <a href="https://sql-academy.org/guide/relation-databases" target="_blank">previous article</a>. But

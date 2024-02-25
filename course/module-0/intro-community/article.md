@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'SQL Academy Community'
+    description: 'Information about our SQL community and the purposes for which it is organized, as well as available ways to contact the administration of this service.'
+---
+
 # Community
 
 We understand that communication is a very important part of the educational process, so we offer to join our community, where

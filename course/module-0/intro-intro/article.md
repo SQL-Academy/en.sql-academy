@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Introduction to the SQL course'
+    description: 'Information about our free online SQL course, support for working on various devices and the option of purchasing a premium account'
+---
+
 # About the course
 
 This course, aimed at learning SQL, is designed differently than most other courses.

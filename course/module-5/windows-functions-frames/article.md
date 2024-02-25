@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Window Frames, RANGE and ROWS'
+    description: 'Window frames in SQL - a concept that defines a subset of rows considered in window functions. Learn the difference between a window and a partition, as well as how to define window frames using ROWS and RANGE. Understand the differences between ROWS and RANGE in the context of SQL window functions.'
+---
+
 # Window frames
 
 In the context of SQL window functions, a "window" defines a subset of rows

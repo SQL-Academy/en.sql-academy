@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'SQL Indexes: speeding up data search and database optimization'
+    description: 'A comprehensive guide to SQL indexes, explaining how they simplify and speed up data search in database tables, avoiding the need for a full table scan. Learn how to create, manage, and optimize indexes to improve the performance of your queries in MySQL.'
+---
+
 # SQL Indexes
 
 When you insert a row into a table, the database server does not attempt to place the data

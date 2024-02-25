@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Course structure'
+    description: 'Detailed information about this SQL course'
+---
+
 # Course structure
 
 This course is divided into 6 modules, not counting the introduction module. Each module can be considered as a mini-course,

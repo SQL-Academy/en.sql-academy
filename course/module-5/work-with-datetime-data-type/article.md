@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Date and time in SQL'
+    description: 'Generating time and date in SQL, string representation of datetime values. Calculating age in SQL.'
+---
+
 # Date and time in SQL
 
 Among all the data types in SQL, date and time data is the most complex 🤯.

@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Outer join'
+    description: 'Description and syntax of outer join'
+---
+
 # Outer Join
 
 An outer join can be of three types: (`LEFT`), (`RIGHT`), and (`FULL`). By default, it is full.

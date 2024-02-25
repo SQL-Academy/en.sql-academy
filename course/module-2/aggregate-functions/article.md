@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Aggregate Functions'
+    description: 'Aggregate functions in SQL queries, syntax, and examples'
+---
+
 # Aggregate Functions
 
 In the article about grouping, we discussed that when using the `GROUP BY` operator, we can use aggregate functions. Let's talk more about them 🐳.

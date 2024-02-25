@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Types of databases'
+    description: 'Types and classifications of databases, the most popular type of database management systems'
+---
+
 # Types of databases
 
 This course is designed to help you master the query language for relational databases, which

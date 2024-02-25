@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'String data type in SQL'
+    description: 'Working with strings in MySQL. Basic functions for working with text data.'
+---
+
 # String data type
 
 The string data type is the most commonly used data type. Thanks to this, both text and various binary data (for example, pictures) are stored in the database.

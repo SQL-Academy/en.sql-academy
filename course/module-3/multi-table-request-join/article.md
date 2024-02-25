@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Multi-table queries, JOIN operator'
+    description: 'Description and syntax of SQL JOIN operator, examples of usage and self-check tasks'
+---
+
 # Multi-table queries, JOIN operator
 
 ## Multi-table queries

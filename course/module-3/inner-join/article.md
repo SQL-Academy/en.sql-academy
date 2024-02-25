@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'INNER JOIN'
+    description: 'Description and syntax of INNER JOIN'
+---
+
 # INNER JOIN
 
 In the previous lesson, we looked at the general structure of a multi-table query:

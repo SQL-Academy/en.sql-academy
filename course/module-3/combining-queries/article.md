@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Combining requests, Union operator'
+    description: 'An example of using sql operator union to combine selections'
+---
+
 # Combining requests, Union operator
 
 The results of executing SQL queries can be combined. There is a `UNION` operator for this.

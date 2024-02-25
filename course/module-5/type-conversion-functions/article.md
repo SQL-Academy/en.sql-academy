@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Type conversion functions, CAST'
+    description: 'SQL type conversion, using the CAST and CONVERT functions'
+---
+
 # Type conversion functions, CAST
 
 When we perform operations on values ​​with different data types, the DBMS tries to perform a conversion and cast the values ​​used to the desired type.

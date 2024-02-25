@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Selection restriction, LIMIT operator'
+    description: 'Description and syntax of the SQL limit statement, usage examples, and tasks for self-checking.'
+---
+
 # Selection restriction, LIMIT operator
 
 The `LIMIT` operator allows you to extract a specific a range of records from one or more tables.

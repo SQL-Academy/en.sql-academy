@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Duplicate elimination, operator DISTINCT'
+    description: 'Examples of what the SQL DISTINCT operator is needed for, excluding repetitions in SQL for one or more columns.'
+---
+
 # Duplicate elimination, DISTINCT
 
 In some situations, an SQL query for selecting data may return duplicate rows.

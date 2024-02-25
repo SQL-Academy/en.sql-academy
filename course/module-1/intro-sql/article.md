@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Introduction to SQL'
+    description: 'Defining the SQL language. Dialects (extensions) of SQL. Differences between T-SQL, PL/SQL, PL/pgSQL.'
+---
+
 # Introduction to SQL
 
 > SQL is a structured query language that is used as an efficient way to store data, search for its parts, update, extract from the database, and delete.

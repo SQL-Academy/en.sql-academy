@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Correlated subqueries'
+    description: 'Correlated and uncorrelated subqueries in SQL, their syntax'
+---
+
 # Correlated subqueries
 
 All previous subqueries we've discussed were uncorrelated (independent).

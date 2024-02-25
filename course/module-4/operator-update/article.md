@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Syntax INSERT operator'
+    description: 'Editing (updating) records in sql. Change data in relational databases.'
+---
+
 # Syntax INSERT operator
 
 To edit existing records in tables, there is an SQL operator `UPDATE`.

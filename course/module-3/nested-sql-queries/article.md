@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Subqueries in SQL'
+    description: 'Subqueries, nested queries in SQL. Their types and usage.'
+---
+
 # Subqueries
 
 Subqueries are one of the most powerful 💪 tools in SQL, which can be used in any type of query.

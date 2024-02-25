@@ -1,3 +1,9 @@
+---
+meta:
+    title: 'Document-oriented databases'
+    description: 'Definition of document-oriented databases, examples of data storage, features, and a rating of popular document-oriented DBMS.'
+---
+
 # Document-oriented databases
 
 > Document-oriented databases are a type of database designed to store and query data in the form of documents, similar to JSON.
