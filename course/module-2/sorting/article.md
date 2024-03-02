@@ -20,8 +20,8 @@ ORDER BY column_1 [ASC | DESC][, column_n [ASC | DESC]]
 
 Where `ASC` and `DESC` are sorting directions:
 
-- `ASC` - sorting in ascending order (by default)
-- `DESC` - sorting in descending order
+-   `ASC` - sorting in ascending order (by default)
+-   `DESC` - sorting in descending order
 
 ## Sorting by multiple columns
 
@@ -44,40 +44,39 @@ The number of columns that can be sorted is unlimited.
 
 ## Usage examples
 
-- Let's display the names of airlines in alphabetical order from the `Company` table:
+-   Let's display the names of airlines in alphabetical order from the `Company` table:
 
-  > Sorting string data in ascending order implies sorting in lexicographic (alphabetical) order.
+    > Sorting string data in ascending order implies sorting in lexicographic (alphabetical) order.
 
-  ```sql
-  SELECT name FROM Company ORDER BY name;
-  ```
+    ```sql
+    SELECT name FROM Company ORDER BY name;
+    ```
 
-  | name       |
-  | ---------- |
-  | Aeroflot   |
-  | air_France |
-  | British_AW |
-  | Dale_avia  |
-  | Don_avia   |
+    | name       |
+    | ---------- |
+    | Aeroflot   |
+    | air_France |
+    | British_AW |
+    | Dale_avia  |
+    | Don_avia   |
 
-- Let's display flight information sorted by the departure city in ascending order and by the arrival city in descending order, from the `Trip` table:
+-   Let's display flight information sorted by the departure city in ascending order and by the arrival city in descending order, from the `Trip` table:
 
-  ```sql
-  SELECT DISTINCT town_from, town_to FROM Trip
-  ORDER BY town_from, town_to DESC;
-  ```
+    ```sql
+    SELECT DISTINCT town_from, town_to FROM Trip
+    ORDER BY town_from, town_to DESC;
+    ```
 
-  | town_from   | town_to     |
-  | ----------- | ----------- |
-  | London      | Singapore   |
-  | London      | Paris       |
-  | Moscow      | Rostov      |
-  | Paris       | Rostov      |
-  | Rostov      | Vladivostok |
-  | Rostov      | Paris       |
-  | Rostov      | Moscow      |
-  | Singapore   | London      |
-  | Vladivostok | Rostov      |
+    | town_from   | town_to     |
+    | ----------- | ----------- |
+    | London      | Singapore   |
+    | London      | Paris       |
+    | Moscow      | Rostov      |
+    | Paris       | Rostov      |
+    | Rostov      | Vladivostok |
+    | Rostov      | Paris       |
+    | Rostov      | Moscow      |
+    | Singapore   | London      |
+    | Vladivostok | Rostov      |
 
-  In this example, the entries are sorted by the `town_from` field first. Then, if there are multiple entries with the same value in the `town_from` field, \
-  the reverse sorting by the `town_to` field is triggered.
+    In this example, the entries are sorted by the `town_from` field first. Then, it performs reverse sorting by the `town_to` field for groups of rows that have the same value in the `town_from` column.
