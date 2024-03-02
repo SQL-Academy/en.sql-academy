@@ -1,0 +1,104 @@
+---
+meta:
+    title: 'Sorting inside the window'
+    description: 'Sorting within a window is an important feature of SQL window functions. Learn how to use in-window sorting to organize your data and get more accurate aggregate calculations. An example of use and explanation of the features of sorting without specifying window frames.'
+---
+
+# Sorting within a window
+
+In the previous articles, we discussed window functions and partitions in SQL. Now let's move on to another important feature of window functions - sorting within a window.
+
+## Why do you need sorting in a window?
+
+Sorting within a window in SQL window functions is a key to advanced data analysis.
+It allows you to order data within a specific group or window, enabling more accurate and targeted aggregate calculations.
+This is especially useful when working with time series data, where the order of events is important, or when ranking data within groups.
+
+## Example Usage
+
+### Problem Statement
+
+Let's say we need to analyze data on room bookings to understand how the total amount spent on rentals changed over time for each user.
+
+We have the following sample data of bookings:
+
+![Window function without sorting](https://sql-academy.org/static/guidePage/sorting-in-windows-functions/initial-data_en.png 'Window function without sorting')
+
+And we want to see the change in expenses for each user over time, resulting in a table like this:
+
+![Using a window function with sorting](https://sql-academy.org/static/guidePage/sorting-in-windows-functions/final-result.png 'Using a window function with sorting')
+
+#### Splitting data into partitions
+
+To achieve the desired result, we first need to partition the data by each user so that the window
+function works independently for each user. To calculate the sum, we can use the window function `SUM`.
+
+```sql
+SELECT user_id,
+       start_date,
+       total AS reservation_price,
+       SUM(total) OVER (
+            PARTITION BY user_id
+       ) AS total_expenses
+FROM Reservations;
+```
+
+![Intermediate result](https://sql-academy.org/static/guidePage/sorting-in-windows-functions/result-1.png 'Intermediate result')
+
+The result of this query shows the total expenses with a breakdown by user in the `total_expenses` column.
+However, this is not exactly what we want: the data in the table is not ordered by date,
+and we don't see how the total expenses grew over time - we only see the final expenses.
+
+To get the desired result, we need to add sorting by the start date of the booking to the query:
+
+```sql
+SELECT user_id,
+       start_date,
+       total AS reservation_price,
+       SUM(total) OVER (
+           PARTITION BY user_id
+           ORDER BY start_date
+       ) AS cumulative_total
+FROM Reservations;
+```
+
+![Using a window function with sorting](https://sql-academy.org/static/guidePage/sorting-in-windows-functions/final-result.png 'Using a window function with sorting')
+
+Now we have achieved what we wanted. But what changed after adding `ORDER BY start_date`?
+
+1. The data within each partition is sorted by the start date of the booking.
+2. The way the total expenses are calculated has changed: now the sum within each partition accumulates as
+   opposed to being the final sum. This is due to a specific behavior when using sorting without
+   explicitly specifying `ROWS|RANGE` in the `OVER` clause. Let's dive into this in more detail.
+
+### Behavior of sorting without specifying window frame
+
+As we remember, the full syntax of a window function looks like this:
+
+```sql
+SELECT <window_function>(<table_field>)
+OVER (
+      [PARTITION BY <partition_columns>]
+      [ORDER BY <sort_columns>]
+      [ROWS|RANGE <range_definition>]
+)
+```
+
+In addition to the `PARTITION BY` and `ORDER BY` blocks, there is an optional `ROWS|RANGE` block.
+We will discuss this block in more detail in the next article, but for now, let's focus on its purpose.
+It allows you to specify the window frame relative to the current row that will be used for calculations
+in the window function.
+
+You can specify, for example, that when calculating values for the current row in the window function,
+only the `N` rows before the current row and `N` rows after it should be considered.
+
+When using `ORDER BY`, if nothing is specified in the `ROWS|RANGE` block, the window function
+
+automatically applies the rule `RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW`.
+This means that the window starts from the first row and ends at the current row.
+
+In the case of our query, the values for the `cumulative_total` column are calculated as follows:
+
+![Explanation of how sorting worked](https://sql-academy.org/static/guidePage/sorting-in-windows-functions/explanation.png 'Explanation of how sorting worked')
+
+We will dive into windows frames and their definitions in more detail in the next article.
