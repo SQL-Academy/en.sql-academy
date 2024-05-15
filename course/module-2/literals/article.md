@@ -25,7 +25,7 @@ The main types of literals in MySQL are:
 ## String literals
 
 A string is a sequence of characters enclosed in single (') or double (") quotation marks.
-For example, `this is a string"` and `"this is a string"`.
+For example, `'this is a string'` and `"this is a string"`.
 
 Strings can contain special sequences of characters starting with `"\"` (escape character).
 They are needed in order for the DBMS to give ordinary symbols (letters and other signs) a new special meaning. For example, the sequence `"\n"`
