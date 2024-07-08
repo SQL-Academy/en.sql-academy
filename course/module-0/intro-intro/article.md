@@ -45,3 +45,15 @@ In addition, while using all the sections, you can use our reference guide on SQ
 
 The purchase of <a href="https://sql-academy.org/premium" target="_blank"> premium account </a> is an optional part, we provide the course for everyone absolutely free of charge. But it opens up more opportunities for you
 to study more productively, access to tasks from real interviews at top companies and gives you the opportunity to get a certificate. In addition, this is a great opportunity to support us in the development of this service.
+
+## Progress and certificate acquisition
+
+If you are logged in, you can see the progress bar in the **<a href="https://sql-academy.org/trainer" target="_blank">trainer</a>** section.
+
+![Progress bar before receiving a certificate](https://sql-academy.org/static/guidePage/intro-intro/progress_bar_en.jpg)
+
+Once you have independently solved 50 tasks, you can obtain a certificate 😍.
+
+![Example of the certificate](https://sql-academy.org/static/guidePage/intro-intro/certificate_en.jpg)
+
+Good luck with learning SQL! The first step has already been successfully completed ✨
