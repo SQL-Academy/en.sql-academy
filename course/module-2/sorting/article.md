@@ -4,6 +4,8 @@ meta:
     description: 'SQL ORDER BY operator, sorting by multiple columns, examples of usage'
 ---
 
+<ArticleBanner src="https://sql-academy.org/static/guidePage/sorting/banner.jpg" />
+
 # Sorting, ORDER BY operator
 
 When executing a `SELECT` query, the rows are returned by default in an undefined order.
@@ -22,6 +24,21 @@ Where `ASC` and `DESC` are sorting directions:
 
 -   `ASC` - sorting in ascending order (by default)
 -   `DESC` - sorting in descending order
+
+For example, Let's display the names of airlines in alphabetical order from the `Company` table:
+
+```sql
+SELECT name FROM Company ORDER BY name;
+```
+
+## Sorting in ascending and descending order for main types
+
+| Data type     | ASC                                                                                                                   | DESC                                                                                                   |
+| :------------ | :-------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| String type   | Lexicographic (alphabetical) order from “A” to “Z” <br /> <br /> Records starting with “a” come first, then “b”, etc. | Lexicographic order from “Z” to “A” <br /> <br /> Records starting with “z” come first, then “y”, etc. |
+| Numeric type  | From smallest to largest                                                                                              | From largest to smallest                                                                               |
+| Date and time | From earlier date/time to later <br /> <br /> For example, first `01.01.2024`, then `01.02.2024`                      | From later date/time to earlier <br /> <br /> For example, first `01.02.2024`, then `01.01.2024`       |
+| Boolean type  | `False` comes before `True`                                                                                           | `True` comes before `False`                                                                            |
 
 ## Sorting by multiple columns
 
@@ -42,41 +59,13 @@ The number of columns that can be sorted is unlimited.
 >
 > `ORDER BY column_1 DESC, column_2 DESC`
 
-## Usage examples
+Let's display flight information sorted by the departure city in ascending order and by the arrival city in descending order, from the `Trip` table:
 
--   Let's display the names of airlines in alphabetical order from the `Company` table:
+```sql
+SELECT DISTINCT town_from, town_to FROM Trip
+ORDER BY town_from, town_to DESC;
+```
 
-    > Sorting string data in ascending order implies sorting in lexicographic (alphabetical) order.
+In this example, the entries are sorted by the `town_from` field first. Then, it performs reverse sorting by the `town_to` field for groups of rows that have the same value in the `town_from` column.
 
-    ```sql
-    SELECT name FROM Company ORDER BY name;
-    ```
-
-    | name       |
-    | ---------- |
-    | Aeroflot   |
-    | air_France |
-    | British_AW |
-    | Dale_avia  |
-    | Don_avia   |
-
--   Let's display flight information sorted by the departure city in ascending order and by the arrival city in descending order, from the `Trip` table:
-
-    ```sql
-    SELECT DISTINCT town_from, town_to FROM Trip
-    ORDER BY town_from, town_to DESC;
-    ```
-
-    | town_from   | town_to     |
-    | ----------- | ----------- |
-    | London      | Singapore   |
-    | London      | Paris       |
-    | Moscow      | Rostov      |
-    | Paris       | Rostov      |
-    | Rostov      | Vladivostok |
-    | Rostov      | Paris       |
-    | Rostov      | Moscow      |
-    | Singapore   | London      |
-    | Vladivostok | Rostov      |
-
-    In this example, the entries are sorted by the `town_from` field first. Then, it performs reverse sorting by the `town_to` field for groups of rows that have the same value in the `town_from` column.
+## Demonstration of how sorting works
