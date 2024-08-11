@@ -23,21 +23,21 @@ create databases and manipulate information from them.
 
 The simplest scheme for working with a database:
 
-![Database operation scheme](https://sql-academy.org/static/guidePage/basic-database-concepts/en_schema_of_db_work.png "title")
+![Database operation scheme](https://sql-academy.org/static/guidePage/basic-database-concepts/en_schema_of_db_work.png 'title')
 
 ## DBMS rating
 
 At the moment, the rating of database management systems based on <a href="https://db-engines.com/en/ranking" target="_blank"> db-engines</a> is as follows:
 
-- `Oracle` - relational DBMS
-- `MySQL` - relational DBMS
-- `Microsoft SQL Server` - relational DBMS
-- `PostgreSQL` - relational DBMS
-- `MongoDB` - document-oriented databases
-- `Redis` - key-value databases
-- `IBM Db2` - relational DBMS
-- `Elasticsearch` - search engine
-- `Microsoft Access` - relational DBMS
-- `SQLite` - relational DBMS
+-   `Oracle` - relational DBMS
+-   `MySQL` - relational DBMS
+-   `Microsoft SQL Server` - relational DBMS
+-   `PostgreSQL` - relational DBMS
+-   `MongoDB` - document-oriented databases
+-   `Redis` - key-value databases
+-   `Snowflake` - cloud relational DBMS
+-   `Elasticsearch` - search engine
+-   `IBM Db2` - relational DBMS
+-   `SQLite` - relational DBMS
 
 It can be noted that 7 of the 10 most popular DBMS are relational. You made the right choice to study them 😉.

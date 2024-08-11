@@ -4,7 +4,7 @@ meta:
     description: 'SQL ORDER BY operator, sorting by multiple columns, examples of usage'
 ---
 
-<ArticleBanner src="https://sql-academy.org/static/guidePage/sorting/banner.jpg" />
+<img src="https://sql-academy.org/static/guidePage/sorting/banner.jpg" />
 
 # Sorting, ORDER BY operator
 
@@ -30,6 +30,14 @@ For example, Let's display the names of airlines in alphabetical order from the 
 ```sql
 SELECT name FROM Company ORDER BY name;
 ```
+
+| name       |
+| ---------- |
+| Aeroflot   |
+| air_France |
+| British_AW |
+| Dale_avia  |
+| Don_avia   |
 
 ## Sorting in ascending and descending order for main types
 
@@ -66,6 +74,16 @@ SELECT DISTINCT town_from, town_to FROM Trip
 ORDER BY town_from, town_to DESC;
 ```
 
-In this example, the entries are sorted by the `town_from` field first. Then, it performs reverse sorting by the `town_to` field for groups of rows that have the same value in the `town_from` column.
+| town_from   | town_to     |
+| ----------- | ----------- |
+| London      | Singapore   |
+| London      | Paris       |
+| Moscow      | Rostov      |
+| Paris       | Rostov      |
+| Rostov      | Vladivostok |
+| Rostov      | Paris       |
+| Rostov      | Moscow      |
+| Singapore   | London      |
+| Vladivostok | Rostov      |
 
-## Demonstration of how sorting works
+In this example, the entries are sorted by the `town_from` field first. Then, it performs reverse sorting by the `town_to` field for groups of rows that have the same value in the `town_from` column.
