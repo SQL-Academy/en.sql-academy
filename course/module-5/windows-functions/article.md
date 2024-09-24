@@ -79,7 +79,7 @@ We will delve into each of these parameters in more detail in the following arti
 
 ## Example of using window functions
 
-Let's use window functions to get a list of student names and the number of students studying with them in the same class.
+Let's use window functions to get a list of students and their class sizes.
 
 <ERD databaseName="Schedule" />
 
