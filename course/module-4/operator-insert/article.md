@@ -63,8 +63,10 @@ It should be remembered that the primary key of the table is a unique value and 
 When adding a new record with unique indices, the choice of such a unique values can be a daunting task. The solution may be an additional request, aimed at identifying the maximum value of the primary key to generate a new unique value.
 
 ```sql
-INSERT INTO Goods SELECT COUNT(*) + 1, 'Table', 2 FROM Goods;
+INSERT INTO Goods SELECT MAX(good_id) + 1, 'Table', 2 FROM Goods;
 ```
+
+Here, we use the `MAX` function to find the maximum value in the primary key column. However, this method is not the most reliable or universal way to determine the primary key value, as it only works best with numeric data types. For all other data types, implementing this approach would be more complex. Additionally, using this method may result in retrieving a value that was previously present in the table but has since been deleted, leading to potential data inconsistencies in the system 💥. Therefore, it is recommended that an alternative method be used in real-world projects.
 
 ## MySQL
 
