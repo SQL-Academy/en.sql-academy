@@ -159,5 +159,5 @@ And how then is it correct to determine the age? There is a built-in function fo
 which takes as its first argument the unit in which to return the difference between two time values.
 
 ```sql
-TIMESTAMPDIFF(YEAR, '2003-07-03 14:10:26', NOW());
+SELECT TIMESTAMPDIFF(YEAR, '2003-07-03 14:10:26', NOW());
 ```
