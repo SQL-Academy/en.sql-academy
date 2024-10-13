@@ -1,0 +1,24 @@
+---
+meta:
+    title: 'What is a JOIN and what types of JOINs do you know'
+    description: 'JOIN in SQL combines data from multiple tables. Learn about types of JOINs: INNER, LEFT, RIGHT, FULL, and CROSS JOIN for efficient database work.'
+---
+
+> JOIN is an operation in SQL that allows combining rows from two or more tables based on related columns between them.
+
+## Types of JOINs:
+
+-   `INNER JOIN`:  
+    Returns records that have matching values in both tables..
+
+-   `LEFT JOIN (or LEFT OUTER JOIN)`:  
+    Returns all records from the left table and the matching records from the right table. If there is no match, it returns NULL for the right table.
+
+-   `RIGHT JOIN (or RIGHT OUTER JOIN)`:  
+    Returns all records from the right table and the matching records from the left table. If there is no match, it returns NULL for the left table.
+
+-   `FULL OUTER JOIN`:  
+    Returns all records where there is a match in one of the tables.
+
+-   `CROSS JOIN`:  
+    Performs a Cartesian product of two tables, combining each row of the first table with each row of the second table.

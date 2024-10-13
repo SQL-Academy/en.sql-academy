@@ -1,0 +1,26 @@
+---
+meta:
+    title: 'What is an index and how does it affect performance?'
+    description: 'An index in SQL improves data retrieval speed but can slow down write operations. Learn how indexes affect performance and their advantages.'
+---
+
+> **An Index** is a special data structure that improves the speed of data retrieval operations from a table by creating pointers to the data.
+
+Indexes speed up read operations but can slow down write operations (inserts, updates, deletes) since the indexes need to be updated when the data changes.
+
+## Advantages of Indexes:
+
+-   Faster execution of `SELECT` operations.
+-   Improved performance when sorting and searching data.
+
+## Disadvantages of Indexes:
+
+-   Additional disk space required.
+-   Slower performance for `INSERT`, `UPDATE`, and `DELETE` operations.
+
+## Example of creating an index:
+
+```sql
+-- Creating an index on the name column in the employees table
+CREATE INDEX idx_employees_name ON employees(name);
+```

@@ -1,0 +1,31 @@
+---
+meta:
+    title: 'How to use the CASE operator in SQL?'
+    description: 'The CASE operator in SQL is used for conditional logic in queries. Learn how to apply CASE to assign values based on conditions.'
+---
+
+The `CASE` operator is used to implement conditional logic in SQL queries.
+It allows you to return values based on conditions, similar to the `IF-ELSE` statement.
+
+```sql
+CASE
+    WHEN condition1 THEN result1
+    WHEN condition2 THEN result2
+    ...
+    ELSE default_result
+END
+```
+
+## Examples
+
+-   Assigning categories based on salary:
+    ```sql
+    SELECT name,
+        salary,
+        CASE
+            WHEN salary >= 80000 THEN 'High'
+            WHEN salary >= 50000 THEN 'Medium'
+            ELSE 'Low'
+        END AS salary_category
+    FROM employees;
+    ```

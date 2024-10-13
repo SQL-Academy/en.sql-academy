@@ -1,0 +1,29 @@
+---
+meta:
+    title: 'Explain what a VIEW is and its benefits'
+    description: 'A VIEW in SQL is a virtual table based on a query. Learn how views simplify queries, enhance security, and support data integrity.'
+---
+
+> **A VIEW** is a virtual table based on the result of an SQL query. A view does not store data itself but provides a specific way to view data from one or more tables.
+
+## Benefits of a VIEW:
+
+-   **Simplifies complex queries**: Allows saving a complex query and using it as a simple table.
+-   **Security**: Grants users access only to specific data, hiding the rest.
+-   **Updatability**: In some cases, data can be updated through the view.
+-   **Maintains data integrity**: Can combine data from multiple tables in a specific way.
+
+## Example of creating a VIEW:
+
+```sql
+CREATE VIEW employee_details AS
+SELECT e.id, e.name, d.name AS department, e.salary
+FROM employees e
+JOIN departments d ON e.department_id = d.id;
+```
+
+## Using a VIEW:
+
+```sql
+SELECT * FROM employee_details WHERE salary > 50000;
+```

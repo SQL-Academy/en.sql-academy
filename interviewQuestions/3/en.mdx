@@ -1,0 +1,35 @@
+---
+meta:
+    title: 'What is a Primary Key and a Foreign Key?'
+    description: 'A primary key is a unique identifier for a record, while a foreign key links tables, ensuring data integrity in the database'
+---
+
+## Primary Key (PRIMARY KEY):
+
+-   A unique identifier for a record in a table.
+-   Does not allow duplicates or NULL values.
+-   Can consist of one or more columns (composite key).
+
+```sql
+CREATE TABLE students (
+    student_id INT PRIMARY KEY,
+    name VARCHAR(100),
+    age INT
+);
+```
+
+## Foreign Key (FOREIGN KEY)
+
+-   A column or set of columns that refer to the primary key of another table.
+-   Ensures referential integrity between tables.
+-   Allows linking records from different tables.
+
+```sql
+CREATE TABLE enrollments (
+    enrollment_id INT PRIMARY KEY,
+    student_id INT,
+    course_id INT,
+    FOREIGN KEY (student_id) REFERENCES students(student_id),
+    FOREIGN KEY (course_id) REFERENCES courses(course_id)
+);
+```

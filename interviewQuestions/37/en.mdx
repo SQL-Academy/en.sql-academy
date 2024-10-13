@@ -1,0 +1,53 @@
+---
+meta:
+    title: 'How to implement many-to-many relationships in SQL?'
+    description: 'Many-to-many relationships in SQL are implemented through a junction table with foreign keys. Learn how to create relationships between tables with examples.'
+---
+
+**A many-to-many** relationship in relational databases occurs when one record in the first table
+can be associated with multiple records in the second table, and vice versa.
+
+In SQL, such relationships are implemented using a junction table (also known as a linking or
+associative table) that connects the two main tables via foreign keys.
+
+## How to implement many-to-many relationships in SQL
+
+-   **Create two main tables**, that need to be linked.
+-   **Create a junction table**, containing foreign keys that reference the primary keys of both main tables.
+-   **Define foreign keys and a composite primary key** in the junction table to ensure referential integrity and uniqueness of relationship pairs.
+
+## Example implementation
+
+Consider a scenario with `Student` and `Course` tables where one student can enroll in multiple courses,
+and one course can be taken by multiple students.
+
+-   Creating the students table:
+    ```sql
+    CREATE TABLE Student (
+        StudentID INT PRIMARY KEY,
+        Name VARCHAR(100)
+    );
+    ```
+-   Creating the courses table:
+    ```sql
+    CREATE TABLE Course (
+        CourseID INT PRIMARY KEY,
+        Title VARCHAR(100)
+    );
+    ```
+-   Creating a junction table to establish the many-to-many relationship:
+    ```sql
+    CREATE TABLE StudentCourse (
+        StudentID INT,
+        CourseID INT,
+        PRIMARY KEY (StudentID, CourseID),
+        FOREIGN KEY (StudentID) REFERENCES Student(StudentID),
+        FOREIGN KEY (CourseID) REFERENCES Course(CourseID)
+    );
+    ```
+
+As a result:
+
+-   The **junction table** `StudentCourse` contains pairs of `StudentID` and `CourseID`, representing the relationships between students and courses.
+-   The **composite primary key** `(StudentID, CourseID)` ensures that each pair is unique, preventing duplicate relationships.
+-   The **foreign keys** ensure data integrity by referencing the corresponding records in the `Student` and `Course` tables.

@@ -1,0 +1,30 @@
+---
+meta:
+    title: 'How to use the LIKE operator and what is it used for?'
+    description: 'The LIKE operator in SQL is used to search for strings based on a pattern using the symbols % and _. Learn how to apply LIKE for filtering data.'
+---
+
+The `LIKE` operator is used in `WHERE` clauses to search for rows that match a specific pattern. Wildcards are used in the patterns:
+
+-   `%` — matches any sequence of characters (including an empty sequence).
+-   `_` — matches any single character.
+
+## Examples of usage:
+
+1. Searching for rows that start with “A”:
+
+```sql
+SELECT * FROM employees WHERE name LIKE 'А%';
+```
+
+2. Searching for rows that end with “e”:
+
+```sql
+SELECT * FROM employees WHERE name LIKE '%e';
+```
+
+3. Searching for rows where the second character is “a”:
+
+```sql
+SELECT * FROM employees WHERE name LIKE '_а%';
+```

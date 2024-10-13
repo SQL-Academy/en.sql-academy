@@ -1,0 +1,54 @@
+---
+meta:
+    title: 'What is NULL and How to Work with It in SQL?'
+    description: 'NULL in SQL represents the absence of data. Learn how to work with NULL using the operators IS NULL, IS NOT NULL, and functions like COALESCE, ISNULL, IFNULL.'
+---
+
+> **NULL** is a special value in SQL that represents the absence of data or an unknown value.
+
+## Characteristics of NULL:
+
+-   `NULL` is not equivalent to an empty string or zero.
+-   Operations with `NULL` return `NULL`.
+-   Comparing `NULL = NULL` returns `FALSE`.
+
+## Working with NULL
+
+To check for `NULL`, use the `IS NULL` or `IS NOT NULL` operator.
+
+```sql
+-- Finding records with an unknown birth date
+SELECT * FROM employees WHERE birth_date IS NULL;
+
+-- Finding records with a known birth date
+SELECT * FROM employees WHERE birth_date IS NOT NULL;
+```
+
+## Functions for working with NULL
+
+-   <a href="/handbook/COALESCE" target="_blank">
+        **COALESCE**
+    </a>
+    Returns the first non-`NULL` value from the list.
+
+    ```sql
+    COALESCE(val1[, val2, ...., val_n])
+    ```
+
+-   <a href="/handbook/ISNULL" target="_blank">
+        **ISNULL**
+    </a>
+    Returns `1` or `0` depending on whether the expression is `NULL`.
+
+    ```sql
+    ISNULL(value)
+    ```
+
+-   <a href="/handbook/IFNULL" target="_blank">
+        **IFNULL**
+    </a>
+    Returns the first argument if it is not `NULL`. Otherwise, it returns the second argument.
+
+    ```sql
+    IFNULL(value, alternative_value)
+    ```

@@ -1,0 +1,41 @@
+---
+meta:
+    title: 'Explain Transactional Commands COMMIT and ROLLBACK.'
+    description: 'COMMIT commits a transaction, making changes permanent, while ROLLBACK undoes changes, returning the database to its original state. Learn how to manage transactions.'
+---
+
+## COMMIT
+
+-   Commits the current transaction.
+-   All changes made during the transaction become permanent and visible to other users.
+-   After a `COMMIT`, changes cannot be undone.
+
+```sql
+BEGIN TRANSACTION;
+
+UPDATE accounts SET balance = balance - 100 WHERE account_id = 1;
+UPDATE accounts SET balance = balance + 100 WHERE account_id = 2;
+
+COMMIT;
+```
+
+## ROLLBACK
+
+-   Reverts the current transaction.
+-   All changes made during the transaction are undone.
+-   The database is returned to the state it was in before the transaction began.
+
+```sql
+BEGIN TRANSACTION;
+
+DELETE FROM orders WHERE order_date < '2022-01-01';
+
+-- If you change your mind
+ROLLBACK;
+```
+
+## Usage in transaction management:
+
+-   `BEGIN TRANSACTION` or `START TRANSACTION`: begins a transaction.
+-   `COMMIT`: commits the transaction.
+-   `ROLLBACK`: rolls back the transaction.

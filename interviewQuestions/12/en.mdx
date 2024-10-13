@@ -1,0 +1,31 @@
+---
+meta:
+    title: 'What are triggers in SQL?'
+    description: 'Triggers in SQL are procedures that are automatically executed during INSERT, UPDATE, or DELETE operations. Learn about types of triggers and their use in databases.'
+---
+
+> **A Trigger** r is a stored procedure that is automatically executed when a specific event occurs in the database, such as an `INSERT`, `UPDATE`, or `DELETE` on a particular table.
+
+## Types of Triggers:
+
+-   DML Triggers: Respond to `INSERT`, `UPDATE`, or `DELETE` operations.
+-   DDL Triggers: Respond to `CREATE`, `ALTER`, or `DROP` operations.
+-   Row-level or Statement-level Triggers.
+
+## Advantages of triggers:
+
+-   Automates checks and constraints.
+-   Logs changes.
+-   Maintains data integrity.
+
+## Example of creating a trigger:
+
+```sql
+CREATE TRIGGER trg_after_insert_employee
+AFTER INSERT ON employees
+FOR EACH ROW
+BEGIN
+    INSERT INTO audit_log (employee_id, action, action_time)
+    VALUES (NEW.id, 'INSERT', NOW());
+END;
+```

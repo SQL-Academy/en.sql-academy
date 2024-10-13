@@ -1,0 +1,35 @@
+---
+meta:
+    title: 'What is a temporary table in SQL?'
+    description: 'A temporary table in SQL exists only for the duration of the session and is automatically deleted after it ends. Learn how to create and use temporary tables.'
+---
+
+> **A temporary table** is a table that exists only for the duration of the current session or connection and is automatically deleted when the session ends or the connection is closed.
+
+## Creating a temporary table
+
+```sql
+CREATE TEMPORARY TABLE TempTable (
+    id INT,
+    name VARCHAR(100)
+);
+```
+
+### Using a temporary table
+
+```sql
+-- inserting data into the temporary table
+INSERT INTO #TempTable (id, name)
+VALUES (1, 'Иван'), (2, 'Петр');
+
+-- selecting data from the temporary table
+SELECT * FROM #TempTable;
+
+-- the temporary table will be automatically deleted after the session ends
+```
+
+## Applications of temporary tables
+
+-   Storing intermediate results in complex queries.
+-   Handling large datasets in batch operations.
+-   Avoiding conflicts when multiple users are working simultaneously.

@@ -1,0 +1,32 @@
+---
+meta:
+    title: 'What are window functions in SQL?'
+    description: 'Window functions in SQL allow performing calculations on a set of rows without grouping. Learn how to use SUM, ROW_NUMBER, LAG, and other window functions.'
+---
+
+> **Window functions** are functions that perform calculations over a set of rows (a window) related to the current row and return a result for each row without grouping the data.
+
+## Main window functions:
+
+### Aggregate functions:
+
+-   `SUM` — calculates the total sum of values
+-   `COUNT` — counts the total number of records in a column
+-   `AVG` — calculates the arithmetic mean
+-   `MAX` — finds the maximum value
+-   `MIN` — determines the minimum value
+
+### Ranking functions:
+
+-   `ROW_NUMBER`: assigns a sequential number to a row within the window
+-   `RANK`: assigns a rank to a row within the window, with gaps when values tie
+-   `DENSE_RANK`: assigns a rank to a row without gaps
+
+### Offset functions:
+
+-   `LAG`: returns the value from the previous row
+-   `LEAD`: returns the value from the next row
+-   `FIRST_VALUE`: returns the first value in the window
+-   `LAST_VALUE`: returns the last value in the window
+
+A detailed explanation of how window functions work can be found <a href="https://sql-academy.org/en/guide/windows-functions" target="_blank">in our course</a>.

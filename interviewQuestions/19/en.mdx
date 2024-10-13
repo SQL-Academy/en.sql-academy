@@ -1,0 +1,79 @@
+---
+meta:
+    title: 'What are constraints and what types exist?'
+    description: 'Constraints in SQL ensure data integrity. Learn about NOT NULL, UNIQUE, PRIMARY KEY, FOREIGN KEY, CHECK, and DEFAULT for reliable data in tables.'
+---
+
+**Constraints** ensure data integrity and reliability in a table by defining rules for the data in columns.
+
+Types of constraints:
+
+**NOT NULL:**
+
+-   Prohibits storing `NULL` values in a column.
+
+Example:
+
+```sql
+CREATE TABLE products (
+    product_id INT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
+);
+```
+
+**UNIQUE:**
+
+-   Ensures uniqueness of values in a column or group of columns.
+
+Example:
+
+```sql
+CREATE TABLE users (
+    user_id INT PRIMARY KEY,
+    email VARCHAR(100) UNIQUE
+);
+```
+
+**PRIMARY KEY:**
+
+-   A combination of `NOT NULL` and `UNIQUE`.
+-   Identifies each record in the table.
+
+**FOREIGN KEY:**
+
+-   Ensures referential integrity between tables.
+-   The value must match an existing primary key value in the related table.
+
+Example:
+
+```sql
+CREATE TABLE orders (
+    order_id INT PRIMARY KEY,
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+```
+
+**CHECK:**
+
+-   Defines a condition that the values in a column must meet.
+
+Example:
+
+```sql
+CREATE TABLE employees (
+    id INT PRIMARY KEY,
+    age INT CHECK (age >= 18)
+);
+```
+
+**DEFAULT:**
+
+-   Sets a default value for a column if no value is provided during insertion.
+
+```sql
+CREATE TABLE tasks (
+    task_id INT PRIMARY KEY,
+    status VARCHAR(20) DEFAULT 'Pending'
+);
+```

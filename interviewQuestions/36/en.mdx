@@ -1,0 +1,67 @@
+---
+meta:
+    title: 'How to perform database backup and recovery'
+    description: 'Database backup and recovery in MySQL and PostgreSQL using mysqldump and pg_dump utilities. Learn how to safeguard data with regular backups.'
+---
+
+Backing up and restoring a database are critical operations to ensure data safety and
+the ability to recover it in case of failure or loss.
+
+## How to back up a database:
+
+The method of backup depends on the database management system (DBMS) you are using.
+
+Below are examples for some popular DBMS.
+
+### MySQL
+
+Backup using the `mysqldump` utility:
+
+```bash
+mysqldump -u username -p mydatabase > backup.sql
+```
+
+-   `username` — the database username.
+-   `mydatabase` — the name of the database to back up.
+-   `backup.sql` — the file where the backup will be saved.
+
+### PostgreSQL
+
+Backup using the `pg_dump` utility:
+
+```bash
+pg_dump -U username mydatabase > backup.sql
+```
+
+-   `-U username` — the database username.
+-   `mydatabase` — the name of the database.
+-   `backup.sql` — the output file for the backup.
+
+## How to restore a database from a backup:
+
+### MySQL
+
+Restoring a database from the `backup.sql` file:
+
+```bash
+mysql -u username -p mydatabase < backup.sql
+```
+
+### PostgreSQL
+
+Restoring a database using the `psql` utility:
+
+```bash
+psql -U username mydatabase < backup.sql
+```
+
+## Recommendations
+
+-   **Permissions**  
+    Ensure that you have the necessary permissions to perform backup and restore operations.
+-   **Regularity**  
+    Set up regular automatic backups to minimize the risk of data loss.
+-   **Backup storage**  
+    Store backups in a secure and reliable location, preferably off the main server.
+-   **Testing**  
+    Periodically test backups by restoring them to a test server to verify their integrity and functionality.

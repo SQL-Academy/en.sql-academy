@@ -1,0 +1,34 @@
+---
+meta:
+    title: 'What is a Subquery and When is it Used?'
+    description: 'A subquery in SQL is a nested query used for filtering data, selecting, or creating virtual tables. Learn when and how to apply it.'
+---
+
+> **A subquery** is an SQL query nested inside another query. It is used to perform operations whose results are needed for the main query.
+
+## Use cases for subqueries:
+
+-   **Data Filtering**: Using the results of a subquery in `WHERE` or `HAVING` conditions.
+-   **Data Selection**: Using a subquery in the list of selected columns.
+-   **Creating Virtual Tables**: Using a subquery in the `FROM` clause.
+
+## Examples
+
+1. Subquery in `WHERE`:
+
+```sql
+SELECT name
+FROM employees
+WHERE department_id = (SELECT id FROM departments WHERE name = 'IT');
+```
+
+2. Subquery in `FROM`:
+
+```sql
+SELECT sub.department, COUNT(*)
+FROM (
+    SELECT department_id AS department
+    FROM employees
+) sub
+GROUP BY sub.department;
+```

@@ -1,0 +1,29 @@
+---
+meta:
+    title: 'What is a transaction and what are the ACID properties of a transaction?'
+    description: 'A transaction in SQL is a sequence of operations that has ACID properties: atomicity, consistency, isolation, and durability. Learn their significance.'
+---
+
+> **A Transaction** is a sequence of operations performed as a single logical unit, which must be fully completed or fully rolled back.
+
+### Transaction Properties (ACID):
+
+**Atomicity:**
+
+-   A transaction is fully completed or not executed at all.
+-   If a failure occurs, all changes are rolled back.
+
+**Consistency:**
+
+-   A transaction transitions the database from one consistent state to another.
+-   All database rules and constraints are maintained.
+
+**Isolation:**
+
+-   The results of a transaction are invisible to other transactions until it is completed.
+-   Prevents interference between concurrent transactions.
+
+**Durability:**
+
+-   Once a transaction is successfully completed, its results are permanently saved, even in the event of system failures.
+-   Changes are written to persistent storage.

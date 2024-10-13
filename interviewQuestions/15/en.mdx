@@ -1,0 +1,43 @@
+---
+meta:
+    title: 'What are aggregate functions? Provide examples'
+    description: 'Aggregate functions in SQL compute values for a set of rows. Learn how to use COUNT, SUM, AVG, MAX, and MIN for data analysis.'
+---
+
+Aggregate functions perform calculations on a set of values and return a single value. They are often used in combination with the `GROUP BY` clause.
+
+## Key Aggregate Functions
+
+-   `COUNT()` — counts the number of rows.
+-   `SUM()` — calculates the sum of values.
+-   `AVG()` — calculates the average value.
+-   `MAX()` — finds the maximum value.
+-   `MIN()` — finds the minimum value.
+
+## Examples of usage
+
+1. Counting the number of employees:
+
+```sql
+SELECT COUNT(*) FROM employees;
+```
+
+2. Average salary by department:
+
+```sql
+SELECT department_id, AVG(salary) AS average_salary
+FROM employees
+GROUP BY department_id;
+```
+
+3. Maximum salary in the company:
+
+```sql
+SELECT MAX(salary) FROM employees;
+```
+
+4. Total sales for the month:
+
+```sql
+SELECT SUM(amount) FROM sales WHERE sale_date BETWEEN '2023-01-01' AND '2023-01-31';
+```

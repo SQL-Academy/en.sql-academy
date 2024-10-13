@@ -1,0 +1,34 @@
+---
+meta:
+    title: 'How to add a new column to an existing table'
+    description: 'The ALTER TABLE command with the ADD operator allows you to add a new column to an existing table. Learn how to add a column with a data type and constraints.'
+---
+
+The `ALTER TABLE` command with the `ADD` operator is used to add a new column to an existing table.
+
+## Syntax
+
+```sql
+ALTER TABLE table_name
+ADD column_name data_type [constraints];
+```
+
+## Example
+
+Suppose we have a table `employees`, and we want to add a column `email` of type `VARCHAR(255)`.
+
+```sql
+ALTER TABLE employees
+ADD email VARCHAR(255);
+```
+
+Adding a column with a `NOT NULL` constraint and a default value:
+
+```sql
+ALTER TABLE employees
+ADD date_of_birth DATE NOT NULL DEFAULT '1900-01-01';
+```
+
+**Note**  
+When adding a column with a `NOT NULL` constraint,
+if there are already existing rows in the table, you must specify a default value; otherwise, an error will occur.

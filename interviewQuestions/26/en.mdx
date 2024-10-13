@@ -1,0 +1,47 @@
+---
+meta:
+    title: 'Explain the differences between CHAR and VARCHAR'
+    description: 'CHAR stores fixed-length strings, while VARCHAR stores variable-length strings. Learn how to choose between CHAR and VARCHAR based on data and memory usage.'
+---
+
+## CHAR(n):
+
+-   Stores fixed-length strings of length `n`.
+-   If the entered string is shorter than `n`, it is padded with spaces to reach the length of `n`.
+-   Used for storing data of uniform length (e.g., country codes, postal codes).
+
+## VARCHAR(n):
+
+-   Stores variable-length strings up to `n` characters.
+-   Actually occupies as much space as the number of characters in the string plus a small overhead for storing the length.
+-   Used for storing string data of variable length.
+
+## Key differences:
+
+Memory and performance:
+
+-   `CHAR` always occupies a fixed amount of memory.
+-   `VARCHAR` is more memory-efficient but may be slightly slower in access.
+
+Usage:
+
+-   `CHAR` is suitable for data with predictable length.
+-   `VARCHAR` is suitable for data with variable length.
+
+Example:
+
+```sql
+CREATE TABLE products (
+    code CHAR(10),     -- Fixed-length product code
+    name VARCHAR(100)  -- Variable-length product name
+);
+```
+
+Inserting data:
+
+```sql
+INSERT INTO products (code, name)
+VALUES ('A123', 'Lenovo Laptop');
+```
+
+In the `code` column, the value will be padded with spaces up to 10 characters.

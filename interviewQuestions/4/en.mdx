@@ -1,0 +1,116 @@
+---
+meta:
+    title: 'Explain the Concept of Normalization and Its Benefits'
+    description: 'Normalization in SQL reduces data redundancy and improves database integrity. Learn about normal forms and the advantages of this process.'
+---
+
+> Normalization is the process of organizing the structure of a database to reduce data redundancy and ensure data integrity.
+
+## Main goals of normalization:
+
+-   Elimination of Redundancy: Prevents data duplication.
+-   Improved Data Integrity: Minimizes the chance of data inconsistency.
+-   Easier Maintenance and Updates: Makes the database structure more flexible and understandable.
+
+## Key normal forms
+
+-   First Normal Form (1NF): All columns contain atomic (indivisible) values.
+-   Second Normal Form (2NF): Satisfies 1NF and all non-key columns depend on the entire primary key.
+-   Third Normal Form (3NF): Satisfies 2NF and there are no transitive dependencies between non-key columns.
+
+## Example
+
+**Before normalization:**
+
+export const beforeNormalizationTableFields = [
+    'StudentID',
+    'StudentName',
+    'CourseID',
+    'CourseName',
+];
+export const beforeNormalizationTableRows = [
+    {
+        StudentID: '1',
+        StudentName: 'John',
+        CourseID: '101',
+        CourseName: 'Math',
+    },
+    {
+        StudentID: '1',
+        StudentName: 'John',
+        CourseID: '102',
+        CourseName: 'Music',
+    },
+];
+
+<QueryTable
+    tableData={{
+        fields: beforeNormalizationTableFields,
+        rows: beforeNormalizationTableRows,
+    }}
+    maxLines={2}
+/>
+
+**After normalization:**
+
+Students table
+
+export const studentsTableFields = ['StudentID', 'StudentName'];
+export const studentsTableRows = [
+    {
+        StudentID: '1',
+        StudentName: 'John',
+    },
+];
+
+<QueryTable
+    tableData={{
+        fields: studentsTableFields,
+        rows: studentsTableRows,
+    }}
+    maxLines={1}
+/>
+
+Courses table
+
+export const coursesTableFields = ['CourseID', 'CourseName'];
+export const coursesTableRows = [
+    {
+        CourseID: '101',
+        CourseName: 'Math',
+    },
+    {
+        CourseID: '102',
+        CourseName: 'Music',
+    },
+];
+
+<QueryTable
+    tableData={{
+        fields: coursesTableFields,
+        rows: coursesTableRows,
+    }}
+    maxLines={2}
+/>
+
+Enrollments table
+
+export const enrollmentsTableFields = ['StudentID', 'CourseID'];
+export const enrollmentsTableRows = [
+    {
+        StudentID: '1',
+        CourseID: '101',
+    },
+    {
+        StudentID: '1',
+        CourseID: '102',
+    },
+];
+
+<QueryTable
+    tableData={{
+        fields: enrollmentsTableFields,
+        rows: enrollmentsTableRows,
+    }}
+    maxLines={2}
+/>

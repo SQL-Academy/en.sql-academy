@@ -1,0 +1,61 @@
+---
+meta:
+    title: 'Explain the use of hashing functions in SQL'
+    description: 'Hash functions in SQL convert data into fixed-length strings for security and integrity. Learn how to use hashing for password storage and search optimization.'
+---
+
+Hash functions in SQL are used to transform input data of arbitrary length into a fixed-length string.
+This transformation is called **hashing**, and it is widely used to ensure security, data integrity, and optimize comparison and search operations.
+
+## Key use cases for hash functions in SQL:
+
+### 1. Storing passwords
+
+-   Instead of storing passwords in plain text, they are stored as hashes. This increases security since, even if the database is compromised, attackers cannot recover the original passwords.
+-   Cryptographic hash functions like `SHA-256`, `SHA-512`, and others are commonly used.
+
+### 2. Data integrity verification
+
+Hash functions allow detecting whether data has been altered. By creating a hash of the original data and comparing it with the current hash, changes can be identified.
+
+### 3. Indexing and search optimization
+
+Hash values can be used for quick comparison of large amounts of data or to create indexes for faster searches.
+
+### 4. Creating unique identifiers
+
+Hashing helps generate unique identifiers for records based on their content.
+
+## Example of using hash functions in SQL:
+
+```sql
+-- Create a users table
+CREATE TABLE Users (
+    UserID INT PRIMARY KEY,
+    Username VARCHAR(50) NOT NULL,
+    PasswordHash VARBINARY(512) NOT NULL
+);
+
+-- When adding a new user, hash the password
+INSERT INTO Users (UserID, Username, PasswordHash)
+VALUES (1, 'user1', HASHBYTES('SHA2_512', 'password123'));
+
+-- Verify that the entered password matches the hash in the database
+SELECT UserID FROM Users
+WHERE Username = 'user1' AND PasswordHash = HASHBYTES('SHA2_512', 'password123');
+```
+
+## Recommendations and considerations
+
+### Choosing a hash function
+
+-   Prefer modern and robust algorithms like `SHA-256` or `SHA-512`.
+-   Avoid using outdated functions like `MD5` or `SHA1` due to known vulnerabilities.
+
+### Secure storage
+
+Store hashes in binary format (`VARBINARY`) instead of string format (`VARCHAR`) to preserve accuracy and save space.
+
+### Irreversibility of hashes
+
+Remember that hashing is a one-way function; the original data cannot be recovered from the hash.

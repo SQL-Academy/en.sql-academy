@@ -1,0 +1,36 @@
+---
+meta:
+    title: 'How to optimize SQL query performance?'
+    description: 'SQL query optimization includes using indexes, avoiding SELECT *, optimizing JOIN and WHERE conditions, limiting results, and analyzing query execution plans.'
+---
+
+**Use Indexes:**
+
+-   Create indexes on columns frequently used in `WHERE`, `JOIN`, and `ORDER BY` clauses.
+-   Avoid redundant indexes.
+
+**Avoid `SELECT *`:**
+
+-   Select only the necessary columns.
+-   Reduces the amount of data transferred.
+
+**Optimize `JOIN` and `WHERE` Conditions:**
+
+-   Use equality (=) instead of inequality where possible.
+-   Avoid functions and calculations on indexed columns in conditions.
+
+**Use Result Limits (`LIMIT`):**
+
+-   Limit the number of returned rows if you don’t need all the data.
+
+**Avoid Subqueries Where Joins Are Possible::**
+
+-   Replace correlated subqueries with `JOIN` or `EXISTS`.
+
+**Cache frequently used data:**
+
+-   Use materialized views or caching at the application level.
+
+**Profiling and Query Analysis:**
+
+-   Use tools (`EXPLAIN`, `EXPLAIN PLAN`) to analyze query execution plans.

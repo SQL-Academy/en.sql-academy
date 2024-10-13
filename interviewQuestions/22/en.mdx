@@ -1,0 +1,61 @@
+---
+meta:
+    title: 'Explain the Difference Between INNER JOIN and OUTER JOIN'
+    description: 'INNER JOIN returns only matching records from both tables, while OUTER JOIN includes all records, even if no match exists. Learn the key differences.'
+---
+
+## INNER JOIN:
+
+-   Returns only records that have matching entries in both joined tables.
+-   If there is no match, the record is not included in the result.
+
+Example:
+
+```sql
+SELECT *
+FROM employees e
+INNER JOIN departments d ON e.department_id = d.id;
+```
+
+## OUTER JOIN:
+
+-   Returns matching records, as well as records from one table that do not have a match in the other table.
+
+### Types of OUTER JOIN:
+
+**LEFT OUTER JOIN (LEFT JOIN):**
+
+-   Returns all records from the left table and the matching records from the right table.
+-   If there is no match, the columns from the right table will be `NULL`.
+
+Example:
+
+```sql
+SELECT *
+FROM employees e
+LEFT JOIN departments d ON e.department_id = d.id;
+```
+
+**RIGHT OUTER JOIN (RIGHT JOIN):**
+
+-   Returns all records from the right table and the matching records from the left table.
+-   If there is no match, the columns from the left table will be `NULL`.
+
+Example:
+
+```sql
+SELECT *
+FROM employees e
+RIGHT JOIN departments d ON e.department_id = d.id;
+```
+
+**FULL OUTER JOIN (FULL JOIN):**
+
+-   Returns all records where there is a match in either of the tables.
+-   If there is no match, the corresponding columns will be `NULL`.
+
+```sql
+SELECT *
+FROM employees e
+FULL OUTER JOIN departments d ON e.department_id = d.id;
+```

@@ -1,0 +1,31 @@
+---
+meta:
+    title: 'What is a correlated subquery?'
+    description: 'A correlated subquery in SQL is executed for each row of the outer query, using its values. Learn how and when to use correlated subqueries.'
+---
+
+> **A correlated subquery** is a subquery that depends on the outer query. It is executed for each row of the outer query, using values from that row.
+
+## Features
+
+-   The subquery references columns from the outer query.
+-   It can be less efficient due to multiple executions.
+
+## Example
+
+Suppose there are tables `employees` and `departments`.
+
+```sql
+SELECT e.name, e.salary
+FROM employees e
+WHERE e.salary > (
+    SELECT AVG(salary)
+    FROM employees
+    WHERE department_id = e.department_id
+);
+```
+
+-   Here, the subquery calculates the average salary for the department of each employee.
+-   The main query selects employees whose salary is higher than the department average.
+
+More information about correlated subqueries can be found <a href="https://sql-academy.org/en/guide/correlated-subqueries" target="_blank">in our course</a>.
