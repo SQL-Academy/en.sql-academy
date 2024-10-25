@@ -176,7 +176,7 @@ an `alternative_value'.
 -   If the first argument is not `NULL`, then it will be returned.
 
     ```sql
-    SELECT IFNULL("SQL Academy", 'Alternative SQL Academy") AS sql_trainer;
+    SELECT IFNULL("SQL Academy", "Alternative SQL Academy") AS sql_trainer;
     ```
 
     | sql_trainer |
@@ -186,7 +186,7 @@ an `alternative_value'.
 -   If the first argument is `NULL`, the value passed by the second argument will be returned.
 
     ```sql
-    SELECT IFNULL(NULL, 'Alternative SQL Academy") AS sql_trainer;
+    SELECT IFNULL(NULL, "Alternative SQL Academy") AS sql_trainer;
     ```
 
     | sql_trainer             |
