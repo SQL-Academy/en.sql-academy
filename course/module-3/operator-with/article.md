@@ -94,6 +94,67 @@ SELECT * FROM Don_avia_trips UNION SELECT * FROM  Aeroflot_trips;
 | 1145 | 2       | IL-86  | Moscow    | Rostov  | 1900-01-01T09:35:00.000Z | 1900-01-01T11:23:00.000Z |
 | 1146 | 2       | IL-86  | Rostov    | Moscow  | 1900-01-01T17:55:00.000Z | 1900-01-01T20:01:00.000Z |
 
+## Working with recursion in CTE
+
+CTEs can also be used to perform recursive queries, which allow iterative data processing, for example, working with hierarchical data structures such as manager-subordinate relationships.
+
+### Syntax of a recursive CTE
+
+A recursive CTE consists of two parts separated by the `UNION ALL` operator:
+
+-   The initial dataset, which does not contain recursive references.
+-   The recursive part: a query that refers to the CTE to continue the recursion.
+
+```sql
+WITH RECURSIVE cte_name (column_1, column_2, ...) AS (
+    -- Initial dataset
+    SELECT column_1, column_2, ...
+    FROM table
+    WHERE condition
+
+    UNION ALL
+
+    -- Recursive part
+    SELECT column_1, column_2, ...
+    FROM cte_name
+    INNER JOIN table ON cte_name.column = table.column
+    WHERE condition
+)
+
+SELECT * FROM cte_name;
+```
+
+### Example: manager-subordinate hierarchy
+
+Consider the `Employees` table, which contains employee IDs and their managers:
+
+We need to find all subordinates of John Smith (`id=1`) at all hierarchy levels.
+
+```sql
+WITH RECURSIVE Subordinates AS (
+    -- Initial dataset
+    SELECT id, name, managerId
+    FROM Employees
+    WHERE managerId = 1
+
+    UNION ALL
+
+    -- Recursive part: subordinates of subordinates
+    SELECT e.id, e.name, e.managerId
+    FROM Employees e
+    INNER JOIN Subordinates s ON e.managerId = s.id
+)
+
+SELECT * FROM Subordinates;
+```
+
+### Steps for executing a recursive CTE
+
+1. **Initial dataset:** selects all employees whose `managerId=1` (direct subordinates of `John Smith`).
+2. **Recursive part:** for each employee selected in the initial dataset, selects their subordinates (where `managerId` equals the `id` of the chosen employee).
+3. **Union:** рunites the results of the initial dataset and the recursive parts using `UNION ALL`.
+4. **Recursion:** the process repeats for each new set of subordinates until all hierarchy levels are retrieved.
+
 ## Conclusion
 
 Common table expressions have been added to SQL to simplify complex long queries, especially those with multiple subqueries. Their main task is to improve readability,
