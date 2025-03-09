@@ -37,7 +37,8 @@ Where `pattern` is the regular expression that defines the search pattern.
 
     Some characters have special meanings in regular expressions and require escaping (e.g.,
     `.`, `*`, `+`, `?`, `[`, `]`, `(`, `)`, `{`, `}`, `|`, `\`).
-    Use a backslash `\` for escaping.
+
+    To escape such characters, use a double backslash — `\\`.
 
 ## Special characters and constructs
 
