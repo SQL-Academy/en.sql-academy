@@ -127,3 +127,54 @@ SELECT payment_id, family_member, FamilyMembers.* FROM Payments
 INNER JOIN FamilyMembers
     ON Payments.family_member = FamilyMembers.member_id
 ```
+
+## Table Aliases
+
+When working with complex multi-table queries, it's recommended to use table aliases. This not only improves code readability but also helps avoid errors in complex queries.
+
+Aliases are specified after the table name using the `AS` keyword:
+
+```sql
+SELECT id, name
+FROM Passenger AS pass
+```
+
+Now you can reference table columns through the alias:
+
+```sql
+SELECT pass.id, pass.name
+FROM Passenger AS pass
+```
+
+> The `AS` keyword is optional, same as with column aliases.
+
+> After you have assigned an alias to a table, you will need to use the new alias in place of the original table name in order to access its columns. The syntax for referencing columns will change from `<table>.<column>` to `<table_alias>.<column>`.
+
+Let's examine a multi-table query example. Suppose we want to display IDs and names of passengers who have flown at least once:
+
+```sql
+SELECT
+    pass.id,
+    pass.name
+FROM Passenger AS pass
+INNER JOIN Pass_in_trip AS pit
+    ON pit.passenger = pass.id
+```
+
+In this example, the Passenger and Pass_in_trip tables are assigned aliases `pass` and `pit` respectively, which are then used to reference columns from these tables. Note that both tables contain a column named `id`. If you don't specify which table to take it from, the DBMS will automatically select the value from the **last table** in the JOIN chain (in this case, `Pass_in_trip`).
+
+Compare this with the version without aliases. Isn't this much better? 🔥
+
+```sql
+SELECT
+    Passenger.id,
+    Passenger.name
+FROM Passenger
+INNER JOIN Pass_in_trip
+    ON Pass_in_trip.passenger = Passenger.id
+```
+
+When using aliases, always follow these simple rules to keep your queries concise and clear:
+
+-   Use logical abbreviations (e.g., first letters of the table name)
+-   Avoid overly short (single-character) or non-intuitive aliases
