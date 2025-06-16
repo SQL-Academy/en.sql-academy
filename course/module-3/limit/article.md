@@ -13,7 +13,7 @@ The `LIMIT` operator allows you to extract a specific a range of records from on
 ```sql
 SELECT table_fields
 FROM table_name
-LIMIT [number_of_missed_records,] number_of_records_to_output;
+LIMIT [number_of_skipped_records,] number_of_records_to_output;
 ```
 
 If you do not specify the number of skipped records, they will be counted from the beginning of the table.
