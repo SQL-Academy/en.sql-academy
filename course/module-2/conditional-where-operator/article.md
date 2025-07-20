@@ -62,13 +62,13 @@ Try to run the query and play with these operators in the sandbox yourself:
 ```sql
 SELECT
     2 = 1,
-	'a' = 'a',
-	NULL <=> NULL,
-	2 <> 2,
-	3 < 4,
-	10 <= 10,
-	7 > 1,
-	8 >= 10;
+    'a' = 'a',
+    NULL <=> NULL,
+    2 <> 2,
+    3 < 4,
+    10 <= 10,
+    7 > 1,
+    8 >= 10;
 ```
 
 | 2 = 1 | 'a' = 'a' | 1 <=> NULL | NULL <=> NULL | 2 <> 2 | 3 < 4 | 10 <= 10 | 7 > 1 | 8 >= 10 |
