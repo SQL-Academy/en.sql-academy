@@ -47,14 +47,14 @@ Ranking window functions are those that rank a value for each row in the window.
 
 In ranking functions, the `OVER` keyword is followed by the mandatory `ORDER BY` condition, which determines the sorting order for ranking.
 
-- `ROW_NUMBER` - returns the row number, used for numbering;
-- `RANK` - returns the rank of each row. Here's how it works:
+  - `ROW_NUMBER` - returns the row number, used for numbering;
+  - `RANK` - returns the rank of each row. Here's how it works:
   - Sorting: firstly, rows are sorted by one or more columns. These columns are specified in `ORDER BY` in the `OVER` clause.
   - Assigning ranks: each unique row or group of rows that have the same values in the sorting columns is assigned a rank. The rank starts from 1.
   - Identical values: if several rows have the same values in the sorting columns, they receive the same rank. For example, if two rows are in second place, both receive rank 2.
   - Skipping ranks: after a group of rows with the same rank, the next rank increases by the number of rows in that group. For example, if two rows have rank 2, the next row will get rank 4, not 3.
   - Continuing sorting: this process continues until ranks have been assigned to all rows in the result set.
-- `DENSE_RANK` - returns the rank of each row. Unlike RANK, it returns a rank for identical values without skipping the next rank;
+  - `DENSE_RANK` - returns the rank of each row. Unlike the `RANK` function, it doesn't skip ranks and after a group of identical values, the rank increases by one, not by the number of rows. For example, if two rows have rank 2, the next row will get rank 3, not 4.
 
 ```sql-Airbnb-executable
 SELECT id,
