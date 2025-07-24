@@ -88,7 +88,14 @@ WHERE email LIKE '%@hotmail.%'
 
 ## ESCAPE character
 
-The ESCAPE character is used to escape special characters (`%` and `\`). In case you need to find strings, you can use the ESCAPE character.
+The ESCAPE character is used to escape special characters (`%` and `_`).
+In case you need to find strings containing these special characters as literal text, you can use the ESCAPE character.
+
+### Syntax with ESCAPE
+
+```sql
+... WHERE table_field LIKE 'string_pattern' ESCAPE 'escape_character'
+```
 
 For example, if you want to retrieve the job IDs of tasks with a progress of 3%:
 
