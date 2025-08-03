@@ -1,7 +1,7 @@
 ---
 meta:
-    title: 'Common Table Expressions, operator WITH'
-    description: 'Common Table Expression in SQL. Syntax of the WITH statement and examples of its use.'
+  title: "Common Table Expressions, operator WITH"
+  description: "Common Table Expression in SQL. Syntax of the WITH statement and examples of its use."
 ---
 
 # Common Table Expressions, operator WITH
@@ -13,7 +13,7 @@ The `WITH` operator is used to write a common table expressions.
 -- Example of using the WITH clause
 WITH Aeroflot_trips AS
     (SELECT TRIP.* FROM Company
-        INNER JOIN Trip ON Trip.company = Company.id WHERE name = "Aeroflot")
+        INNER JOIN Trip ON Trip.company = Company.id WHERE name = 'Aeroflot')
 
 SELECT plane, COUNT(plane) AS amount FROM Aeroflot_trips GROUP BY plane;
 ```
@@ -45,54 +45,33 @@ How to use the `WITH` operator:
 ```sql-Trip-executable
 WITH Aeroflot_trips AS
     (SELECT plane, town_from, town_to FROM Company
-        INNER JOIN Trip ON Trip.company = Company.id WHERE name = "Aeroflot")
+        INNER JOIN Trip ON Trip.company = Company.id WHERE name = 'Aeroflot')
 
 SELECT * FROM Aeroflot_trips;
 ```
-
-| plane | town_from | town_to |
-| ----- | --------- | ------- |
-| IL-86 | Moscow    | Rostov  |
-| IL-86 | Rostov    | Moscow  |
 
 2. Similarly, we create a common table expression `Aeroflot_trips`, but with renamed columns
 
 ```sql-Trip-executable
 WITH Aeroflot_trips (aeroflot_plane, town_from, town_to) AS
     (SELECT plane, town_from, town_to FROM Company
-        INNER JOIN Trip ON Trip.company = Company.id WHERE name = "Aeroflot")
+        INNER JOIN Trip ON Trip.company = Company.id WHERE name = 'Aeroflot')
 
 SELECT * FROM Aeroflot_trips;
 ```
-
-| aeroflot_plane | town_from | town_to |
-| -------------- | --------- | ------- |
-| IL-86          | Moscow    | Rostov  |
-| IL-86          | Rostov    | Moscow  |
 
 3. Using the `WITH` operator, we define several common table expressions
 
 ```sql-Trip-executable
 WITH Aeroflot_trips AS
     (SELECT TRIP.* FROM Company
-        INNER JOIN Trip ON Trip.company = Company.id WHERE name = "Aeroflot"),
+        INNER JOIN Trip ON Trip.company = Company.id WHERE name = 'Aeroflot'),
     Don_avia_trips AS
     (SELECT TRIP.* FROM Company
-        INNER JOIN Trip ON Trip.company = Company.id WHERE name = "Don_avia")
+        INNER JOIN Trip ON Trip.company = Company.id WHERE name = 'Don_avia')
 
 SELECT * FROM Don_avia_trips UNION SELECT * FROM  Aeroflot_trips;
 ```
-
-| id   | company | plane  | town_from | town_to | time_out                 | time_in                  |
-| ---- | ------- | ------ | --------- | ------- | ------------------------ | ------------------------ |
-| 1181 | 1       | TU-134 | Rostov    | Moscow  | 1900-01-01T06:12:00.000Z | 1900-01-01T08:01:00.000Z |
-| 1182 | 1       | TU-134 | Moscow    | Rostov  | 1900-01-01T12:35:00.000Z | 1900-01-01T14:30:00.000Z |
-| 1187 | 1       | TU-134 | Rostov    | Moscow  | 1900-01-01T15:42:00.000Z | 1900-01-01T17:39:00.000Z |
-| 1188 | 1       | TU-134 | Moscow    | Rostov  | 1900-01-01T22:50:00.000Z | 1900-01-02T00:48:00.000Z |
-| 1195 | 1       | TU-154 | Rostov    | Moscow  | 1900-01-01T23:30:00.000Z | 1900-01-02T01:11:00.000Z |
-| 1196 | 1       | TU-154 | Moscow    | Rostov  | 1900-01-01T04:00:00.000Z | 1900-01-01T05:45:00.000Z |
-| 1145 | 2       | IL-86  | Moscow    | Rostov  | 1900-01-01T09:35:00.000Z | 1900-01-01T11:23:00.000Z |
-| 1146 | 2       | IL-86  | Rostov    | Moscow  | 1900-01-01T17:55:00.000Z | 1900-01-01T20:01:00.000Z |
 
 ## Working with recursion in CTE
 
@@ -102,8 +81,8 @@ CTEs can also be used to perform recursive queries, which allow iterative data p
 
 A recursive CTE consists of two parts separated by the `UNION ALL` operator:
 
--   The initial dataset, which does not contain recursive references.
--   The recursive part: a query that refers to the CTE to continue the recursion.
+- The initial dataset, which does not contain recursive references.
+- The recursive part: a query that refers to the CTE to continue the recursion.
 
 ```sql
 WITH RECURSIVE cte_name (column_1, column_2, ...) AS (

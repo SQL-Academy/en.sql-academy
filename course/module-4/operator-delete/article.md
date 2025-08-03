@@ -1,7 +1,7 @@
 ---
 meta:
-    title: 'Syntax of DELETE operator'
-    description: 'Delete records in sql. SQL operators delete, truncate and their differences. Delete query c join'
+  title: "Syntax of DELETE operator"
+  description: "Delete records in sql. SQL operators delete, truncate and their differences. Delete query c join"
 ---
 
 # Syntax of DELETE operator
@@ -26,7 +26,11 @@ The same operation (deleting all records) can also be done using `TRUNCATE` oper
 TRUNCATE TABLE table_name;
 ```
 
+<MySQLOnly>
+
 > The MySQL query optimizer automatically uses the `TRUNCATE` statement if the `DELETE` statement does not contain a `WHERE` clause or `LIMIT` constructs.
+
+</MySQLOnly>
 
 However, the `TRUNCATE` statement has several differences:
 
@@ -48,6 +52,8 @@ ON table_name_1.field = table_name_2.field
 
 For example, we need to delete all reservations for a home that does not have a kitchen. Then the request will look like this:
 
+<MySQLOnly>
+
 ```sql
 DELETE Reservations FROM
 Reservations JOIN Rooms ON
@@ -55,7 +61,22 @@ Reservations.room_id = Rooms.id
 WHERE Rooms.has_kitchen = false;
 ```
 
+</MySQLOnly>
+
+<PostgreSQLOnly>
+
+```sql
+DELETE FROM Reservations
+USING Rooms
+WHERE Reservations.room_id = Rooms.id
+AND Rooms.has_kitchen = false;
+```
+
+</PostgreSQLOnly>
+
 If, in addition to deleting the reservation, we also needed to delete the accommodation, then the query would look like this:
+
+<MySQLOnly>
 
 ```sql
 DELETE Reservations, Rooms FROM
@@ -63,3 +84,23 @@ Reservations JOIN Rooms ON
 Reservations.room_id = Rooms.id
 WHERE Rooms.has_kitchen = false;
 ```
+
+</MySQLOnly>
+
+<PostgreSQLOnly>
+
+In PostgreSQL, to delete from multiple tables simultaneously, separate DELETE queries or transactions are used:
+
+```sql
+BEGIN;
+DELETE FROM Reservations
+USING Rooms
+WHERE Reservations.room_id = Rooms.id
+AND Rooms.has_kitchen = false;
+
+DELETE FROM Rooms
+WHERE Rooms.has_kitchen = false;
+COMMIT;
+```
+
+</PostgreSQLOnly>

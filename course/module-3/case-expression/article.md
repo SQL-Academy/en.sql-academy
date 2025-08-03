@@ -1,7 +1,7 @@
 ---
 meta:
-    title: 'Conditional logic, CASE statement'
-    description: 'Conditional logic in SQL using the CASE WHEN THEN END statement'
+  title: "Conditional logic, CASE statement"
+  description: "Conditional logic in SQL using the CASE WHEN THEN END statement"
 ---
 
 # Conditional logic, CASE statement
@@ -19,41 +19,35 @@ in the selection, it is necessary to display not the date of birth itself, but t
 if the student is 18 or not. This is an example of conditional logic, in which either one value or another should be displayed
 depending on the specific condition.
 
+<ERD databaseName="Schedule" />
+
 The implementation of such a query using `CASE` might look like this:
 
-```sql
+<MySQLOnly>
+
+```sql-executable-Schedule
 SELECT first_name, last_name,
 CASE
-  WHEN TIMESTAMPDIFF(YEAR, birthday, NOW()) >= 18 THEN "Adult"
-  ELSE "Minor"
+  WHEN TIMESTAMPDIFF(YEAR, birthday, NOW()) >= 18 THEN 'Adult'
+  ELSE 'Minor'
 END AS status
 FROM Student
 ```
 
-| first_name | last_name    | status |
-| ---------- | ------------ | ------ |
-| Nikolaj    | Sokolov      | Adult  |
-| Vyacheslav | Eliseev      | Adult  |
-| Ivan       | Efremov      | Adult  |
-| Anatolij   | ZHdanov      | Minor  |
-| Georgij    | Noskov       | Adult  |
-| Artyom     | Sergeev      | Minor  |
-| Arina      | Evseeva      | Adult  |
-| Angelina   | Voroncova    | Adult  |
-| Ekaterina  | Ustinova     | Adult  |
-| Raisa      | Lapina       | Adult  |
-| Leonid     | Ignatov      | Minor  |
-| Snezhana   | Seliverstova | Adult  |
-| Semyon     | Biryukov     | Adult  |
-| Georgij    | Baranov      | Adult  |
-| YUliya     | Vishnyakova  | Adult  |
-| Valentina  | Bolshakova   | Adult  |
-| Leonid     | Kryukov      | Adult  |
-| Vladislav  | Cvetkov      | Adult  |
-| Snezhana   | Morozova     | Adult  |
-| Lyubov     | Borisova     | Adult  |
-| Anfisa     | Kalashnikova | Adult  |
-| Anna       | Osipova      | Adult  |
+</MySQLOnly>
+
+<PostgreSQLOnly>
+
+```sql-executable-Schedule
+SELECT first_name, last_name,
+CASE
+  WHEN EXTRACT(YEAR FROM AGE(NOW(), birthday)) >= 18 THEN 'Adult'
+  ELSE 'Minor'
+END AS status
+FROM Student
+```
+
+</PostgreSQLOnly>
 
 ## CASE search expression syntax
 
@@ -76,39 +70,52 @@ Let's take the `CASE` operator to implement the stages of schooling.
 
 ![School education stages](https://sql-academy.org/static/guidePage/case-expression/en_school_education_stages.png "School education stages")
 
-```sql
+<MySQLOnly>
+
+```sql-executable-Schedule
 SELECT name,
 CASE
-  WHEN SUBSTRING(name, 1, INSTR(name, ' ')) IN (10,11) THEN "High School"
-  WHEN SUBSTRING(name, 1, INSTR(name, ' ')) IN (5,6,7,8,9) THEN "Middle school"
-  ELSE "Elementary school"
+  WHEN SUBSTRING(name, 1, INSTR(name, ' ')) IN (10, 11) THEN 'High School'
+  WHEN SUBSTRING(name, 1, INSTR(name, ' ')) IN (5, 6, 7, 8, 9) THEN 'Middle school'
+  ELSE 'Elementary school'
 END AS stage
 FROM Class
 ```
 
-| name | stage             |
-| ---- | ----------------- |
-| 8 A  | Middle school     |
-| 8 B  | Middle school     |
-| 9 C  | Middle school     |
-| 9 B  | Middle school     |
-| 9 A  | Middle school     |
-| 10 B | High School       |
-| 10 A | High School       |
-| 11 B | High School       |
-| 11 A | High School       |
-| 7 A  | Middle school     |
-| 7 B  | Middle school     |
-| 6 A  | Middle school     |
-| 6 B  | Middle school     |
-| 5 A  | Middle school     |
-| 5 B  | Middle school     |
-| 4 A  | Elementary school |
+</MySQLOnly>
+
+<PostgreSQLOnly>
+
+```sql-executable-Schedule
+SELECT name,
+CASE
+  WHEN SUBSTRING(name, 1, POSITION(' ' IN name) - 1) IN ('10', '11') THEN 'High School'
+  WHEN SUBSTRING(name, 1, POSITION(' ' IN name) - 1) IN ('5', '6', '7', '8', '9') THEN 'Middle school'
+  ELSE 'Elementary school'
+END AS stage
+FROM Class
+```
+
+</PostgreSQLOnly>
+
+<MySQLOnly>
 
 - First we extract the class number from its name
   ```sql
   SUBSTRING(name, 1, INSTR(name, ' '))
   ```
+
+</MySQLOnly>
+
+<PostgreSQLOnly>
+
+- First we extract the class number from its name
+  ```sql
+  SUBSTRING(name, 1, POSITION(' ' IN name) - 1)
+  ```
+
+</PostgreSQLOnly>
+
 - Next, we check for occurrences of this class number in the list of classes related to "High School" and "Middle school".
 - If the class number doesn't match 5-11, we output "Elementary school".
 
@@ -131,39 +138,43 @@ value, the value following `THEN` is returned.
 
 Using this syntax, we can rewrite our previous example:
 
-```sql
+<MySQLOnly>
+
+```sql-executable-Schedule
 SELECT name,
 CASE SUBSTRING(name, 1, INSTR(name, ' '))
-  WHEN 11 THEN "High School"
-  WHEN 10 THEN "High School"
-  WHEN 9 THEN "Middle school"
-  WHEN 8 THEN "Middle school"
-  WHEN 7 THEN "Middle school"
-  WHEN 6 THEN "Middle school"
-  WHEN 5 THEN "Middle school"
-  ELSE "Elementary school"
+  WHEN 11 THEN 'High School'
+  WHEN 10 THEN 'High School'
+  WHEN 9 THEN 'Middle school'
+  WHEN 8 THEN 'Middle school'
+  WHEN 7 THEN 'Middle school'
+  WHEN 6 THEN 'Middle school'
+  WHEN 5 THEN 'Middle school'
+  ELSE 'Elementary school'
 END AS stage
 FROM Class
 ```
 
-| name | stage             |
-| ---- | ----------------- |
-| 8 A  | Middle school     |
-| 8 B  | Middle school     |
-| 9 C  | Middle school     |
-| 9 B  | Middle school     |
-| 9 A  | Middle school     |
-| 10 B | High School       |
-| 10 A | High School       |
-| 11 B | High School       |
-| 11 A | High School       |
-| 7 A  | Middle school     |
-| 7 B  | Middle school     |
-| 6 A  | Middle school     |
-| 6 B  | Middle school     |
-| 5 A  | Middle school     |
-| 5 B  | Middle school     |
-| 4 A  | Elementary school |
+</MySQLOnly>
+
+<PostgreSQLOnly>
+
+```sql-executable-Schedule
+SELECT name,
+CASE SUBSTRING(name, 1, POSITION(' ' IN name) - 1)
+  WHEN '11' THEN 'High School'
+  WHEN '10' THEN 'High School'
+  WHEN '9' THEN 'Middle school'
+  WHEN '8' THEN 'Middle school'
+  WHEN '7' THEN 'Middle school'
+  WHEN '6' THEN 'Middle school'
+  WHEN '5' THEN 'Middle school'
+  ELSE 'Elementary school'
+END AS stage
+FROM Class
+```
+
+</PostgreSQLOnly>
 
 ### Test yourself
 
@@ -171,8 +182,8 @@ What value will the `CASE` operator return in this case?
 
 ```sql
 CASE 2
-  WHEN 0 THEN "Zero"
-  WHEN 1 THEN "One"
-  ELSE "Many"
+  WHEN 0 THEN 'Zero'
+  WHEN 1 THEN 'One'
+  ELSE 'Many'
 END
 ```

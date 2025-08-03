@@ -1,7 +1,7 @@
 ---
 meta:
-    title: 'SQL Indexes: speeding up data search and database optimization'
-    description: 'A comprehensive guide to SQL indexes, explaining how they simplify and speed up data search in database tables, avoiding the need for a full table scan. Learn how to create, manage, and optimize indexes to improve the performance of your queries in MySQL.'
+  title: "SQL Indexes: speeding up data search in MySQL and PostgreSQL"
+  description: "A comprehensive guide to SQL indexes, explaining how they simplify and speed up data search in database tables in MySQL and PostgreSQL. Learn how to create, manage, and optimize indexes to improve the performance of your queries."
 ---
 
 # SQL Indexes
@@ -22,7 +22,7 @@ This is suitable for small tables, but becomes excessively time-consuming as the
 
 For comparison, how a search request for `email` performs depending on the presence of an index on the field.
 
-![Comparison of search speed in a table with an index](https://sql-academy.org/static/guidePage/indexies/statistic_en.png "Comparison of search speed in a table with an index")
+![Comparison of search speed in a table with an index](https://sql-academy.org/static/guidePage/indexes/statistic_en.png "Comparison of search speed in a table with an index")
 
 Indexes function like subject indexes in a book 📖, allowing you to quickly find information
 without reading the entire text. They are special
@@ -39,6 +39,8 @@ the need to scan every row in the table.
 Returning to the `Users` table, you can add
 an index to the `email` column to speed up any queries that work
 with the value of this column.
+
+<MySQLOnly>
 
 Here's how you can add such an index to a MySQL database:
 
@@ -70,7 +72,50 @@ This is a special type of index used with the primary key constraint, which ensu
 that each value in the column or group of columns designated as the table's primary key
 is unique and cannot be `NULL`.
 
+</MySQLOnly>
+
+<PostgreSQLOnly>
+
+Here's how you can add such an index to a PostgreSQL database:
+
+```sql
+CREATE INDEX idx_email
+    ON Users (email);
+```
+
+This statement creates an index for the `Users.email` column. This index is named `idx_email`.
+With an index present, the query optimizer can choose to use the index if
+it considers it useful. If there are more than one index in the table, the optimizer must decide which index is most beneficial
+for a specific SQL statement.
+
+All database management systems provide the ability to view existing indexes.
+For PostgreSQL users, you can use a query to system tables to display all indexes
+for a specific table:
+
+```sql
+SELECT indexname, indexdef
+FROM pg_indexes
+WHERE tablename = 'users';
+```
+
+PostgreSQL automatically creates an index for the primary key column, which in this case is
+`id`. This is a special type of index used with the primary key constraint, which ensures
+that each value in the column or group of columns designated as the table's primary key
+is unique and cannot be `NULL`.
+
+PostgreSQL supports various index types:
+
+- **B-tree** (default) — for comparison and sorting operations
+- **Hash** — for equality operations
+- **GIN** — for composite values (arrays, JSON)
+- **GiST** — for geometric data and full-text search
+- **BRIN** — for very large tables with natural sorting
+
+</PostgreSQLOnly>
+
 ## Dropping an Index
+
+<MySQLOnly>
 
 If after creating an index you decide that the index is no longer needed, you can
 remove it as follows:
@@ -78,6 +123,19 @@ remove it as follows:
 ```sql
 DROP INDEX idx_email ON Users;
 ```
+
+</MySQLOnly>
+
+<PostgreSQLOnly>
+
+If after creating an index you decide that the index is no longer needed, you can
+remove it as follows:
+
+```sql
+DROP INDEX idx_email;
+```
+
+</PostgreSQLOnly>
 
 ## Unique Indexes
 
@@ -105,11 +163,26 @@ CREATE UNIQUE INDEX idx_email
     ON Users (email);
 ```
 
+<MySQLOnly>
+
 With the index present, you will receive an error message if you attempt to add a new customer with an already existing email address:
 
 ```sql
 Error(1062) 23000: "Duplicate entry 'duplicate@gmail.com' for key 'users.idx_email'"
 ```
+
+</MySQLOnly>
+
+<PostgreSQLOnly>
+
+With the index present, you will receive an error message if you attempt to add a new customer with an already existing email address:
+
+```sql
+ERROR: duplicate key value violates unique constraint "idx_email"
+DETAIL: Key (email)=(duplicate@gmail.com) already exists.
+```
+
+</PostgreSQLOnly>
 
 Creating unique indexes for the column or columns defined as the primary key is redundant,
 as the database management system automatically ensures the uniqueness of the primary key values.
@@ -158,6 +231,9 @@ In response to such a query, the server can choose one of several approaches:
 
 The last method appears to be the most efficient, as it allows all necessary rows to be found
 in one pass, avoiding revisiting the table.
+
+<MySQLOnly>
+
 But how to determine which method the MySQL query optimizer will choose?
 This can be done using the `EXPLAIN` command, which shows how the server plans
 to execute the query without actually running it:
@@ -173,6 +249,37 @@ EXPLAIN
 Analyzing the results, it can be seen that the `possible_keys` column lists potentially
 applicable indexes `idx_last_name` or `idx_full_name`, and the `key` column indicates
 that the `idx_full_name` index was chosen.
+
+</MySQLOnly>
+
+<PostgreSQLOnly>
+
+But how to determine which method the PostgreSQL query optimizer will choose?
+This can be done using the `EXPLAIN` command, which shows how the database plans
+to execute the query:
+
+```sql
+EXPLAIN
+  SELECT id, first_name, last_name
+  FROM Student
+  WHERE first_name LIKE 'A%'
+  AND last_name LIKE 'L%';
+```
+
+You can also use `EXPLAIN ANALYZE` to get real execution statistics:
+
+```sql
+EXPLAIN ANALYZE
+  SELECT id, first_name, last_name
+  FROM Student
+  WHERE first_name LIKE 'A%'
+  AND last_name LIKE 'L%';
+```
+
+Analyzing the `EXPLAIN` results, you can see which access method the optimizer chose —
+full table scan (Seq Scan) or index scan (Index Scan).
+
+</PostgreSQLOnly>
 
 ## The Flip Side of Indexes
 
@@ -196,3 +303,7 @@ In the end, the ideal approach is to find a balance: it's necessary to have enou
 for efficient operation, but not so many that it impacts performance.
 If you're unsure about the right number of indexes, start with the minimum and add
 as necessary.
+
+**Let's check how well we've understood the topic:**
+
+Which statement best explains why you should not index every column in a database table?

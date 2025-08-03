@@ -1,7 +1,7 @@
 ---
 meta:
-    title: 'Adding data, insert statement'
-    description: 'Adding a new record in sql. Auto-increment of the primary key when creating a row in the table. SQL insert into statement.'
+  title: "Adding data, insert statement"
+  description: "Adding a new record in sql. Auto-increment of the primary key when creating a row in the table. SQL insert into statement."
 ---
 
 # Adding data, INSERT operator
@@ -20,41 +20,21 @@ Values can be inserted by enumeration using the word `VALUES` listing them in pa
 
 Thus, You can add new entries in the following ways:
 
--   Using the syntax `INSERT INTO ... SELECT`
+- Using the syntax `INSERT INTO ... SELECT`
 
-    ```sql-executable-Family-targetTable:Goods
-    INSERT INTO Goods (good_id, good_name, type)
-    SELECT 20, 'Table', 2;
-    ```
+  ```sql-executable-Family-targetTable:Goods
+  INSERT INTO Goods (good_id, good_name, type)
+  SELECT 20, 'Table', 2;
+  ```
 
--   Using the syntax `INSERT INTO ... VALUES (...)`
+- Using the syntax `INSERT INTO ... VALUES (...)`
 
-    ```sql-executable-Family-targetTable:Goods
-    INSERT INTO Goods (good_id, good_name, type)
-    VALUES (20, 'Table', 2);
-    ```
+  ```sql-executable-Family-targetTable:Goods
+  INSERT INTO Goods (good_id, good_name, type)
+  VALUES (20, 'Table', 2);
+  ```
 
 Each of these queries will give the same result:
-
-| good_id | good_name          | type |
-| ------- | ------------------ | ---- |
-| 1       | apartment fee      | 1    |
-| 2       | phone fee          | 1    |
-| 3       | bread              | 2    |
-| 4       | milk               | 2    |
-| 5       | red caviar         | 3    |
-| 6       | cinema             | 4    |
-| 7       | black caviar       | 3    |
-| 8       | cough tablets      | 5    |
-| 9       | potato             | 2    |
-| 10      | pineapples         | 3    |
-| 11      | television         | 8    |
-| 12      | vacuum cleaner     | 8    |
-| 13      | jacket             | 7    |
-| 14      | fur coat           | 7    |
-| 15      | music school fee   | 6    |
-| 16      | english school fee | 6    |
-| 20      | Table              | 2    |
 
 ## Primary key when adding a new record
 
@@ -62,21 +42,24 @@ It should be remembered that the primary key of the table is a unique value and 
 
 When adding a new record with unique indices, the choice of such a unique values can be a daunting task. The solution may be an additional request, aimed at identifying the maximum value of the primary key to generate a new unique value.
 
-```sql
+```sql-executable-Family-targetTable:Goods
 INSERT INTO Goods SELECT MAX(good_id) + 1, 'Table', 2 FROM Goods;
 ```
 
 Here, we use the `MAX` function to find the maximum value in the primary key column. However, this method is not the most reliable or universal way to determine the primary key value, as it only works best with numeric data types. For all other data types, implementing this approach would be more complex. Additionally, using this method may result in retrieving a value that was previously present in the table but has since been deleted, leading to potential data inconsistencies in the system 💥. Therefore, it is recommended that an alternative method be used in real-world projects.
 
-## MySQL
+## Automatic primary key generation
 
-MySQL introduced a mechanism for its automatic generation. To do this, just provide the primary key `good_id` attribute `AUTO_INCREMENT`.
+<MySQLOnly>
+
+MySQL introduced a mechanism for automatic primary key generation. To do this, just provide the primary key `good_id` attribute `AUTO_INCREMENT`.
 Then when creating a new record as the value `good_id` just pass `NULL` or `0` - the field will automatically get a value greater than the previous one by one.
 
 ```sql
 CREATE TABLE Goods (
-	good_id INT NOT NULL AUTO_INCREMENT
-	...
+	good_id INT NOT NULL AUTO_INCREMENT,
+	good_name VARCHAR(255),
+	type INT
 );
 ```
 
@@ -84,19 +67,24 @@ CREATE TABLE Goods (
 INSERT INTO Goods VALUES (NULL, 'Table', 2);
 ```
 
-## PostgreSQL
+</MySQLOnly>
 
-PostgreSQL has a similar mechanism for automatically generating a unique identifier.
+<PostgreSQLOnly>
+
+PostgreSQL has a mechanism for automatically generating a unique identifier.
 For this, it has types `SMALLSERIAL`, `SERIAL`, `BIGSERIAL`, which are not real types, but rather just the convenience of writing columns with a unique identifier.
 A column with one of the above types will be integer and will automatically grow when a new record is added.
 
 ```sql
 CREATE TABLE Goods (
-	good_id SERIAL
-	...
+	good_id SERIAL,
+	good_name VARCHAR(255),
+	type INT
 );
 ```
 
 ```sql
 INSERT INTO Goods (good_name, type) VALUES ('Table', 2);
 ```
+
+</PostgreSQLOnly>

@@ -1,7 +1,7 @@
 ---
 meta:
-    title: 'LIKE operator'
-    description: 'SQL syntax of the LIKE operator to search for records by a patterned string'
+  title: "LIKE operator"
+  description: "SQL syntax of the LIKE and ILIKE operators to search for records by a patterned string"
 ---
 
 # LIKE operator
@@ -10,17 +10,9 @@ The `LIKE` operator is used in conditional queries when we want to find out whet
 
 For example, we have a `Users` table that has an `email` field:
 
-```sql
+```sql-executable-Airbnb
 SELECT name, email FROM Users;
 ```
-
-| name              | email                 |
-| ----------------- | --------------------- |
-| Bruce Willis      | barjam@hotmail.com    |
-| George Clooney    | tellis@me.com         |
-| Kevin Costner     | metzzo@hotmail.com    |
-| Samuel L. Jackson | moonlapse@outlook.com |
-| Kurt Russell      | gator@live.com        |
 
 Suppose we want to find all users whose email is in the second-level domain "hotmail".
 That is, we need to select only those records that meet the following condition:
@@ -45,19 +37,10 @@ The pattern may include the following special characters:
 
 So our query for finding users in the "hotmail" domain might look like this:
 
-```sql
+```sql-executable-Airbnb
 SELECT name, email FROM Users
 WHERE email LIKE '%@hotmail.%'
 ```
-
-| name                 | email                |
-| -------------------- | -------------------- |
-| Bruce Willis         | barjam@hotmail.com   |
-| Kevin Costner        | metzzo@hotmail.com   |
-| Jennifer Lopez       | barjam@hotmail.com   |
-| Harrison Ford        | kostas@hotmail.com   |
-| Michael Douglas      | timtroyr@hotmail.com |
-| Catherine Zeta-Jones | flakeg@hotmail.com   |
 
 ## Examples
 
@@ -84,7 +67,17 @@ WHERE email LIKE '%@hotmail.%'
   ```
   Matches strings starting with "begin" and ending with "end"
 
-> By default, MySQL is not case-sensitive.
+<MySQLOnly>
+
+> By default, MySQL patterns are not case-sensitive
+
+</MySQLOnly>
+
+<PostgreSQLOnly>
+
+> In PostgreSQL, patterns are case-sensitive. For case-insensitive search, use the `ILIKE` operator
+
+</PostgreSQLOnly>
 
 ## ESCAPE character
 
@@ -105,3 +98,8 @@ WHERE progress LIKE '3!%' ESCAPE '!';
 ```
 
 If we didn't escape the wildcard character, the query would include everything starting with 3.
+
+## Interactive Exercise
+
+Now let's practice what we've learned!  
+In the exercise below, you need to distribute email addresses into columns according to the given `LIKE` patterns.

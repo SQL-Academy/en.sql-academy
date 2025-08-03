@@ -1,12 +1,14 @@
 ---
 meta:
-    title: 'Numeric data type in SQL'
-    description: 'Working with numbers in MySQL. Basic functions for working with numbers. INTEGER. DECIMAL. BIT.'
+  title: "Numeric data type in SQL: MySQL and PostgreSQL"
+  description: "Working with numbers in MySQL and PostgreSQL. Basic numeric data types: INTEGER, DECIMAL, FLOAT and others."
 ---
 
 # Numeric data type
 
 Numerical data are divided into exact and approximate, integer and real. Bit values are a separate category.
+
+<MySQLOnly>
 
 ## Exact integers
 
@@ -68,3 +70,56 @@ For example, when trying to write the value `b'101'` to `BIT(6)` will eventually
 Numeric floating point data types can also have a parameter `UNSIGNED`.
 As with integer types, this attribute prevents negative storage in the marked column values, but,
 unlike integer types, the maximum interval for column values remains the same.
+
+</MySQLOnly>
+
+<PostgreSQLOnly>
+
+## Integer numbers
+
+| Type                                    | Memory size | Range                                            |
+| :-------------------------------------- | :---------- | :----------------------------------------------- |
+| `SMALLINT`                              | 2 bytes     | from -32768 to 32767                             |
+| `INT` <br /> `INTEGER` <br /> (aliases) | 4 bytes     | from -2147483648 to 2147483647                   |
+| `BIGINT`                                | 8 bytes     | from -9223372036854775808 to 9223372036854775807 |
+
+## Auto-increment types
+
+| Type          | Memory size | Range                         |
+| :------------ | :---------- | :---------------------------- |
+| `SMALLSERIAL` | 2 bytes     | from 1 to 32767               |
+| `SERIAL`      | 4 bytes     | from 1 to 2147483647          |
+| `BIGSERIAL`   | 8 bytes     | from 1 to 9223372036854775807 |
+
+The `SERIAL` types are pseudo-types for creating auto-incrementing columns. `SERIAL` is equivalent to `INTEGER` with an automatically created sequence.
+
+## Exact real numbers
+
+| Type                                                                                | Precision    | Range                                                                 |
+| :---------------------------------------------------------------------------------- | :----------- | :-------------------------------------------------------------------- |
+| `DECIMAL[(precision, scale)]` <br /> `NUMERIC[(precision, scale)]` <br /> (aliases) | User-defined | Up to 131072 digits before decimal point and up to 16383 digits after |
+
+Type `NUMERIC` stores exact real values data. It is used when accuracy is critical. For example, when storing financial data.
+
+Usage example:
+
+```sql
+CREATE TABLE Users (
+    ...
+    salary NUMERIC(10,2)
+);
+```
+
+This example declares that the `salary` column will store numbers having a maximum of 10 digits, 2 of which are reserved for the decimal part.
+That is, this column will store values in the range from -99999999.99 to 99999999.99.
+
+## Approximate numbers
+
+| Type               | Memory size | Precision | Range                 |
+| :----------------- | :---------- | :-------- | :-------------------- |
+| `REAL`             | 4 bytes     | 6 digits  | from 1E-37 to 1E+37   |
+| `DOUBLE PRECISION` | 8 bytes     | 15 digits | from 1E-307 to 1E+308 |
+
+Floating point types are used for approximate calculations. PostgreSQL also supports special values: `Infinity`, `-Infinity` and `NaN` (not a number).
+
+</PostgreSQLOnly>

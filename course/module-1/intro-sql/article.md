@@ -1,7 +1,7 @@
 ---
 meta:
-    title: 'Introduction to SQL'
-    description: 'Defining the SQL language. Dialects (extensions) of SQL. Differences between T-SQL, PL/SQL, PL/pgSQL.'
+  title: "Introduction to SQL"
+  description: "Defining the SQL language. Dialects (extensions) of SQL. Differences between T-SQL, PL/SQL, PL/pgSQL."
 ---
 
 # Introduction to SQL
@@ -35,4 +35,10 @@ Here are some of them:
 
 If you know that you need to learn SQL, you should learn standard SQL. However, if you already know which specific database you will be working with, it is probably best to learn its SQL dialect and just know that different databases may use slightly different syntax.
 
-In our course, we will be using the MySQL DBMS because it is quite popular and at the same time it uses SQL that is close to the standard, although there are some minor differences. <a href="https://dev.mysql.com/doc/refman/8.0/en/differences-from-ansi.html" target="_blank">More on the differences</a>.
+In our course, we offer you a choice between MySQL DBMS and PostgreSQL DBMS, as the 2 most popular solutions.
+You can switch between them at any time using one of the following methods:
+
+- select DBMS on the <a href="/settings/profile" target="_blank">profile settings</a> page
+- select DBMS in the code editor interface
+
+  ![SQL code editor interface](https://sql-academy.org/static/guidePage/intro-sql/en_changing_dbms.png "SQL code editor interface")
