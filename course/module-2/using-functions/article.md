@@ -1,7 +1,7 @@
 ---
 meta:
-  title: "Using functions"
-  description: "Examples of scalar SQL functions and their applications on literals and field values from tables."
+    title: 'Using functions'
+    description: 'Examples of scalar SQL functions and their applications on literals and field values from tables.'
 ---
 
 # Using Functions
@@ -28,95 +28,95 @@ Here are some examples:
 
 <MySQLOnly>
 
-- <a href="/handbook/mysql/lower" target="_blank">
-      **LOWER**
-  </a>
+-   <a href="/handbook/mysql/lower" target="_blank">
+        **LOWER**
+    </a>
 
-  Returns a string in which all characters are written in lowercase
+    Returns a string in which all characters are written in lowercase
 
-  ```sql-executable
-  SELECT LOWER('SQL Academy') AS lower_string;
-  ```
+    ```sql-executable
+    SELECT LOWER('SQL Academy') AS lower_string;
+    ```
 
-- <a href="/handbook/mysql/year" target="_blank">
-      **YEAR**
-  </a>
+-   <a href="/handbook/mysql/year" target="_blank">
+        **YEAR**
+    </a>
 
-  Returns the year for a given date.
+    Returns the year for a given date.
 
-  ```sql-executable
-  SELECT YEAR('2022-06-16') AS year;
-  ```
+    ```sql-executable
+    SELECT YEAR('2022-06-16') AS year;
+    ```
 
-- <a href="/handbook/mysql/instr" target="_blank">
-      **INSTR**
-  </a>
+-   <a href="/handbook/mysql/instr" target="_blank">
+        **INSTR**
+    </a>
 
-  Searches for a substring in a string, returning the position of its first character. At the same time, the countdown
-  starts with one, not zero, as in most programming languages.
+    Searches for a substring in a string, returning the position of its first character. At the same time, the countdown
+    starts with one, not zero, as in most programming languages.
 
-  The function works by character-by-character comparison of the source string with the desired one. For example, in the string `sql-academy`, the substring `academy` appears starting from the fifth character.
+    The function works by character-by-character comparison of the source string with the desired one. For example, in the string `sql-academy`, the substring `academy` appears starting from the fifth character.
 
-  ```sql-executable
-  SELECT INSTR('sql-academy', 'academy') AS idx;
-  ```
+    ```sql-executable
+    SELECT INSTR('sql-academy', 'academy') AS idx;
+    ```
 
-- <a href="/handbook/mysql/length" target="_blank">
-      **LENGTH**
-  </a>
+-   <a href="/handbook/mysql/length" target="_blank">
+        **LENGTH**
+    </a>
 
-  Returns the length of the specified string.
+    Returns the length of the specified string.
 
-  ```sql-executable
-  SELECT LENGTH('sql-academy') AS str_length;
-  ```
+    ```sql-executable
+    SELECT LENGTH('sql-academy') AS str_length;
+    ```
 
 </MySQLOnly>
 
 <PostgreSQLOnly>
 
-- <a href="/handbook/postgresql/lower" target="_blank">
-      **LOWER**
-  </a>
+-   <a href="/handbook/postgresql/lower" target="_blank">
+        **LOWER**
+    </a>
 
-  Returns a string in which all characters are written in lowercase
+    Returns a string in which all characters are written in lowercase
 
-  ```sql-executable
-  SELECT LOWER('SQL Academy') AS lower_string;
-  ```
+    ```sql-executable
+    SELECT LOWER('SQL Academy') AS lower_string;
+    ```
 
-- <a href="/handbook/postgresql/extract" target="_blank">
-      **EXTRACT**
-  </a>
+-   <a href="/handbook/postgresql/extract" target="_blank">
+        **EXTRACT**
+    </a>
 
-  Extracts date parts (year, month, day, etc.) from a given date
+    Extracts date parts (year, month, day, etc.) from a given date
 
-  ```sql-executable
-  SELECT EXTRACT(YEAR FROM '2022-06-16') AS year;
-  ```
+    ```sql-executable
+    SELECT EXTRACT(YEAR FROM DATE '2022-06-16') AS year;
+    ```
 
-- <a href="/handbook/postgresql/position" target="_blank">
-      **POSITION**
-  </a>
+-   <a href="/handbook/postgresql/position" target="_blank">
+        **POSITION**
+    </a>
 
-  Searches for a substring in a string, returning the position of its first character. At the same time, the countdown
-  starts with one, not zero, as in most programming languages.
+    Searches for a substring in a string, returning the position of its first character. At the same time, the countdown
+    starts with one, not zero, as in most programming languages.
 
-  The function works by character-by-character comparison of the source string with the desired one. For example, in the string `sql-academy`, the substring `academy` appears starting from the fifth character.
+    The function works by character-by-character comparison of the source string with the desired one. For example, in the string `sql-academy`, the substring `academy` appears starting from the fifth character.
 
-  ```sql-executable
-  SELECT POSITION('academy' IN 'sql-academy') AS idx;
-  ```
+    ```sql-executable
+    SELECT POSITION('academy' IN 'sql-academy') AS idx;
+    ```
 
-- <a href="/handbook/postgresql/length" target="_blank">
-      **LENGTH**
-  </a>
+-   <a href="/handbook/postgresql/length" target="_blank">
+        **LENGTH**
+    </a>
 
-  Returns the length of the specified string.
+    Returns the length of the specified string.
 
-  ```sql-executable
-  SELECT LENGTH('sql-academy') AS str_length;
-  ```
+    ```sql-executable
+    SELECT LENGTH('sql-academy') AS str_length;
+    ```
 
 </PostgreSQLOnly>
 
@@ -145,11 +145,11 @@ SELECT UPPER(LEFT('sql-academy', 3)) AS str;
 
 Or we want to calculate the length of a person's last name by having a string in the format `first name<space>last name`. One of the possible ways to calculate the length of the last name can be using the functions `LENGTH` and position search, using the formula `<length of the last name> = <length of the entire string> - (<length of the name> + <length of the space>)`:
 
-- The value `<length of the entire string>` can be obtained using the `LENGTH` function
+-   The value `<length of the entire string>` can be obtained using the `LENGTH` function
 
 <MySQLOnly>
 
-- For `<length of the name> + <length of the space>`, you need to calculate the position of the character where the name ends and add one, because the space has a length of "1". We can do this using only the `INSTR` function, focusing on the "space" character
+-   For `<length of the name> + <length of the space>`, you need to calculate the position of the character where the name ends and add one, because the space has a length of "1". We can do this using only the `INSTR` function, focusing on the "space" character
 
 Since both functions return numeric literals, we can perform arithmetic operations on them. Let's subtract one from the other and get the length of the last name (lastname_length):
 
@@ -166,7 +166,7 @@ FROM FamilyMembers;
 
 <PostgreSQLOnly>
 
-- For `<length of the name> + <length of the space>`, you need to calculate the position of the character where the name ends and add one, because the space has a length of "1". We can do this using only the `POSITION` function, focusing on the "space" character
+-   For `<length of the name> + <length of the space>`, you need to calculate the position of the character where the name ends and add one, because the space has a length of "1". We can do this using only the `POSITION` function, focusing on the "space" character
 
 Since both functions return numeric literals, we can perform arithmetic operations on them. Let's subtract one from the other and get the length of the last name (lastname_length):
 
