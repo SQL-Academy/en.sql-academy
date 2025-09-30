@@ -41,14 +41,29 @@ However, the `TRUNCATE` statement has several differences:
 
 ## Deleting records for multi-table queries
 
-If the `DELETE` request uses `JOIN`, then it is necessary to specify from which table (s) you want to delete records.
+If the `DELETE` query uses a `JOIN`, you need to specify which tables should have their rows removed.
+
+<MySQLOnly>
 
 ```sql
-DELETE table_name_1 [, table_name_2] FROM
+DELETE table_name_1 FROM
 table_name_1 JOIN table_name_2
 ON table_name_1.field = table_name_2.field
 [WHERE the_conditions_of_the_limitations];
 ```
+
+</MySQLOnly>
+
+<PostgreSQLOnly>
+
+```sql
+DELETE FROM table_name_1
+USING table_name_2
+WHERE table_name_1.field = table_name_2.field
+[AND the_conditions_of_the_limitations];
+```
+
+</PostgreSQLOnly>
 
 For example, we need to delete all reservations for a home that does not have a kitchen. Then the request will look like this:
 
