@@ -12,7 +12,7 @@ which aims to study a certain group of knowledge in the field of SQL.
 Although the modules can be completed independently of each other, we still recommend taking the course in order.
 
 At the end of most practical topics there is a block "Tasks for self-testing" so that you can immediately practice using
-new knowledge.
+new knowledge 🎓.
 
 ## Interfaces
 
@@ -40,20 +40,20 @@ It is recommended to solve problems while logged in, so all your solutions will 
 
 ### AI Assistant
 
-We have a smart assistant based on artificial intelligence, which will gladly help you understand complex topics and answer any questions you may have! 🤖
+We have a smart assistant powered by artificial intelligence that will gladly help you with tricky topics and answer any questions you have! 🤖
 
-**How to interact with it:**
+**How to interact with the assistant:**
 
--   **Text selection** on the page — a "Clarify" button will appear to get additional explanations for the selected fragment
+-   **Select text** on the page — an "Explain" button will appear for additional explanations of the selected text fragment
 
     ![Clarify button when selecting text](https://sql-academy.org/static/guidePage/intro-structure-of-course/en_ai_explain.png 'Clarify button when selecting text')
 
--   **Quick actions** in the assistant window, such as "Ask a question" for self-testing on the current topic
+-   **Quick actions** in the assistant window, for example "Ask a question" to check yourself on the current topic
 
     ![AI assistant window with quick actions](https://sql-academy.org/static/guidePage/intro-structure-of-course/en_ai_window.png 'AI assistant window with quick actions')
 
--   **Error explanation** — if an error occurs when executing an SQL query in exercises, the assistant will help you understand the reasons and suggest how to fix the query
+-   **Error explanations** — if you get an error while executing an SQL query in exercises, the assistant will help you understand the reason and suggest how to fix your query
 
     ![AI assistant explains SQL query error](https://sql-academy.org/static/guidePage/intro-structure-of-course/en_ai_explain_error.png 'AI assistant explains SQL query error')
 
-The assistant works for **registered users**. Everyone has free requests every day, and [premium users](https://sql-academy.org/premium) get even more! 😊
+The assistant works for **registered users**. Each user gets a few free requests, and [premium users](https://sql-academy.org/premium) get unlimited requests! 😊
