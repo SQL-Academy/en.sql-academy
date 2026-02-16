@@ -14,23 +14,25 @@ Let's go beyond the surface and delve deeper into the structure and terminology 
 
 In relational databases, information is stored in tables linked to each other. The tables themselves consist of:
 
--   rows, which are called "records"
--   columns, which are called "fields" or "attributes"
+- rows, which are called "records"
+- columns, which are called "fields" or "attributes"
 
 ![Table Structure](https://sql-academy.org/static/guidePage/structure-of-relation-databases/en_structure_db.png 'Table Structure')
 
 In each table, each column has a predetermined data type. For example, these types can be:
 
--   `VARCHAR` (string data type)
--   `INTEGER` (numeric data type)
--   `DATETIME` (date and time data type)
--   and others
+- `VARCHAR` (string data type)
+- `INTEGER` (numeric data type)
+- `DATETIME` (date and time data type)
+- and others
 
 And each row in the table must have the corresponding type for each column. The DBMS will not allow an attempt to add an arbitrary string to a field with the `DATETIME` type.
 
-To find out the data types of the attributes, you can execute the SQL command `DESCRIBE` and specify the table name:
+To find out attribute data types, you can execute an SQL command and specify the table name.
 
-```sql-Family-executable
+For MySQL, you can execute the `DESCRIBE` SQL command:
+
+```sql
 DESCRIBE FamilyMembers
 ```
 
@@ -41,9 +43,23 @@ DESCRIBE FamilyMembers
 | member_name | varchar(50) | NO   |     |
 | birthday    | datetime    | NO   |     |
 
-Alternatively, you can look at the ERD diagram of the database schema:
+For PostgreSQL, you can use an SQL query to the information schema:
 
-<ERD databaseName="Family" />
+```sql
+SELECT column_name, data_type, is_nullable
+FROM information_schema.columns
+WHERE table_name = 'familymembers'
+  AND table_schema = current_schema();
+```
+
+| column_name | data_type                   | is_nullable |
+| ----------- | --------------------------- | ----------- |
+| member_id   | integer                     | NO          |
+| status      | character varying           | NO          |
+| member_name | character varying           | NO          |
+| birthday    | timestamp without time zone | NO          |
+
+Alternatively, you can look at the ERD diagram of the database schema:
 
 ## Primary Key
 
