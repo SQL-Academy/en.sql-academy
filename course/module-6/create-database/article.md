@@ -1,7 +1,7 @@
 ---
 meta:
   title: "Creating and deleting databases: MySQL and PostgreSQL"
-  description: "SQL syntax for creating and dropping databases in MySQL and PostgreSQL, CREATE DATABASE, DROP DATABASE. IF NOT EXISTS construction."
+  description: "SQL syntax for creating and dropping databases in MySQL and PostgreSQL: CREATE DATABASE, DROP DATABASE, IF EXISTS, and IF NOT EXISTS."
 ---
 
 # Creating and deleting databases
@@ -16,11 +16,9 @@ Database creation has the following syntax:
 CREATE DATABASE database_name;
 ```
 
-You can use combinations of letters, numbers, and the characters "\_" and "$" as the name for the database.
+### MySQL
 
-<MySQLOnly>
-
-The name can start with numbers, but it cannot consist only of them. The maximum name length is 64 characters.
+In MySQL, database names usually use letters, numbers, and the characters "\_" and "$". The maximum name length is 64 characters.
 
 You can control the creation of the database using the `SHOW DATABASES` operator.
 
@@ -30,11 +28,9 @@ SHOW DATABASES;
 
 > Note that the `SHOW DATABASES` operator, in addition to user databases, also displays service databases: information_schema, mysql, performance_schema, sys.
 
-</MySQLOnly>
+### PostgreSQL
 
-<PostgreSQLOnly>
-
-The name cannot start with a digit and cannot contain special characters (except underscore). The maximum name length is 63 characters.
+In PostgreSQL, if a database name is written without double quotes, it must start with a letter or the "\_" character. After that, you can use letters, numbers, as well as the "\_" and "$" characters. The maximum name length is 63 characters.
 
 You can control the creation of the database using an SQL query:
 
@@ -44,8 +40,6 @@ SELECT datname FROM pg_database WHERE datistemplate = false;
 
 > Note that in addition to user databases, PostgreSQL also contains service databases: postgres, template0, template1.
 
-</PostgreSQLOnly>
-
 ## Deleting database
 
 Deleting a database is done using the `DROP DATABASE` operator:
@@ -54,18 +48,31 @@ Deleting a database is done using the `DROP DATABASE` operator:
 DROP DATABASE database_name;
 ```
 
-## IF [NOT] EXISTS construction
+> PostgreSQL: you cannot drop a database if the current session is connected to it. The command will also fail if other active sessions are connected to that database.
 
-When creating a database or deleting it, an error may occur that a database with such name already exists (on creation) or, conversely,
-this database does not exist (on deletion). For such cases, there is a construction `IF [NOT] EXISTS`.
+## IF EXISTS and IF NOT EXISTS
 
-That is, if we want to create a database only on the condition that it does not exist yet, then we use following syntax:
+### MySQL
+
+When creating or deleting a database, an error may occur. For example, the database may already exist or, on the contrary, may not exist yet. In such cases, the `IF EXISTS` and `IF NOT EXISTS` constructions are used.
+
+If we want to create a database only on the condition that it does not exist yet, then we use the following syntax:
 
 ```sql
 CREATE DATABASE IF NOT EXISTS database_name;
 ```
 
-If we want to delete the database only if it exists, then we use following syntax:
+If we want to delete the database only if it exists, then we use the following syntax:
+
+```sql
+DROP DATABASE IF EXISTS database_name;
+```
+
+### PostgreSQL
+
+When deleting a database, an error may occur if such a database does not exist. In this case, you can use the `IF EXISTS` construction.
+
+In PostgreSQL, you can use the `IF EXISTS` construction when deleting a database:
 
 ```sql
 DROP DATABASE IF EXISTS database_name;
