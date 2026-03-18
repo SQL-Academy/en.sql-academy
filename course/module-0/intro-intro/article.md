@@ -30,16 +30,17 @@ but some functionality may not be available or work incorrectly. Please treat th
 
 ## How our site is organized
 
-![How our site is organized](https://sql-academy.orghttps://sql-academy.org/static/guidePage/intro-intro/connections.webp 'How our site is organized')
+![How our site is organized](https://sql-academy.org/static/guidePage/intro-intro/connections.webp 'How our site is organized')
 
-There are 3 main sections on our resource, each of which will be useful in different ways:
+There are four main sections on our resource, each of which will be useful in different ways:
 
 -   **<a href="https://sql-academy.org/guide" target="_blank"> Course </a>** - is your step-by-step assistant when learning SQL. It presents consistent, structured materials, as well as related exercises to consolidate knowledge.
+-   **<a href="https://sql-academy.org/guide#advanced-courses" target="_blank">Advanced courses</a>** - are separate practice-oriented programs for those who already know the basics and want to go deeper into applied topics, such as SQL query optimization or data analysis.
 -   **<a href="https://sql-academy.org/trainer" target="_blank">Trainer </a>** the simulator is a tool to test your knowledge. The tasks in it are ranked by difficulty, so you can choose the ones that are suitable for your current level.
     Also, solving tasks from the simulator is necessary to obtain a certificate confirming knowledge in the field of SQL.
 -   **<a href="https://sql-academy.org/sandbox" target="_blank">Sandbox </a>** - is a space for free acquaintance with the structure of our databases.
 
-In addition, while using all the sections, you can use our reference guide on SQL functions, the opening of which is available in the header of our resource.
+In addition, the header includes a global search that helps you find materials across all parts of the platform: courses, tasks, and functions from the handbook.
 
 ## Premium account
 
