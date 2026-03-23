@@ -1,10 +1,10 @@
 ---
 meta:
-    title: 'operator HAVING'
+    title: 'Operator HAVING'
     description: 'Using the HAVING statement in SQL'
 ---
 
-# operator HAVING
+# Operator HAVING
 
 We have already looked at a query to obtain the average rental cost of residential properties depending on the type of housing:
 
@@ -89,20 +89,20 @@ We are only interested in housing types that have at least 5 residential propert
 
 To get this result, we must:
 
--   First get all the data from the table
+- First get all the data from the table
 
     ```sql
     SELECT ... FROM Rooms;
     ```
 
--   Then select from all the `Room` table entries only those that interest us, i.e. only housing with a TV
+- Then select from all the `Room` table entries only those that interest us, i.e. only housing with a TV
 
     ```sql
     SELECT ... FROM Rooms
     WHERE has_tv = True
     ```
 
--   Then group the data on residential properties by their type
+- Then group the data on residential properties by their type
 
     ```sql
     SELECT ... FROM Rooms
@@ -110,7 +110,7 @@ To get this result, we must:
     GROUP BY home_type
     ```
 
--   After that, filter the received groups based on the condition that we are interested in groups that have at least 5 representatives
+- After that, filter the received groups based on the condition that we are interested in groups that have at least 5 representatives
 
     ```sql
     SELECT ... FROM Rooms
@@ -119,8 +119,8 @@ To get this result, we must:
     HAVING COUNT(*) >= 5
     ```
 
--   And finally, to see what is asked of us in the task and accordingly add the output of the necessary information.
-    In our case, we need to output the name of the home type and its minimum cost.
+- And finally, to see what is asked of us in the task and accordingly add the output of the necessary information.
+  In our case, we need to output the name of the home type and its minimum cost.
 
     ```sql
     SELECT home_type, MIN(price) as min_price FROM Rooms
