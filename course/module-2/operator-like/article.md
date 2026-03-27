@@ -79,10 +79,19 @@ WHERE email LIKE '%@hotmail.%'
 
 </PostgreSQLOnly>
 
-## ESCAPE character
+## Escaping special characters
 
-The ESCAPE character is used to escape special characters (`%` and `_`).
-In case you need to find strings containing these special characters as literal text, you can use the ESCAPE character.
+Sometimes you need to search for strings where `%` and `_` are part of the text itself rather than pattern elements. In such cases, these characters must be escaped.
+In `LIKE` patterns, `\` is used as the default escape character. For example, if you need to retrieve the IDs of tasks with a progress of `3%`, you can write:
+
+```sql
+SELECT job_id FROM Jobs
+WHERE progress LIKE '3\\%';
+```
+
+### ESCAPE character
+
+If you want to use a different escape character instead of the default one, you can specify it explicitly with `ESCAPE`.
 
 ### Syntax with ESCAPE
 
@@ -90,14 +99,14 @@ In case you need to find strings containing these special characters as literal 
 ... WHERE table_field LIKE 'string_pattern' ESCAPE 'escape_character'
 ```
 
-For example, if you want to retrieve the job IDs of tasks with a progress of 3%:
+The same query can be written with an explicitly specified escape character:
 
 ```sql
 SELECT job_id FROM Jobs
 WHERE progress LIKE '3!%' ESCAPE '!';
 ```
 
-If we didn't escape the wildcard character, the query would include everything starting with 3.
+Here, `!` plays the same role as `\` in the previous example.
 
 ## Interactive Exercise
 
