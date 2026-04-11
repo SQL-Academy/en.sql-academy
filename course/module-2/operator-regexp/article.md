@@ -32,6 +32,8 @@ such as finding strings that start or end with a certain set of characters or co
 However, if a more complex and flexible search is required, such as searching by multiple conditions
 or using special characters and ranges, regular expression operators become an indispensable tool.
 
+It is important to remember that `LIKE` compares the whole string against its pattern, while a regular expression looks for a match inside the string. If you need to check the beginning or the end of the string specifically, use the special characters `^` and `$`.
+
 ## Regular expression syntax
 
 <MySQLOnly>
@@ -157,7 +159,7 @@ Where `pattern` is the regular expression that defines the search pattern.
   <MySQLOnly>
 
   ```sql-executable-Airbnb
-  SELECT * FROM Users WHERE email REGEXP '@(outlook.com|icloud.com)$'
+  SELECT * FROM Users WHERE email REGEXP '@(outlook\\.com|icloud\\.com)$'
   ```
 
   </MySQLOnly>

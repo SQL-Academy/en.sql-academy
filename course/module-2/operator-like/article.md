@@ -111,4 +111,4 @@ Here, `!` plays the same role as `\` in the previous example.
 ## Interactive Exercise
 
 Now let's practice what we've learned!  
-In the exercise below, you need to distribute email addresses into columns according to the given `LIKE` patterns.
+In the exercise below, you need to match the email addresses to the LIKE patterns by dragging them into the matching areas.

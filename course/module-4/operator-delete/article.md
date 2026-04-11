@@ -36,8 +36,13 @@ However, the `TRUNCATE` statement has several differences:
 
 - Triggers are not processed, in particular, the delete trigger
 - Deletes all rows in a table without writing the deletion of individual rows of data to the transaction log
-- Resets the counter of identifiers to the initial value
+- In MySQL, resets the identifier counter to its initial value
 - To use, you must have edit rights to the table
+
+### PostgreSQL
+
+- In PostgreSQL, the identifier counter is reset only when the `RESTART IDENTITY` option is used
+- By default, `CONTINUE IDENTITY` is used, so the counter is not reset after `TRUNCATE`
 
 ## Deleting records for multi-table queries
 

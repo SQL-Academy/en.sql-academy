@@ -1,10 +1,10 @@
 ---
 meta:
-    title: 'IF, CASE, WHILE Operators in Stored Procedures'
-    description: 'Learn conditional statements and loops in SQL stored procedures. Syntax and examples of IF, CASE, WHILE for MySQL and PostgreSQL.'
+    title: 'IF, CASE, WHILE Operators in Stored Procedures and Functions'
+    description: 'Learn conditional statements and loops in SQL stored procedures and functions. Syntax and examples of IF, CASE, WHILE for MySQL and PostgreSQL.'
 ---
 
-# IF, CASE, WHILE Operators in Stored Procedures
+# IF, CASE, WHILE Operators in Stored Procedures and Functions
 
 Stored procedures and functions are not just convenient containers for groups of queries. They allow you to implement quite complex logic using conditional operators and loops.
 
@@ -46,9 +46,9 @@ END IF;
 
 ### IF Usage Example
 
-Let's create a procedure that categorizes students by age:
-
 <MySQLOnly>
+
+Let's create a procedure that categorizes students by age:
 
 ```sql-executable-Schedule
 CREATE PROCEDURE categorize_student_by_age(
@@ -82,6 +82,8 @@ SELECT @category AS age_category;
 </MySQLOnly>
 
 <PostgreSQLOnly>
+
+Let's create a function that categorizes students by age:
 
 ```sql-executable-Schedule
 CREATE OR REPLACE FUNCTION categorize_student_by_age(student_id INT)
@@ -149,9 +151,9 @@ END CASE;
 
 ### CASE Usage Example
 
-Let's create the same student categorization procedure, but using the CASE operator:
-
 <MySQLOnly>
+
+Let's create the same student categorization procedure, but using the CASE operator:
 
 ```sql-executable-Schedule
 CREATE PROCEDURE categorize_student_with_case(
@@ -183,6 +185,8 @@ SELECT @category AS age_category;
 </MySQLOnly>
 
 <PostgreSQLOnly>
+
+Let's create the same student categorization function, but using the CASE operator:
 
 ```sql-executable-Schedule
 CREATE OR REPLACE FUNCTION categorize_student_with_case(student_id INT)
@@ -244,7 +248,7 @@ END LOOP;
 
 ### WHILE Usage Example
 
-Let's create a procedure to create several test subjects:
+Let's look at an example of a stored procedure for creating several test subjects:
 
 <MySQLOnly>
 

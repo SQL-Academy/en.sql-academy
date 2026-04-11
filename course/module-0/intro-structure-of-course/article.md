@@ -23,7 +23,7 @@ During the course of this course, you will meet possibly non-standard components
 Perhaps the most popular component will be the executable code block, it looks like this:
 
 ```sql
-SELECT "Hi, I'm code playground 😊" AS hello;
+SELECT 'Hi, I am code playground 😊' AS hello;
 ```
 
 If it has an active blue button, then this code can be executed. When you click on the request execution button, the code will open in a new tab in the sandbox.

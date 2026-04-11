@@ -17,7 +17,7 @@ Let's look at their application.
 
 ## IS NULL
 
-The `IS NULL` operator allows you to find out if the checked value is equal to `NULL`, i.e. if the value is empty.
+The `IS NULL` operator allows you to check whether a field has no value.
 
 For example, let's select all teachers who do not have a middle name:
 

@@ -156,4 +156,4 @@ A logical literal is a value of `TRUE` or `FALSE`, which indicates the truthfuln
 
 ## NULL
 
-The value `NULL` means "no data" or "no value." It is used to visually distinguish between empty values, such as a zero-length string or a space, and the absence of a value altogether.
+The value `NULL` means "no data" or "no value." It is used to distinguish empty values, such as a zero-length string or a space, from a value that is missing altogether.

@@ -98,6 +98,8 @@ To avoid such duplication when selecting data, there is the `DISTINCT` operator.
 SELECT [DISTINCT] table_fields FROM table_name;
 ```
 
+> Square brackets in syntax descriptions indicate an optional part of the query. They are not written in the SQL query itself.
+
 So in our case, the query to retrieve unique classes that have at least one student would look like this:
 
 ```sql
