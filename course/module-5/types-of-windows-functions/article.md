@@ -80,6 +80,8 @@ Offset window functions are those that allow moving and accessing different rows
 
 - `LAST_VALUE` - returns the last value in the window. Takes a column as an argument, the value of which needs to be returned.
 
+    > When `ORDER BY` is used, the default window frame runs from the start of the partition to the current row (`RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW`). Because of this, `LAST_VALUE` returns the value from the current row rather than the last row of the entire partition. To get the actual last value of the partition, explicitly extend the frame boundaries: `ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING`.
+
 ```sql-Airbnb-executable
 SELECT id,
 	home_type,
