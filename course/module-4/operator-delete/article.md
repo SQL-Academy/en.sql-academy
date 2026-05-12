@@ -46,9 +46,9 @@ However, the `TRUNCATE` statement has several differences:
 
 ## Deleting records for multi-table queries
 
-If the `DELETE` query uses a `JOIN`, you need to specify which tables should have their rows removed.
-
 <MySQLOnly>
+
+If the `DELETE` query uses a `JOIN`, you need to specify which tables should have their rows removed.
 
 ```sql
 DELETE table_name_1 FROM
@@ -60,6 +60,8 @@ ON table_name_1.field = table_name_2.field
 </MySQLOnly>
 
 <PostgreSQLOnly>
+
+If the `DELETE` query uses `USING`, specify the additional tables that help select the rows to delete after it.
 
 ```sql
 DELETE FROM table_name_1
