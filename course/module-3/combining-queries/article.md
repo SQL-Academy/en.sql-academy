@@ -23,7 +23,11 @@ SELECT table_fields FROM list_of_tables ... ;
 
 Table joining with the `UNION` operator is performed for tables that are not related in any way, but with a similar structure.
 
-In order for `UNION` to function correctly, it is essential that the resulting tables from each of the SQL queries contain the same number of columns with the same data types and in the same order.
+In order for `UNION` to function correctly, it is essential that the resulting tables from each of the SQL queries contain the same number of columns with compatible data types and in the same order.
+
+> Compatible data types are types for which the DBMS can choose a common result type.
+> For example, `INT` and `BIGINT` can be converted to a common numeric type. The types do not have to match exactly,
+> but if there is no common type, the query fails with an error.
 
 There are two other operators whose behavior is very similar to `UNION`:
 
