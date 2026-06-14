@@ -169,9 +169,9 @@ To do this, PostgreSQL uses the `EXTRACT` function:
 
 </PostgreSQLOnly>
 
-## The difference between DATETIME and TIMESTAMP
-
 <MySQLOnly>
+
+## MySQL: The difference between DATETIME and TIMESTAMP
 
 MySQL has very similar data types: `DATETIME` and `TIMESTAMP`. Both are aimed at storing the date and time.
 But they have a number of differences that determine which of these data types is best to use when.
@@ -184,6 +184,8 @@ But they have a number of differences that determine which of these data types i
 </MySQLOnly>
 
 <PostgreSQLOnly>
+
+## PostgreSQL: The difference between TIMESTAMP and TIMESTAMPTZ
 
 PostgreSQL has the main types for storing date and time: `TIMESTAMP` (without time zone) and `TIMESTAMPTZ` (with time zone).
 
