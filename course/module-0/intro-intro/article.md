@@ -44,16 +44,30 @@ In addition, the header includes a global search that helps you find materials a
 
 ## Premium account
 
-The purchase of <a href="https://sql-academy.org/premium" target="_blank"> premium account </a> is an optional part, we provide the course for everyone absolutely free of charge. But it opens up more opportunities for you
-to study more productively, access to tasks from real interviews at top companies and gives you the opportunity to get a certificate. In addition, this is a great opportunity to support us in the development of this service.
+The basic course, trainer, and sandbox are available for free. A <a href="https://sql-academy.org/premium" target="_blank">Premium account</a> is an optional upgrade for learners who want to go deeper and use all the platform’s features.
+
+With a Premium account, you get:
+
+- access to ready-made solutions for tasks in the trainer and course;
+- advanced courses on SQL query optimization, data analysis, and database design;
+- AI assistant hints and tasks from real interviews at leading companies;
+- the ability to issue personalized certificates.
+
+Premium is active for 6 months from the date of purchase. All progress made before upgrading is saved and counts toward your certificates. When Premium expires, your account returns to the free plan, while your progress and previously issued certificates remain available.
+
+Purchasing Premium also supports the development of SQL Academy and helps us create new learning materials and features.
 
 ## Progress and certificate acquisition
 
-If you are logged in, you can see the progress bar in the **<a href="https://sql-academy.org/trainer" target="_blank">trainer</a>** section.
+The trainer certificate confirms that you have not only studied the theory but can also solve practical SQL tasks independently. You can add it to your résumé or portfolio, and anyone can verify its authenticity using the public link.
+
+The certificate becomes available after you independently solve 50 tasks in the **<a href="https://sql-academy.org/trainer" target="_blank">Trainer</a>**. Tasks for which you viewed a ready-made solution do not count.
+
+You can track the number of independently solved tasks using the progress bar in the trainer.
 
 ![Progress bar before receiving a certificate](https://sql-academy.org/static/guidePage/intro-intro/progress_bar_en.jpg)
 
-Once you have independently solved 50 tasks, you can obtain a certificate 😍.
+You can open the completed certificate using its public link or download it as a PDF. Once issued, it will remain in your profile permanently, even after your Premium account expires.
 
 ![Example of the certificate](https://sql-academy.org/static/guidePage/intro-intro/certificate_en.jpg)
 
