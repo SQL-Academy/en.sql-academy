@@ -11,12 +11,12 @@ you can get help and support from other students or suggest yourself in case of 
 
 Communication is organized through:
 
--   **<a href="https://t.me/sqlacademyorg/21" target="_blank">chat on Telegram</a>**
+-   **<a href="https://telegram.me/sqlacademyorg/21" target="_blank">chat on Telegram</a>**
 -   **<a href="https://vk.com/sqlacademy" target="_blank">VK community</a>**
 
 On the community page, we post information on the latest and most important updates.
 
-There are **<a href="https://t.me/sqlacademyorg" target="_blank">Telegram</a>** chat for communication between participants.
+There are **<a href="https://telegram.me/sqlacademyorg" target="_blank">Telegram</a>** chat for communication between participants.
 
 ## Problem solving
 
