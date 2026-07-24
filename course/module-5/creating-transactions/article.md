@@ -1,7 +1,7 @@
 ---
 meta:
-  title: "Creating transactions: MySQL and PostgreSQL"
-  description: "Learn how to create secure transactions in MySQL and PostgreSQL databases to protect your funds and data. Discover the importance of COMMIT and ROLLBACK commands to manage changes and ensure data stability. Explore the use of savepoints for flexible control over transactions, minimizing risks and enhancing data processing efficiency."
+    title: "Creating transactions: MySQL and PostgreSQL"
+    description: "Learn how to create secure transactions in MySQL and PostgreSQL databases to protect your funds and data. Discover the importance of COMMIT and ROLLBACK commands to manage changes and ensure data stability. Explore the use of savepoints for flexible control over transactions, minimizing risks and enhancing data processing efficiency."
 ---
 
 # Creating transactions
@@ -14,7 +14,7 @@ queries to transfer money from one account to another, and, if all goes well, co
 
 However, if any problems arise, the `ROLLBACK` command is executed, which instructs the server to undo all actions taken since the start of the transaction.
 
-<MySQLOnly>
+**MySQL**
 
 The process might look like this:
 
@@ -44,9 +44,7 @@ UPDATE accounts SET user_balance = user_balance + 1000 WHERE user_id = 2;
 COMMIT;
 ```
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 The process might look like this:
 
@@ -74,23 +72,17 @@ WHERE user_id = 2;
 COMMIT;
 ```
 
-</PostgreSQLOnly>
-
 With a transaction, the program ensures the safety of your $1,000, guaranteeing that they either stay in the original account or are transferred to another account, eliminating the risk of loss.
 
 ## Starting and completing transactions
 
-<MySQLOnly>
+**MySQL**
 
 Every explicit transaction in MySQL begins with the use of the `START TRANSACTION` or `BEGIN` statement.
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 Every explicit transaction in PostgreSQL begins with the use of the `BEGIN` or `START TRANSACTION` statement.
-
-</PostgreSQLOnly>
 
 A transaction can be completed by:
 
@@ -116,7 +108,7 @@ SAVEPOINT my_savepoint;
 To roll back to a specific savepoint, simply enter the command `ROLLBACK`, followed by the keywords `TO SAVEPOINT` and the name of the savepoint,
 for example:
 
-<MySQLOnly>
+**MySQL**
 
 ```sql
 START TRANSACTION;
@@ -138,9 +130,7 @@ UPDATE accounts SET balance = balance + 200 WHERE user_id = 2;
 COMMIT;
 ```
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 ```sql
 BEGIN;
@@ -161,8 +151,6 @@ UPDATE accounts SET balance = balance + 200 WHERE user_id = 2;
 -- Complete the transaction
 COMMIT;
 ```
-
-</PostgreSQLOnly>
 
 As a result of this transaction, the balance of the first user remains unchanged due to the rollback to the savepoint,
 while the balance of the second user increases by 200.

@@ -1,7 +1,7 @@
 ---
 meta:
-  title: "Type conversion functions, CAST: MySQL and PostgreSQL"
-  description: "SQL type conversion: CAST function in MySQL and PostgreSQL, CONVERT in MySQL. Data types for conversion, syntax and examples."
+    title: "Type conversion functions, CAST: MySQL and PostgreSQL"
+    description: "SQL type conversion: CAST function in MySQL and PostgreSQL, CONVERT in MySQL. Data types for conversion, syntax and examples."
 ---
 
 # Type conversion functions, CAST
@@ -10,39 +10,39 @@ When we perform operations on values ​​with different data types, the DBMS t
 For example, in the example below we are comparing values ​​with `STRING` and `INT` types. To perform this comparison, the DBMS automatically
 will convert a string value to a numeric value.
 
-<MySQLOnly>
+**MySQL**
 
-```sql-executable
+```sql
 SELECT '50' > 49 AS comparison_1, '50' > 51 AS comparison_2;
 ```
 
-</MySQLOnly>
+| comparison_1 | comparison_2 |
+| ------------ | ------------ |
+| 1            | 0            |
 
-<PostgreSQLOnly>
+**PostgreSQL**
 
-```sql-executable
+```sql
 SELECT '50' > 49 AS comparison_1, '50' > 51 AS comparison_2;
 ```
 
-</PostgreSQLOnly>
+| comparison_1 | comparison_2 |
+| ------------ | ------------ |
+| true         | false        |
 
 But not all DBMS conversions can be done automatically, and then it is necessary to do an explicit type conversion.
 
-<MySQLOnly>
+**MySQL**
 
 To do this, MySQL has two very similar functions `CAST` and `CONVERT`.
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 To do this, PostgreSQL has the `CAST` function and the `::` operator.
 
-</PostgreSQLOnly>
-
 ## Syntax
 
-<MySQLOnly>
+**MySQL**
 
 ```sql
 CAST(value AS conversion_type);
@@ -51,13 +51,15 @@ CONVERT(value, conversion_type);
 
 Example,
 
-```sql-executable
+```sql
 SELECT CAST(12005.6 AS DECIMAL) AS cast_example, CONVERT(12005.4, DECIMAL) AS convert_example;
 ```
 
-</MySQLOnly>
+| cast_example | convert_example |
+| ------------ | --------------- |
+| 12006        | 12005           |
 
-<PostgreSQLOnly>
+**PostgreSQL**
 
 ```sql
 CAST(value AS conversion_type);
@@ -66,13 +68,15 @@ value::conversion_type;
 
 Example,
 
-```sql-executable
+```sql
 SELECT CAST(12005.6 AS INTEGER) AS cast_example, 12005.4::INTEGER AS operator_example;
 ```
 
-</PostgreSQLOnly>
+| cast_example | operator_example |
+| ------------ | ---------------- |
+| 12006        | 12005            |
 
-<MySQLOnly>
+**MySQL**
 
 The CAST function can convert the passed value to any of the following types:
 
@@ -88,9 +92,7 @@ The CAST function can convert the passed value to any of the following types:
 | `BINARY`           | Converts a value to `BINARY`.                                                                                                                                                                                 |
 | `YEAR`             | Converts a value to a year.                                                                                                                                                                                   |
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 The CAST function can convert the passed value to any of the following types:
 
@@ -106,34 +108,38 @@ The CAST function can convert the passed value to any of the following types:
 | `BOOLEAN`          | Converts a value to a boolean type.                                                                                                                                       |
 | `TEXT`             | Converts a value to a text type.                                                                                                                                          |
 
-</PostgreSQLOnly>
-
 ## Impossibility of any conversion
 
 Using the `CAST` function imposes requirements on the format of the original value. And the question immediately arises,
 what happens if the given format does not match the required one?
 For example, if you try to convert random text to a temporal data type:
 
-<MySQLOnly>
+**MySQL**
 
-```sql-executable
+```sql
 SELECT CAST('SQL Academy' AS DATETIME) AS invalid_cast;
 ```
 
+| invalid_cast |
+| ------------ |
+| \<NULL>      |
+
 In this case, MySQL will return `NULL` instead of the converted value.
 
-</MySQLOnly>
+**PostgreSQL**
 
-<PostgreSQLOnly>
-
-```sql-executable
+```sql
 SELECT CAST('SQL Academy' AS TIMESTAMP) AS invalid_cast;
 ```
 
 In this case, PostgreSQL will return an error, as the string cannot be converted to a date.
 
-</PostgreSQLOnly>
-
 ## Self test
 
 So, what is the responsibility of the `CAST` function in SQL 🧐?
+
+1. The function is used when it is necessary to determine the data type of the passed value. — The CAST function is responsible for converting a value, not for determining its data type.
+
+2. **Correct answer: **The function is responsible for converting a value from one data type to another — The function is really responsible for the explicit type conversion.
+
+3. The function is required to perform mathematical calculations — Perhaps you should revisit this lesson. The CAST function is responsible for type conversion, not for mathematical calculations.

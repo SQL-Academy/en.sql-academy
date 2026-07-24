@@ -1,7 +1,7 @@
 ---
 meta:
-    title: 'Multi-column subqueries'
-    description: 'Multi-column subqueries in SQL, subqueries with arbitrary table and comparison with multiple columns in SQL.'
+    title: "Multi-column subqueries"
+    description: "Multi-column subqueries in SQL, subqueries with arbitrary table and comparison with multiple columns in SQL."
 ---
 
 # Multi-column subqueries
@@ -13,6 +13,8 @@ So far, we have only considered subqueries that return a single column. However,
 SQL supports comparison not only with a single column, but also allows pairwise comparison of values in the main query with values in the subquery.
 
 For example, if we want to get information about all reservations where the accommodation price at the time of booking (`Reservations.price`) matches the current price of the accommodation (`Rooms.price`), we can do it as follows:
+
+Airbnb database ER diagram: [open on SQL Academy](https://sql-academy.org/en/guide/subquery-with-several-column).
 
 ```sql
 SELECT * FROM Reservations
@@ -39,8 +41,8 @@ SELECT * FROM Reservations
 | 25  | 18      | 19      | 2019-11-01T10:00:00.000Z | 2019-11-16T10:00:00.000Z | 99    | 1485  |
 | 26  | 21      | 17      | 2019-11-03T09:00:00.000Z | 2019-11-05T09:00:00.000Z | 215   | 430   |
 | 27  | 31      | 25      | 2020-04-20T09:00:00.000Z | 2020-04-22T09:00:00.000Z | 120   | 240   |
-| 28  | 21      | 14      | 2020-02-08T10:00:00Z     | 2020-02-12T10:00:00Z     | 85    | 340   |
-| 29  | 21      | 39      | 2019-12-08T10:00:00Z     | 2019-12-09T10:00:00Z     | 150   | 150   |
+| 28  | 21      | 14      | 2020-02-08T10:00:00.000Z | 2020-02-12T10:00:00.000Z | 85    | 340   |
+| 29  | 21      | 39      | 2019-12-08T10:00:00.000Z | 2019-12-09T10:00:00.000Z | 150   | 150   |
 
 In this example, the subquery returns a table with the identifiers of residential properties and their current price:
 

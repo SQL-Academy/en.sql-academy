@@ -1,16 +1,16 @@
 ---
 meta:
-    title: 'What are the key differences between DELETE and TRUNCATE?'
-    description: 'DELETE removes individual records with a WHERE condition, while TRUNCATE removes all records from a table with no possibility of recovery. Learn the key differences between these commands.'
+    title: "What are the key differences between DELETE and TRUNCATE?"
+    description: "DELETE removes individual records with a WHERE condition, while TRUNCATE removes all records from a table with no possibility of recovery. Learn the key differences between these commands."
 ---
 
 ## DELETE:
 
--   Removes selected records from a table.
--   A `WHERE` condition can be used to delete specific records.
--   The operation is logged row by row in the transaction log.
--   `ON DELETE` triggers are activated.
--   Slower compared to `TRUNCATE`.
+- Removes selected records from a table.
+- A `WHERE` condition can be used to delete specific records.
+- The operation is logged row by row in the transaction log.
+- `ON DELETE` triggers are activated.
+- Slower compared to `TRUNCATE`.
 
 Example:
 
@@ -20,14 +20,16 @@ DELETE FROM employees WHERE salary < 30000;
 
 ## TRUNCATE:
 
--   Removes all records from a table with no possibility of recovery via `ROLLBACK` (in most DBMS).
--   Cannot use `WHERE`.
--   Faster since it is not logged row by row.
--   Resets identity values (if auto-increment is used).
--   Triggers are not activated.
+- Removes all records from a table with no possibility of recovery via `ROLLBACK` (in most DBMS).
+- Cannot use `WHERE`.
+- Faster since it is not logged row by row.
+- Resets identity values (if auto-increment is used).
+- Triggers are not activated.
 
 Example:
 
 ```sql
 TRUNCATE TABLE employees;
 ```
+
+For a deeper dive with examples, see the article [“TRUNCATE vs DELETE vs DROP: The Difference”](https://sql-academy.org/en/blog/sql-truncate-delete-drop).

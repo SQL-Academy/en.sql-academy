@@ -1,10 +1,16 @@
 ---
 meta:
-    title: 'IF, CASE, WHILE Operators in Stored Procedures and Functions'
-    description: 'Learn conditional statements and loops in SQL stored procedures and functions. Syntax and examples of IF, CASE, WHILE for MySQL and PostgreSQL.'
+    title: "IF, CASE, WHILE Operators in Stored Procedures and Functions"
+    description: "Learn conditional statements and loops in SQL stored procedures and functions. Syntax and examples of IF, CASE, WHILE for MySQL and PostgreSQL."
 ---
 
-# IF, CASE, WHILE Operators in Stored Procedures and Functions
+**MySQL**
+
+# IF, CASE, WHILE Operators in Stored Procedures
+
+**PostgreSQL**
+
+# IF, CASE, WHILE Operators in Stored Functions
 
 Stored procedures and functions are not just convenient containers for groups of queries. They allow you to implement quite complex logic using conditional operators and loops.
 
@@ -16,7 +22,7 @@ The `IF` operator allows you to execute code based on whether a condition is met
 
 ### IF Syntax
 
-<MySQLOnly>
+**MySQL**
 
 ```sql
 IF condition THEN
@@ -28,9 +34,7 @@ ELSE
 END IF;
 ```
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 ```sql
 IF condition THEN
@@ -42,15 +46,13 @@ ELSE
 END IF;
 ```
 
-</PostgreSQLOnly>
-
 ### IF Usage Example
 
-<MySQLOnly>
+**MySQL**
 
 Let's create a procedure that categorizes students by age:
 
-```sql-executable-Schedule
+```sql
 CREATE PROCEDURE categorize_student_by_age(
     IN student_id INT,
     OUT category VARCHAR(20)
@@ -79,13 +81,11 @@ CALL categorize_student_by_age(1, @category);
 SELECT @category AS age_category;
 ```
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 Let's create a function that categorizes students by age:
 
-```sql-executable-Schedule
+```sql
 CREATE OR REPLACE FUNCTION categorize_student_by_age(student_id INT)
 RETURNS VARCHAR(20)
 LANGUAGE plpgsql
@@ -117,7 +117,11 @@ $$;
 SELECT categorize_student_by_age(1) AS age_category;
 ```
 
-</PostgreSQLOnly>
+**MySQL**
+
+| age_category |
+| ------------ |
+| Young        |
 
 ## CASE Selection Statement
 
@@ -125,7 +129,7 @@ The `CASE` operator provides a more elegant way to handle multiple conditions.
 
 ### CASE Syntax
 
-<MySQLOnly>
+**MySQL**
 
 ```sql
 CASE
@@ -135,9 +139,7 @@ CASE
 END CASE;
 ```
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 ```sql
 CASE
@@ -146,16 +148,14 @@ CASE
     ELSE default_result
 END CASE;
 ```
-
-</PostgreSQLOnly>
 
 ### CASE Usage Example
 
-<MySQLOnly>
+**MySQL**
 
 Let's create the same student categorization procedure, but using the CASE operator:
 
-```sql-executable-Schedule
+```sql
 CREATE PROCEDURE categorize_student_with_case(
     IN student_id INT,
     OUT category VARCHAR(20)
@@ -182,13 +182,11 @@ CALL categorize_student_with_case(1, @category);
 SELECT @category AS age_category;
 ```
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 Let's create the same student categorization function, but using the CASE operator:
 
-```sql-executable-Schedule
+```sql
 CREATE OR REPLACE FUNCTION categorize_student_with_case(student_id INT)
 RETURNS VARCHAR(20)
 LANGUAGE plpgsql
@@ -218,7 +216,11 @@ $$;
 SELECT categorize_student_with_case(1) AS age_category;
 ```
 
-</PostgreSQLOnly>
+**MySQL**
+
+| age_category |
+| ------------ |
+| Young        |
 
 ## WHILE Loop
 
@@ -226,7 +228,7 @@ The `WHILE` loop allows you to execute code repeatedly while a certain condition
 
 ### WHILE Syntax
 
-<MySQLOnly>
+**MySQL**
 
 ```sql
 WHILE condition DO
@@ -234,9 +236,7 @@ WHILE condition DO
 END WHILE;
 ```
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 ```sql
 WHILE condition LOOP
@@ -244,15 +244,13 @@ WHILE condition LOOP
 END LOOP;
 ```
 
-</PostgreSQLOnly>
-
 ### WHILE Usage Example
 
 Let's look at an example of a stored procedure for creating several test subjects:
 
-<MySQLOnly>
+**MySQL**
 
-```sql-executable-Schedule
+```sql
 CREATE PROCEDURE create_test_subjects(IN count_subjects INT)
 BEGIN
     DECLARE i INT DEFAULT 1;
@@ -277,11 +275,9 @@ CALL create_test_subjects(3);
 SELECT * FROM Subject WHERE name LIKE 'Test Subject%';
 ```
 
-</MySQLOnly>
+**PostgreSQL**
 
-<PostgreSQLOnly>
-
-```sql-executable-Schedule
+```sql
 CREATE OR REPLACE PROCEDURE create_test_subjects(count_subjects INT)
 LANGUAGE plpgsql
 AS $$
@@ -311,7 +307,10 @@ CALL create_test_subjects(3);
 SELECT * FROM Subject WHERE name LIKE 'Test Subject%';
 ```
 
-</PostgreSQLOnly>
-
+| id  | name           |
+| --- | -------------- |
+| 21  | Test Subject 1 |
+| 22  | Test Subject 2 |
+| 23  | Test Subject 3 |
 
 Flow control operators make stored procedures and functions a powerful tool for implementing complex business logic directly in the database! 🚀

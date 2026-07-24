@@ -1,14 +1,14 @@
 ---
 meta:
-    title: 'Explain the difference between WHERE and HAVING'
-    description: 'The difference between WHERE and HAVING in SQL: WHERE filters data before grouping, HAVING after. Learn when and how to use these clauses.'
+    title: "Explain the difference between WHERE and HAVING"
+    description: "The difference between WHERE and HAVING in SQL: WHERE filters data before grouping, HAVING after. Learn when and how to use these clauses."
 ---
 
 ## WHERE
 
--   Filters rows before data is grouped.
--   Cannot use aggregate functions (`SUM()`, `COUNT()`, `AVG()`, etc.).
--   Applies to individual records in the table.
+- Filters rows before data is grouped.
+- Cannot use aggregate functions (`SUM()`, `COUNT()`, `AVG()`, etc.).
+- Applies to individual records in the table.
 
 Example:
 
@@ -21,9 +21,9 @@ GROUP BY department_id;
 
 ## HAVING
 
--   Filters groups of rows after the data is grouped.
--   Can use aggregate functions.
--   Applies to the results of `GROUP BY`.
+- Filters groups of rows after the data is grouped.
+- Can use aggregate functions.
+- Applies to the results of `GROUP BY`.
 
 Example:
 

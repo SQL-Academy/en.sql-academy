@@ -1,7 +1,7 @@
 ---
 meta:
-    title: 'Correlated subqueries'
-    description: 'Correlated and uncorrelated subqueries in SQL, their syntax'
+    title: "Correlated subqueries"
+    description: "Correlated and uncorrelated subqueries in SQL, their syntax"
 ---
 
 # Correlated subqueries
@@ -30,9 +30,9 @@ FROM FamilyMembers;
 | Andie Quincey     | 3600        |
 | Lela Quincey      | 650         |
 | Annie Quincey     | 1060        |
-| Ernest Forrest    | <NULL>      |
-| Constance Forrest | <NULL>      |
-| Wednesday Addams  | <NULL>      |
+| Ernest Forrest    | \<NULL>     |
+| Constance Forrest | \<NULL>     |
+| Wednesday Addams  | \<NULL>     |
 
 In this case, the correlated subquery refers to the `member_id` column in the main query.
 

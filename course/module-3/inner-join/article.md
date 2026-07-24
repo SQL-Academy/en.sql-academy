@@ -1,7 +1,7 @@
 ---
 meta:
-    title: 'INNER JOIN'
-    description: 'Description and syntax of INNER JOIN'
+    title: "INNER JOIN"
+    description: "Description and syntax of INNER JOIN"
 ---
 
 # INNER JOIN
@@ -29,6 +29,8 @@ FROM table_1
 ```
 
 For example, a query might look like this:
+
+Family database ER diagram: [open on SQL Academy](https://sql-academy.org/en/guide/inner-join).
 
 ```sql
 SELECT family_member, member_name FROM Payments
@@ -62,7 +64,7 @@ It creates a new table that includes fields from both the first and second table
 
 Visually, this looks like:
 
-![Concept of Inner Join](https://sql-academy.org/static/guidePage/inner-join/inner-join-example.png 'Concept of Inner Join')
+![Concept of Inner Join](https://sql-academy.org/static/guidePage/inner-join/inner-join-example.png "Concept of Inner Join")
 
 Since our condition specifies that `Payments.good_id` is equal to `Goods.good_id`,
 only the records where both tables have the same `good_id` value will be included in the resulting query.

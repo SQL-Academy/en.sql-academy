@@ -1,16 +1,16 @@
 ---
 meta:
-    title: 'What is a stored procedure and how does it differ from a function?'
-    description: 'A stored procedure executes a set of commands in SQL, while a function returns a value and can be used in queries. Learn the key differences between them.'
+    title: "What is a stored procedure and how does it differ from a function?"
+    description: "A stored procedure executes a set of commands in SQL, while a function returns a value and can be used in queries. Learn the key differences between them."
 ---
 
 ## Stored Procedure:
 
--   A set of SQL commands stored on the server for reuse.
--   Can perform `SELECT`, `INSERT`, `UPDATE`, `DELETE` operations.
--   May return multiple result sets or return nothing.
--   Can have input and output parameters.
--   Cannot be called within an SQL query.
+- A set of SQL commands stored on the server for reuse.
+- Can perform `SELECT`, `INSERT`, `UPDATE`, `DELETE` operations.
+- May return multiple result sets or return nothing.
+- Can have input and output parameters.
+- Cannot be called within an SQL query.
 
 Example of a stored procedure:
 
@@ -29,10 +29,10 @@ CALL GetEmployeeByID(1);
 
 ## Function:
 
--   Returns a single value (scalar function) or a table (table-valued function).
--   Can be used in SQL expressions (e.g., in SELECT or WHERE clauses).
--   Must return a value.
--   Typically used for calculations and returns a deterministic result.
+- Returns a single value (scalar function) or a table (table-valued function).
+- Can be used in SQL expressions (e.g., in SELECT or WHERE clauses).
+- Must return a value.
+- Typically used for calculations and returns a deterministic result.
 
 Example of a function:
 

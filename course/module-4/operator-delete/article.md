@@ -1,7 +1,7 @@
 ---
 meta:
-  title: "Syntax of DELETE operator"
-  description: "Delete records in sql. SQL operators delete, truncate and their differences. Delete query c join"
+    title: "Syntax of DELETE operator"
+    description: "Delete records in sql. SQL operators delete, truncate and their differences. Delete query c join"
 ---
 
 # Syntax of DELETE operator
@@ -16,7 +16,7 @@ DELETE FROM table_name
 [WHERE the_conditions_of_the_limitations];
 ```
 
-If there is no `WHERE` record selection condition, then all records will be deleted the specified table.
+If there is no `WHERE` record selection condition, then all records in the specified table will be deleted.
 
 The same operation (deleting all records) can also be done using `TRUNCATE` operator. It will drop the table and re-create it - this option is much faster, than deleting all records one by one (as is the case with `DELETE`) especially for large tables.
 
@@ -26,27 +26,29 @@ The same operation (deleting all records) can also be done using `TRUNCATE` oper
 TRUNCATE TABLE table_name;
 ```
 
-<MySQLOnly>
+**MySQL**
 
 > The MySQL query optimizer automatically uses the `TRUNCATE` statement if the `DELETE` statement does not contain a `WHERE` clause or `LIMIT` constructs.
 
-</MySQLOnly>
-
 However, the `TRUNCATE` statement has several differences:
+
+**MySQL**
 
 - Triggers are not processed, in particular, the delete trigger
 - Deletes all rows in a table without writing the deletion of individual rows of data to the transaction log
-- In MySQL, resets the identifier counter to its initial value
+- Resets the counter of identifiers to the initial value
 - To use, you must have edit rights to the table
 
-### PostgreSQL
+**PostgreSQL**
 
-- In PostgreSQL, the identifier counter is reset only when the `RESTART IDENTITY` option is used
-- By default, `CONTINUE IDENTITY` is used, so the counter is not reset after `TRUNCATE`
+- Triggers are not processed, in particular, the delete trigger
+- Deletes all rows in a table without writing the deletion of individual rows of data to the transaction log
+- Can reset the identifier counter when using the `RESTART IDENTITY` option (`CONTINUE IDENTITY` is used by default, so the counter is not reset)
+- To use, you must have edit rights to the table
 
 ## Deleting records for multi-table queries
 
-<MySQLOnly>
+**MySQL**
 
 If the `DELETE` query uses a `JOIN`, you need to specify which tables should have their rows removed.
 
@@ -57,9 +59,7 @@ ON table_name_1.field = table_name_2.field
 [WHERE the_conditions_of_the_limitations];
 ```
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 If the `DELETE` query uses `USING`, specify the additional tables that help select the rows to delete after it.
 
@@ -70,11 +70,9 @@ WHERE table_name_1.field = table_name_2.field
 [AND the_conditions_of_the_limitations];
 ```
 
-</PostgreSQLOnly>
-
 For example, we need to delete all reservations for a home that does not have a kitchen. Then the request will look like this:
 
-<MySQLOnly>
+**MySQL**
 
 ```sql
 DELETE Reservations FROM
@@ -83,9 +81,7 @@ Reservations.room_id = Rooms.id
 WHERE Rooms.has_kitchen = false;
 ```
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 ```sql
 DELETE FROM Reservations
@@ -94,11 +90,9 @@ WHERE Reservations.room_id = Rooms.id
 AND Rooms.has_kitchen = false;
 ```
 
-</PostgreSQLOnly>
-
 If, in addition to deleting the reservation, we also needed to delete the accommodation, then the query would look like this:
 
-<MySQLOnly>
+**MySQL**
 
 ```sql
 DELETE Reservations, Rooms FROM
@@ -107,9 +101,7 @@ Reservations.room_id = Rooms.id
 WHERE Rooms.has_kitchen = false;
 ```
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 In PostgreSQL, to delete from multiple tables simultaneously, separate DELETE queries or transactions are used:
 
@@ -124,5 +116,3 @@ DELETE FROM Rooms
 WHERE Rooms.has_kitchen = false;
 COMMIT;
 ```
-
-</PostgreSQLOnly>

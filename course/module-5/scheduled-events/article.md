@@ -1,10 +1,8 @@
 ---
 meta:
-    title: 'SQL Event Scheduler: MySQL EVENT & PostgreSQL pg_cron Guide'
-    description: 'Complete guide to creating automated tasks in MySQL and PostgreSQL. Learn to use EVENT scheduler and pg_cron for data cleanup, statistics updates, and report generation on schedule. Code examples and practical tips included.'
+    title: "SQL Event Scheduler: MySQL EVENT & PostgreSQL pg_cron Guide"
+    description: "Complete guide to creating automated tasks in MySQL and PostgreSQL. Learn to use EVENT scheduler and pg_cron for data cleanup, statistics updates, and report generation on schedule. Code examples and practical tips included."
 ---
-
-<DBMSSwitcher />
 
 # Scheduled Events
 
@@ -12,30 +10,26 @@ In real-world applications, there's often a need to automatically execute certai
 
 > **Event** is a task the database runs for you on a schedule. You set it up — it runs automatically.
 
-<MySQLOnly>
+**MySQL**
 
 Events in MySQL are similar to a task scheduler in an operating system: you create a task once, and the database executes it automatically on schedule.
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 In PostgreSQL, automatic task execution is handled by the **pg_cron** extension. This extension allows you to schedule SQL commands using cron syntax (like in Unix systems).
-
-</PostgreSQLOnly>
 
 ## When it is useful
 
 Scheduled events help automate the following tasks:
 
--   **Data cleanup**: removing outdated log records or temporary data
--   **Statistics updates**: recalculating aggregated data for analytics
--   **Report generation**: automatically creating periodic reports
--   **Backups**: creating copies of important data
+- **Data cleanup**: removing outdated log records or temporary data
+- **Statistics updates**: recalculating aggregated data for analytics
+- **Report generation**: automatically creating periodic reports
+- **Backups**: creating copies of important data
 
 ## Enabling the scheduler
 
-<MySQLOnly>
+**MySQL**
 
 Before creating events, make sure the event scheduler is enabled:
 
@@ -49,9 +43,7 @@ If the scheduler is disabled, enable it:
 SET GLOBAL event_scheduler = ON;
 ```
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 To use scheduled tasks in PostgreSQL, you need to install the pg_cron extension:
 
@@ -61,15 +53,13 @@ CREATE EXTENSION IF NOT EXISTS pg_cron;
 
 > **Important:** The pg_cron extension may require superuser privileges and additional PostgreSQL configuration. In cloud services (AWS RDS, Azure), it may already be pre-installed.
 
-</PostgreSQLOnly>
-
 ## Creating a One-Time Event
 
 Let's start with the simplest case — an event that executes once at a specific time:
 
-<MySQLOnly>
+**MySQL**
 
-```sql-executable
+```sql
 CREATE EVENT cleanup_old_logs
 ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 1 DAY
 DO
@@ -80,14 +70,12 @@ This event will delete log records older than 30 days, 24 hours after the event 
 
 **Breaking down the syntax:**
 
--   `CREATE EVENT cleanup_old_logs` — create an event named `cleanup_old_logs`
--   `ON SCHEDULE AT` — specify when the event should execute
--   `CURRENT_TIMESTAMP + INTERVAL 1 DAY` — execution time (in 1 day)
--   `DO` — the code to execute (any SQL statement)
+- `CREATE EVENT cleanup_old_logs` — create an event named `cleanup_old_logs`
+- `ON SCHEDULE AT` — specify when the event should execute
+- `CURRENT_TIMESTAMP + INTERVAL 1 DAY` — execution time (in 1 day)
+- `DO` — the code to execute (any SQL statement)
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 ```sql
 SELECT cron.schedule(
@@ -101,24 +89,22 @@ This event will run every day at 3:00 AM and delete log records older than 30 da
 
 **Breaking down the syntax:**
 
--   `cron.schedule()` — function to create a scheduled task
--   `'cleanup_old_logs'` — task name
--   `'0 3 * * *'` — schedule in cron format (minute hour day month day_of_week)
--   Last parameter — SQL command to execute
+- `cron.schedule()` — function to create a scheduled task
+- `'cleanup_old_logs'` — task name
+- `'0 3 * * *'` — schedule in cron format (minute hour day month day_of_week)
+- Last parameter — SQL command to execute
 
 **Cron schedule format:**
 
-![Format cron scheduler](https://sql-academy.org/static/guidePage/scheduled-events/cron_schedule_en.png 'Format cron scheduler')
-
-</PostgreSQLOnly>
+![Format cron scheduler](https://sql-academy.org/static/guidePage/scheduled-events/cron_schedule_en.png "Format cron scheduler")
 
 ## Creating a Recurring Event
 
 More often, events need to run periodically — every day, hour, or minute:
 
-<MySQLOnly>
+**MySQL**
 
-```sql-executable
+```sql
 CREATE EVENT update_statistics
 ON SCHEDULE EVERY 1 HOUR
 DO
@@ -133,21 +119,19 @@ This event will update sales statistics every hour.
 
 **Breaking down the syntax:**
 
--   `ON SCHEDULE EVERY 1 HOUR` — execute every hour
--   `BEGIN ... END` — block of multiple SQL statements
+- `ON SCHEDULE EVERY 1 HOUR` — execute every hour
+- `BEGIN ... END` — block of multiple SQL statements
 
 **Interval options:**
 
--   `EVERY 1 MINUTE` — every minute
--   `EVERY 1 HOUR` — every hour
--   `EVERY 1 DAY` — every day
--   `EVERY 1 WEEK` — every week
--   `EVERY 1 MONTH` — every month
--   `EVERY 30 SECOND` — every 30 seconds
+- `EVERY 1 MINUTE` — every minute
+- `EVERY 1 HOUR` — every hour
+- `EVERY 1 DAY` — every day
+- `EVERY 1 WEEK` — every week
+- `EVERY 1 MONTH` — every month
+- `EVERY 30 SECOND` — every 30 seconds
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 ```sql
 SELECT cron.schedule(
@@ -165,21 +149,19 @@ This event will update sales statistics every hour (at the start of each hour).
 
 **Schedule examples:**
 
--   `'*/5 * * * *'` — every 5 minutes
--   `'0 * * * *'` — every hour (at the start of the hour)
--   `'0 0 * * *'` — every day at midnight
--   `'0 0 * * 0'` — every Sunday at midnight
--   `'0 9 1 * *'` — first day of each month at 9:00 AM
-
-</PostgreSQLOnly>
+- `'*/5 * * * *'` — every 5 minutes
+- `'0 * * * *'` — every hour (at the start of the hour)
+- `'0 0 * * *'` — every day at midnight
+- `'0 0 * * 0'` — every Sunday at midnight
+- `'0 9 1 * *'` — first day of each month at 9:00 AM
 
 ## Event with Limited Duration
 
 Sometimes you need an event to work only during a specific period:
 
-<MySQLOnly>
+**MySQL**
 
-```sql-executable
+```sql
 CREATE EVENT seasonal_discount
 ON SCHEDULE EVERY 1 DAY
 STARTS '2025-12-01 00:00:00'
@@ -192,14 +174,12 @@ This event will apply a 10% discount to seasonal products every day during Decem
 
 **New elements:**
 
--   `STARTS` — start of the event's active period
--   `ENDS` — end of the event's active period
+- `STARTS` — start of the event's active period
+- `ENDS` — end of the event's active period
 
 After the specified date, the event will automatically stop executing.
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 Pg_cron doesn't have built-in support for automatic task termination, but you can include date checking in the command itself:
 
@@ -227,11 +207,9 @@ SELECT cron.schedule(
 );
 ```
 
-</PostgreSQLOnly>
-
 ## Viewing Existing Events
 
-<MySQLOnly>
+**MySQL**
 
 To see all created events:
 
@@ -245,9 +223,7 @@ To view events in a specific database:
 SHOW EVENTS FROM your_database_name;
 ```
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 To see all scheduled tasks:
 
@@ -265,11 +241,9 @@ ORDER BY start_time DESC
 LIMIT 10;
 ```
 
-</PostgreSQLOnly>
-
 ## Managing Events
 
-<MySQLOnly>
+**MySQL**
 
 **Temporarily disable an event:**
 
@@ -296,9 +270,7 @@ ON SCHEDULE EVERY 2 HOUR;
 DROP EVENT IF EXISTS cleanup_old_logs;
 ```
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 **Remove a scheduled task:**
 
@@ -328,11 +300,9 @@ SELECT cron.schedule(
 );
 ```
 
-</PostgreSQLOnly>
-
 ## Important Considerations When Working with Events
 
-<MySQLOnly>
+**MySQL**
 
 1. **Access privileges**: Creating events requires the `EVENT` privilege.
 
@@ -340,9 +310,7 @@ SELECT cron.schedule(
 
 3. **Performance**: Avoid creating events with very short intervals (every minute), as this can impact performance.
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 1. **Access privileges**: Using pg_cron typically requires superuser privileges or special configuration.
 
@@ -352,11 +320,14 @@ SELECT cron.schedule(
 
 4. **Logging**: All task executions are saved in the `cron.job_run_details` table, which is useful for debugging.
 
-</PostgreSQLOnly>
-
 ## Self-Check
 
 What is the minimum interval you can use for recurring events?
 
+1. Events can run every second — The minimum practical interval for events is one minute. Running events too frequently can negatively impact database performance.
+
+2. **Correct answer: **The minimum interval is 1 minute, but it's better to use intervals of an hour or more — Correct! While you can technically create an event with a 1-minute interval, longer intervals (hours, days) are recommended for most tasks to avoid unnecessary database load.
+
+3. The minimum interval is 1 hour — Technically, you can create events with intervals starting from 1 minute, but an hour is indeed a good practical minimum for most tasks.
 
 Scheduled events are a powerful tool for automating routine database tasks. They help maintain data cleanliness, update statistics, and perform maintenance operations without developer intervention! 🚀

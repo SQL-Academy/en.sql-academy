@@ -1,7 +1,7 @@
 ---
 meta:
-    title: 'Duplicate elimination, operator DISTINCT'
-    description: 'Examples of what the SQL DISTINCT operator is needed for, excluding repetitions in SQL for one or more columns.'
+    title: "Duplicate elimination, operator DISTINCT"
+    description: "Examples of what the SQL DISTINCT operator is needed for, excluding repetitions in SQL for one or more columns."
 ---
 
 # Duplicate elimination, DISTINCT
@@ -9,6 +9,8 @@ meta:
 In some situations, an SQL query for selecting data may return duplicate rows.
 
 For example, let's retrieve the `class` field from the `Student_in_class` table in the database, where information about the school schedule is stored.
+
+Schedule database ER diagram: [open on SQL Academy](https://sql-academy.org/en/guide/distinct-operator).
 
 ```sql
 SELECT class FROM Student_in_class;
@@ -28,6 +30,7 @@ SELECT class FROM Student_in_class;
 | 9     |
 | 9     |
 | 9     |
+| 9     |
 | 8     |
 | 8     |
 | 8     |
@@ -39,6 +42,7 @@ SELECT class FROM Student_in_class;
 | 8     |
 | 8     |
 | 8     |
+| 6     |
 | 6     |
 | 6     |
 | 6     |
@@ -120,7 +124,7 @@ SELECT DISTINCT class FROM Student_in_class;
 
 ## DISTINCT for multiple column
 
-When using the `DISTINCT` operator for two or more columns, records that have identical values in all fields will be removed.
+When using the DISTINCT operator for two or more columns, records that have identical values in all fields will be removed.
 
 So for such a table:
 
