@@ -1,7 +1,7 @@
 ---
 meta:
-    title: 'How to add a new column to an existing table'
-    description: 'The ALTER TABLE command with the ADD operator allows you to add a new column to an existing table. Learn how to add a column with a data type and constraints.'
+    title: "How to add a new column to an existing table"
+    description: "The ALTER TABLE command with the ADD operator allows you to add a new column to an existing table. Learn how to add a column with a data type and constraints."
 ---
 
 The `ALTER TABLE` command with the `ADD` operator is used to add a new column to an existing table.
@@ -29,6 +29,6 @@ ALTER TABLE employees
 ADD date_of_birth DATE NOT NULL DEFAULT '1900-01-01';
 ```
 
-**Note**  
+**Note**\
 When adding a column with a `NOT NULL` constraint,
 if there are already existing rows in the table, you must specify a default value; otherwise, an error will occur.

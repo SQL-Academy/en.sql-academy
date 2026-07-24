@@ -1,7 +1,7 @@
 ---
 meta:
-    title: 'What are constraints and what types exist?'
-    description: 'Constraints in SQL ensure data integrity. Learn about NOT NULL, UNIQUE, PRIMARY KEY, FOREIGN KEY, CHECK, and DEFAULT for reliable data in tables.'
+    title: "What are constraints and what types exist?"
+    description: "Constraints in SQL ensure data integrity. Learn about NOT NULL, UNIQUE, PRIMARY KEY, FOREIGN KEY, CHECK, and DEFAULT for reliable data in tables."
 ---
 
 **Constraints** ensure data integrity and reliability in a table by defining rules for the data in columns.
@@ -10,7 +10,7 @@ Types of constraints:
 
 **NOT NULL:**
 
--   Prohibits storing `NULL` values in a column.
+- Prohibits storing `NULL` values in a column.
 
 Example:
 
@@ -23,7 +23,7 @@ CREATE TABLE products (
 
 **UNIQUE:**
 
--   Ensures uniqueness of values in a column or group of columns.
+- Ensures uniqueness of values in a column or group of columns.
 
 Example:
 
@@ -36,13 +36,13 @@ CREATE TABLE users (
 
 **PRIMARY KEY:**
 
--   A combination of `NOT NULL` and `UNIQUE`.
--   Identifies each record in the table.
+- A combination of `NOT NULL` and `UNIQUE`.
+- Identifies each record in the table.
 
 **FOREIGN KEY:**
 
--   Ensures referential integrity between tables.
--   The value must match an existing primary key value in the related table.
+- Ensures referential integrity between tables.
+- The value must match an existing primary key value in the related table.
 
 Example:
 
@@ -56,7 +56,7 @@ CREATE TABLE orders (
 
 **CHECK:**
 
--   Defines a condition that the values in a column must meet.
+- Defines a condition that the values in a column must meet.
 
 Example:
 
@@ -69,7 +69,7 @@ CREATE TABLE employees (
 
 **DEFAULT:**
 
--   Sets a default value for a column if no value is provided during insertion.
+- Sets a default value for a column if no value is provided during insertion.
 
 ```sql
 CREATE TABLE tasks (

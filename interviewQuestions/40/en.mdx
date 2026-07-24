@@ -1,7 +1,7 @@
 ---
 meta:
-    title: 'How does an SQL trigger work?'
-    description: 'An SQL trigger is a stored procedure that is automatically executed during INSERT, UPDATE, or DELETE events. Learn how to use triggers for logging and maintaining data integrity.'
+    title: "How does an SQL trigger work?"
+    description: "An SQL trigger is a stored procedure that is automatically executed during INSERT, UPDATE, or DELETE events. Learn how to use triggers for logging and maintaining data integrity."
 ---
 
 ## What is an SQL trigger
@@ -15,12 +15,12 @@ A trigger is automatically activated in response to a specified event (e.g., add
 
 ### Types of triggers
 
--   `BEFORE`: Works before the operation is executed.  
-    Used to validate or modify data before it is saved.
--   `AFTER`: Works after the operation is executed.  
-    Often used for logging or updating related tables.
--   `INSTEAD OF`: Replaces the default behavior of the operation.  
-    Used when you need to override the default action, such as when working with views.
+- `BEFORE`: Works before the operation is executed.\
+  Used to validate or modify data before it is saved.
+- `AFTER`: Works after the operation is executed.\
+  Often used for logging or updating related tables.
+- `INSTEAD OF`: Replaces the default behavior of the operation.\
+  Used when you need to override the default action, such as when working with views.
 
 Within a trigger, you can access old and new data values through special pseudo-tables: `OLD` and `NEW`.
 
@@ -68,11 +68,11 @@ DELIMITER ;
 
 ## When to use triggers
 
--   **Logging and auditing**:  
-     Automatically logging data changes to track user actions.
--   **Maintaining data integrity**:  
-     Enforcing complex business rules that cannot be achieved through constraints.
--   **Data synchronization**:  
-     Automatically updating or modifying related tables when data changes.
--   **Calculating values**:  
-     Automatically calculating and updating aggregated or derived data.
+- **Logging and auditing**:\
+  Automatically logging data changes to track user actions.
+- **Maintaining data integrity**:\
+  Enforcing complex business rules that cannot be achieved through constraints.
+- **Data synchronization**:\
+  Automatically updating or modifying related tables when data changes.
+- **Calculating values**:\
+  Automatically calculating and updating aggregated or derived data.

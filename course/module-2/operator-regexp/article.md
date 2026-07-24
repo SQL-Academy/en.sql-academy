@@ -1,26 +1,22 @@
 ---
 meta:
-  title: "REGEXP and ~ Operators in SQL"
-  description: "Using regular expressions in SQL with REGEXP operator in MySQL and ~ operator in PostgreSQL"
+    title: "REGEXP and ~ Operators in SQL"
+    description: "Using regular expressions in SQL with REGEXP operator in MySQL and ~ operator in PostgreSQL"
 ---
 
-<MySQLOnly>
+**MySQL**
 
 # REGEXP Operator for Regular Expressions
 
 The `REGEXP` operator (or its synonym `RLIKE`) in MySQL is used for searching and manipulating string data
 using regular expressions.
 
-</MySQLOnly>
+**PostgreSQL**
 
-<PostgreSQLOnly>
-
-# Regular Expression Operator ~
+# Regular Expression Operator \~
 
 The `~` and `~*` operators in PostgreSQL are used for searching and manipulating string data
 using regular expressions.
-
-</PostgreSQLOnly>
 
 Regular expressions provide powerful capabilities for complex search patterns that are difficult
 to implement with the `LIKE` operator.
@@ -36,7 +32,7 @@ It is important to remember that `LIKE` compares the whole string against its pa
 
 ## Regular expression syntax
 
-<MySQLOnly>
+**MySQL**
 
 ```sql
 ... WHERE table_field REGEXP 'pattern';
@@ -44,9 +40,7 @@ It is important to remember that `LIKE` compares the whole string against its pa
 
 Where `pattern` is the regular expression that defines the search pattern.
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 ```sql
 ... WHERE table_field ~ 'pattern';   -- case-sensitive
@@ -55,43 +49,37 @@ Where `pattern` is the regular expression that defines the search pattern.
 
 Where `pattern` is the regular expression that defines the search pattern.
 
-</PostgreSQLOnly>
-
 ## Important Considerations
 
-<MySQLOnly>
+**MySQL**
 
 1. **Case insensitive**
 
-   By default, regular expressions in MySQL are not case-sensitive.  
-   For example, the expression `REGEXP 'abc'` will match the string `abc`, `Abc`, and `ABC`.
+    By default, regular expressions in MySQL are not case-sensitive.\
+    For example, the expression `REGEXP 'abc'` will match the string `abc`, `Abc`, and `ABC`.
 
 2. **Special characters**
 
-   Some characters have special meanings in regular expressions and require escaping (e.g.,
-   `.`, `*`, `+`, `?`, `[`, `]`, `(`, `)`, `{`, `}`, `|`, `\`).
+    Some characters have special meanings in regular expressions and require escaping (e.g.,
+    `.`, `*`, `+`, `?`, `[`, `]`, `(`, `)`, `{`, `}`, `|`, `\`).
 
-   To escape such characters, use a double backslash — `\\`.
+    To escape such characters, use a double backslash — `\\`.
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 1. **Case sensitivity**
 
-   By default, regular expressions in PostgreSQL are case-sensitive.
+    By default, regular expressions in PostgreSQL are case-sensitive.
 
-   - The `~` operator — case-sensitive
-   - The `~*` operator — case-insensitive
+    - The `~` operator — case-sensitive
+    - The `~*` operator — case-insensitive
 
 2. **Special characters**
 
-   Some characters have special meanings in regular expressions and require escaping (e.g.,
-   `.`, `*`, `+`, `?`, `[`, `]`, `(`, `)`, `{`, `}`, `|`, `\`).
+    Some characters have special meanings in regular expressions and require escaping (e.g.,
+    `.`, `*`, `+`, `?`, `[`, `]`, `(`, `)`, `{`, `}`, `|`, `\`).
 
-   To escape such characters, use a single backslash — `\`.
-
-</PostgreSQLOnly>
+    To escape such characters, use a single backslash — `\`.
 
 ## Special characters and constructs
 
@@ -116,117 +104,132 @@ Where `pattern` is the regular expression that defines the search pattern.
 
 - **Get all users whose names start with "John":**
 
-  <MySQLOnly>
+    **MySQL**
 
-  ```sql-executable-Airbnb
-  SELECT * FROM Users WHERE name REGEXP '^John'
-  ```
+    ```sql
+    SELECT * FROM Users WHERE name REGEXP '^John'
+    ```
 
-  </MySQLOnly>
+    **PostgreSQL**
 
-  <PostgreSQLOnly>
+    ```sql
+    SELECT * FROM Users WHERE name ~ '^John'
+    ```
 
-  ```sql-executable-Airbnb
-  SELECT * FROM Users WHERE name ~ '^John'
-  ```
+    | id  | name          | email             | email_verified_at        | password             | phone_number    |
+    | --- | ------------- | ----------------- | ------------------------ | -------------------- | --------------- |
+    | 18  | John Travolta | wainwrig\@msn.com | 2016-11-19T12:30:43.000Z | fzjhl0v82o0amalr8649 | +1 202 555 0176 |
+    | 28  | Johnny Depp   | cgarcia\@yahoo.ca | 2017-05-26T01:19:06.000Z | qpp6hbnae42cdhmxlk4j | +7 401 195 7363 |
 
-  </PostgreSQLOnly>
-
-  This expression searches for strings starting with "John". The `^` symbol indicates the start of the string.
+    This expression searches for strings starting with "John". The `^` symbol indicates the start of the string.
 
 - **Display all school subjects whose names end with the letter "e" or "y":**
 
-  <MySQLOnly>
+    **MySQL**
 
-  ```sql-executable-Schedule
-  SELECT * FROM  Subject WHERE name REGEXP '[ey]$'
-  ```
+    ```sql
+    SELECT * FROM  Subject WHERE name REGEXP '[ey]$'
+    ```
 
-  </MySQLOnly>
+    **PostgreSQL**
 
-  <PostgreSQLOnly>
+    ```sql
+    SELECT * FROM  Subject WHERE name ~ '[ey]$'
+    ```
 
-  ```sql-executable-Schedule
-  SELECT * FROM  Subject WHERE name ~ '[ey]$'
-  ```
+    | id  | name             |
+    | --- | ---------------- |
+    | 2   | Russian language |
+    | 3   | Literature       |
+    | 5   | Chemistry        |
+    | 6   | Geography        |
+    | 7   | History          |
+    | 8   | Biology          |
+    | 9   | English language |
+    | 11  | Physical Culture |
+    | 13  | Technology       |
 
-  </PostgreSQLOnly>
-
-  In this example, `[ey]` defines a list of possible values for the pattern `$`, which defines what the string should end with.
+    In this example, `[ey]` defines a list of possible values for the pattern `$`, which defines what the string should end with.
 
 - **Find all users whose email addresses end with "@outlook.com" or "@icloud.com":**
 
-  <MySQLOnly>
+    **MySQL**
 
-  ```sql-executable-Airbnb
-  SELECT * FROM Users WHERE email REGEXP '@(outlook\\.com|icloud\\.com)$'
-  ```
+    ```sql
+    SELECT * FROM Users WHERE email REGEXP '@(outlook\\.com|icloud\\.com)$'
+    ```
 
-  </MySQLOnly>
+    **PostgreSQL**
 
-  <PostgreSQLOnly>
+    ```sql
+    SELECT * FROM Users WHERE email ~ '@(outlook\.com|icloud\.com)$'
+    ```
 
-  ```sql-executable-Airbnb
-  SELECT * FROM Users WHERE email ~ '@(outlook\.com|icloud\.com)$'
-  ```
+    | id  | name              | email                  | email_verified_at        | password             | phone_number      |
+    | --- | ----------------- | ---------------------- | ------------------------ | -------------------- | ----------------- |
+    | 7   | Samuel L. Jackson | moonlapse\@outlook.com | 2018-07-19T11:16:13.000Z | i6yvht95527z3idgqx9y | +1 202 555 0162   |
+    | 13  | Steve Martin      | nelson\@outlook.com    | 2016-07-29T04:25:00.000Z | w76yphg3kvzg77ilmxfs | +1 202 555 0138   |
+    | 29  | Pierce Brosnan    | treeves\@icloud.com    | 2019-03-08T01:56:00.000Z | lqiwecclne9rv8woo2go | +7 401 749 3620   |
+    | 30  | Sean Connery      | jschauma\@icloud.com   | 2016-05-21T00:45:17.000Z | lyh4jkdxkvtvulvqi5db | +7 401 511 6783   |
+    | 31  | Bruce Willis      | kewley\@icloud.com     | 2016-12-08T20:18:59.000Z | 0ofa2khvnptiackbssv0 | +375 154 771 3462 |
 
-  </PostgreSQLOnly>
-
-  Here, `$` is used to indicate the end of the string and `|` is used to specify multiple options.
+    Here, `$` is used to indicate the end of the string and `|` is used to specify multiple options.
 
 - **Find all users whose phone numbers do not contain the digits "2" and "8":**
 
-  <MySQLOnly>
+    **MySQL**
 
-  ```sql-executable-Airbnb
-  SELECT * FROM Users WHERE phone_number REGEXP '^[^28]*$'
-  ```
+    ```sql
+    SELECT * FROM Users WHERE phone_number REGEXP '^[^28]*$'
+    ```
 
-  </MySQLOnly>
+    **PostgreSQL**
 
-  <PostgreSQLOnly>
+    ```sql
+    SELECT * FROM Users WHERE phone_number ~ '^[^28]*$'
+    ```
 
-  ```sql-executable-Airbnb
-  SELECT * FROM Users WHERE phone_number ~ '^[^28]*$'
-  ```
+    | id  | name        | email                 | email_verified_at        | password             | phone_number    |
+    | --- | ----------- | --------------------- | ------------------------ | -------------------- | --------------- |
+    | 27  | Brad Pitt   | kewley\@optonline.net | 2017-02-11T05:45:15.000Z | 829j2ygocn8btzae49kv | +7 401 741 3797 |
+    | 28  | Johnny Depp | cgarcia\@yahoo.ca     | 2017-05-26T01:19:06.000Z | qpp6hbnae42cdhmxlk4j | +7 401 195 7363 |
 
-  </PostgreSQLOnly>
-
-  In this example, the symbol `[^28]` represents any character except "2" and "8", and `*` means any number of such characters.
-  The `^` and `$` symbols indicate the start and end of the string respectively, ensuring that the entire string matches the pattern.
+    In this example, the symbol `[^28]` represents any character except "2" and "8", and `*` means any number of such characters.
+    The `^` and `$` symbols indicate the start and end of the string respectively, ensuring that the entire string matches the pattern.
 
 - **Find all users whose phone number starts with «+7»**
 
-  <MySQLOnly>
+    **MySQL**
 
-  ```sql-executable-Airbnb
-  SELECT name, phone_number FROM Users WHERE phone_number REGEXP '^\\+7'
-  ```
+    ```sql
+    SELECT name, phone_number FROM Users WHERE phone_number REGEXP '^\\+7'
+    ```
 
-  </MySQLOnly>
+    **PostgreSQL**
 
-  <PostgreSQLOnly>
+    ```sql
+    SELECT name, phone_number FROM Users WHERE phone_number ~ '^\+7'
+    ```
 
-  ```sql-executable-Airbnb
-  SELECT name, phone_number FROM Users WHERE phone_number ~ '^\+7'
-  ```
+    | name           | phone_number    |
+    | -------------- | --------------- |
+    | Hideo Kojima   | +7 401 452 0052 |
+    | ClINT Eastwood | +7 401 722 0912 |
+    | Brad Pitt      | +7 401 741 3797 |
+    | Johnny Depp    | +7 401 195 7363 |
+    | Pierce Brosnan | +7 401 749 3620 |
+    | Sean Connery   | +7 401 511 6783 |
 
-  </PostgreSQLOnly>
+    In this example, `^` denotes the beginning of a string. This means we are looking for strings that start with a specific pattern.
 
-  In this example, `^` denotes the beginning of a string. This means we are looking for strings that start with a specific pattern.
+    **MySQL**
 
-  <MySQLOnly>
+    Since `+` is a special character in regular expressions,
+    it needs to be escaped with a double backslash (`\\`) so that it is treated as the literal `+` character.
+    As a result, `\\+` matches the `+` sign in the string.
 
-  Since `+` is a special character in regular expressions,
-  it needs to be escaped with a double backslash (`\\`) so that it is treated as the literal `+` character.
-  As a result, `\\+` matches the `+` sign in the string.
+    **PostgreSQL**
 
-  </MySQLOnly>
-
-  <PostgreSQLOnly>
-
-  Since `+` is a special character in regular expressions,
-  it needs to be escaped with a single backslash (`\`) so that it is treated as the literal `+` character.
-  As a result, `\+` matches the `+` sign in the string.
-
-  </PostgreSQLOnly>
+    Since `+` is a special character in regular expressions,
+    it needs to be escaped with a single backslash (`\`) so that it is treated as the literal `+` character.
+    As a result, `\+` matches the `+` sign in the string.

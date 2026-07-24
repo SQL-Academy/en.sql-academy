@@ -1,13 +1,13 @@
 ---
 meta:
-  title: "Conditional logic, CASE statement"
-  description: "Conditional logic in SQL using the CASE WHEN THEN END statement"
+    title: "Conditional logic, CASE statement"
+    description: "Conditional logic in SQL using the CASE WHEN THEN END statement"
 ---
 
 # Conditional logic, CASE statement
 
-SQL, like many programming languages, allows you to write conditional logic so that behavior
-query depended on the values ​​of certain columns or expressions. In this article, we will look at how this is implemented in SQL with
+SQL, like many programming languages, lets you write conditional logic so that a query's
+behavior depends on the values of certain columns or expressions. In this article, we'll look at how this is implemented in SQL
 using the `CASE` operator.
 
 ## Concept of conditional logic
@@ -19,13 +19,13 @@ in the selection, it is necessary to display not the date of birth itself, but t
 if the student is 18 or not. This is an example of conditional logic, in which either one value or another should be displayed
 depending on the specific condition.
 
-<ERD databaseName="Schedule" />
+Schedule database ER diagram: [open on SQL Academy](https://sql-academy.org/en/guide/case-expression).
 
 The implementation of such a query using `CASE` might look like this:
 
-<MySQLOnly>
+**MySQL**
 
-```sql-executable-Schedule
+```sql
 SELECT first_name, last_name,
 CASE
   WHEN TIMESTAMPDIFF(YEAR, birthday, NOW()) >= 18 THEN 'Adult'
@@ -34,11 +34,9 @@ END AS status
 FROM Student
 ```
 
-</MySQLOnly>
+**PostgreSQL**
 
-<PostgreSQLOnly>
-
-```sql-executable-Schedule
+```sql
 SELECT first_name, last_name,
 CASE
   WHEN EXTRACT(YEAR FROM AGE(NOW(), birthday)) >= 18 THEN 'Adult'
@@ -47,7 +45,30 @@ END AS status
 FROM Student
 ```
 
-</PostgreSQLOnly>
+| first_name | last_name    | status |
+| ---------- | ------------ | ------ |
+| Nikolaj    | Sokolov      | Adult  |
+| Vyacheslav | Eliseev      | Adult  |
+| Ivan       | Efremov      | Adult  |
+| Anatolij   | ZHdanov      | Minor  |
+| Georgij    | Noskov       | Adult  |
+| Artyom     | Sergeev      | Minor  |
+| Arina      | Evseeva      | Adult  |
+| Angelina   | Voroncova    | Adult  |
+| Ekaterina  | Ustinova     | Adult  |
+| Raisa      | Lapina       | Adult  |
+| Leonid     | Ignatov      | Minor  |
+| Snezhana   | Seliverstova | Adult  |
+| Semyon     | Biryukov     | Adult  |
+| Georgij    | Baranov      | Adult  |
+| YUliya     | Vishnyakova  | Adult  |
+| Valentina  | Bolshakova   | Adult  |
+| Leonid     | Kryukov      | Adult  |
+| Vladislav  | Cvetkov      | Adult  |
+| Snezhana   | Morozova     | Adult  |
+| Lyubov     | Borisova     | Adult  |
+| Anfisa     | Kalashnikova | Adult  |
+| Anna       | Osipova      | Adult  |
 
 ## CASE search expression syntax
 
@@ -70,9 +91,9 @@ Let's take the `CASE` operator to implement the stages of schooling.
 
 ![School education stages](https://sql-academy.org/static/guidePage/case-expression/en_school_education_stages.png "School education stages")
 
-<MySQLOnly>
+**MySQL**
 
-```sql-executable-Schedule
+```sql
 SELECT name,
 CASE
   WHEN SUBSTRING(name, 1, INSTR(name, ' ')) IN (10, 11) THEN 'High School'
@@ -82,11 +103,9 @@ END AS stage
 FROM Class
 ```
 
-</MySQLOnly>
+**PostgreSQL**
 
-<PostgreSQLOnly>
-
-```sql-executable-Schedule
+```sql
 SELECT name,
 CASE
   WHEN SUBSTRING(name, 1, POSITION(' ' IN name) - 1) IN ('10', '11') THEN 'High School'
@@ -96,28 +115,41 @@ END AS stage
 FROM Class
 ```
 
-</PostgreSQLOnly>
+| name | stage             |
+| ---- | ----------------- |
+| 8 A  | Middle school     |
+| 8 B  | Middle school     |
+| 9 C  | Middle school     |
+| 9 B  | Middle school     |
+| 9 A  | Middle school     |
+| 10 B | High School       |
+| 10 A | High School       |
+| 11 B | High School       |
+| 11 A | High School       |
+| 7 A  | Middle school     |
+| 7 B  | Middle school     |
+| 6 A  | Middle school     |
+| 6 B  | Middle school     |
+| 5 A  | Middle school     |
+| 5 B  | Middle school     |
+| 4 A  | Elementary school |
 
-<MySQLOnly>
+**MySQL**
 
 - First we extract the class number from its name
-  ```sql
-  SUBSTRING(name, 1, INSTR(name, ' '))
-  ```
+    ```sql
+    SUBSTRING(name, 1, INSTR(name, ' '))
+    ```
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 - First we extract the class number from its name
-  ```sql
-  SUBSTRING(name, 1, POSITION(' ' IN name) - 1)
-  ```
+    ```sql
+    SUBSTRING(name, 1, POSITION(' ' IN name) - 1)
+    ```
 
-</PostgreSQLOnly>
-
-- Next, we check for occurrences of this class number in the list of classes related to "High School" and "Middle school".
-- If the class number doesn't match 5-11, we output "Elementary school".
+* Next, we check for occurrences of this class number in the list of classes related to "High School" and "Middle school".
+* If the class number doesn't match 5-11, we output "Elementary school".
 
 ## Syntax of a simple CASE expression
 
@@ -138,9 +170,9 @@ value, the value following `THEN` is returned.
 
 Using this syntax, we can rewrite our previous example:
 
-<MySQLOnly>
+**MySQL**
 
-```sql-executable-Schedule
+```sql
 SELECT name,
 CASE SUBSTRING(name, 1, INSTR(name, ' '))
   WHEN 11 THEN 'High School'
@@ -155,11 +187,9 @@ END AS stage
 FROM Class
 ```
 
-</MySQLOnly>
+**PostgreSQL**
 
-<PostgreSQLOnly>
-
-```sql-executable-Schedule
+```sql
 SELECT name,
 CASE SUBSTRING(name, 1, POSITION(' ' IN name) - 1)
   WHEN '11' THEN 'High School'
@@ -174,7 +204,24 @@ END AS stage
 FROM Class
 ```
 
-</PostgreSQLOnly>
+| name | stage             |
+| ---- | ----------------- |
+| 8 A  | Middle school     |
+| 8 B  | Middle school     |
+| 9 C  | Middle school     |
+| 9 B  | Middle school     |
+| 9 A  | Middle school     |
+| 10 B | High School       |
+| 10 A | High School       |
+| 11 B | High School       |
+| 11 A | High School       |
+| 7 A  | Middle school     |
+| 7 B  | Middle school     |
+| 6 A  | Middle school     |
+| 6 B  | Middle school     |
+| 5 A  | Middle school     |
+| 5 B  | Middle school     |
+| 4 A  | Elementary school |
 
 ### Test yourself
 
@@ -187,3 +234,9 @@ CASE 2
   ELSE 'Many'
 END
 ```
+
+1. Zero — The CASE statement cannot return "Zero" because the values ​​"2" and "0" are not equal
+
+2. One — The CASE statement cannot return "One" because the values ​​"2" and "1" are not equal
+
+3. **Correct answer:&#x20;**&#x4D;any — That's right, the CASE statement will indeed return "Many", because none of the values ​​passed to WHEN matched "2"

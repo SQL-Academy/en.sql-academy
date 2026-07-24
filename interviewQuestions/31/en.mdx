@@ -1,7 +1,7 @@
 ---
 meta:
-    title: 'What is a FOREIGN KEY and how does it ensure data integrity?'
-    description: 'A FOREIGN KEY in SQL establishes a relationship between tables and ensures data integrity by guaranteeing that foreign keys match existing values.'
+    title: "What is a FOREIGN KEY and how does it ensure data integrity?"
+    description: "A FOREIGN KEY in SQL establishes a relationship between tables and ensures data integrity by guaranteeing that foreign keys match existing values."
 ---
 
 > **A FOREIGN KEY** is a constraint that establishes a relationship between a column or set of columns in one table and a column or columns in another table (typically a primary key).
@@ -10,11 +10,11 @@ It ensures referential integrity by guaranteeing that values in the foreign key 
 
 ## How data integrity is ensured:
 
--   **Prevents insertion of invalid data**
-    It is impossible to insert a value into the foreign key column if that value does not exist in the related table.
+- **Prevents insertion of invalid data**
+  It is impossible to insert a value into the foreign key column if that value does not exist in the related table.
 
--   **Prevents deletion of related records**
-    It is impossible to delete a record from the parent table if records in the child table reference it, unless additional actions are taken.
+- **Prevents deletion of related records**
+  It is impossible to delete a record from the parent table if records in the child table reference it, unless additional actions are taken.
 
 ### Example of a foreign key:
 

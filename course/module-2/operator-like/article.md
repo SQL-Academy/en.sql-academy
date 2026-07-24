@@ -1,7 +1,7 @@
 ---
 meta:
-  title: "LIKE operator"
-  description: "SQL syntax of the LIKE and ILIKE operators to search for records by a patterned string"
+    title: "LIKE operator"
+    description: "SQL syntax of the LIKE and ILIKE operators to search for records by a patterned string"
 ---
 
 # LIKE operator
@@ -10,9 +10,17 @@ The `LIKE` operator is used in conditional queries when we want to find out whet
 
 For example, we have a `Users` table that has an `email` field:
 
-```sql-executable-Airbnb
+```sql
 SELECT name, email FROM Users;
 ```
+
+| name              | email                  |
+| ----------------- | ---------------------- |
+| Bruce Willis      | barjam\@hotmail.com    |
+| George Clooney    | tellis\@me.com         |
+| Kevin Costner     | metzzo\@hotmail.com    |
+| Samuel L. Jackson | moonlapse\@outlook.com |
+| Kurt Russell      | gator\@live.com        |
 
 Suppose we want to find all users whose email is in the second-level domain "hotmail".
 That is, we need to select only those records that meet the following condition:
@@ -28,19 +36,28 @@ For such non-trivial searches on string fields, we need the `LIKE` operator.
 ... WHERE table_field [NOT] LIKE string_pattern
 ```
 
-The pattern may include the following special characters:
+The pattern may include two special characters — `%` and `_`. Here is what each of them means:
 
-| Character | Description                                                                               |
-| :-------- | :---------------------------------------------------------------------------------------- |
-| `%`       | Any sequence of characters (the number of characters in the sequence can be zero or more) |
-| `_`       | Any single character                                                                      |
+| Character | Description                                                            |
+| --------- | ---------------------------------------------------------------------- |
+| `%`       | Any sequence of characters: 0 characters, 1 character, Many characters |
+| `_`       | Exactly one character                                                  |
 
 So our query for finding users in the "hotmail" domain might look like this:
 
-```sql-executable-Airbnb
+```sql
 SELECT name, email FROM Users
 WHERE email LIKE '%@hotmail.%'
 ```
+
+| name                 | email                 |
+| -------------------- | --------------------- |
+| Bruce Willis         | barjam\@hotmail.com   |
+| Kevin Costner        | metzzo\@hotmail.com   |
+| Jennifer Lopez       | barjam\@hotmail.com   |
+| Harrison Ford        | kostas\@hotmail.com   |
+| Michael Douglas      | timtroyr\@hotmail.com |
+| Catherine Zeta-Jones | flakeg\@hotmail.com   |
 
 ## Examples
 
@@ -48,36 +65,32 @@ WHERE email LIKE '%@hotmail.%'
   ... WHERE table_field LIKE 'text%'
   ```
 
-  Matches any strings beginning with "text"
+    Matches any strings beginning with "text"
 
 - ```sql
   ... WHERE table_field LIKE '%text'
   ```
 
-  Matches any strings ending with "text"
+    Matches any strings ending with "text"
 
 - ```sql
   ... WHERE table_field LIKE '_ext'
   ```
 
-  Matches strings with a length of 4 characters, with the last 3 characters required to be "ext". For example, the words "text" and "next"
+    Matches strings with a length of 4 characters, with the last 3 characters required to be "ext". For example, the words "text" and "next"
 
 - ```sql
   ... WHERE table_field LIKE 'begin%end'
   ```
-  Matches strings starting with "begin" and ending with "end"
+    Matches strings starting with "begin" and ending with "end"
 
-<MySQLOnly>
+**MySQL**
 
 > By default, MySQL patterns are not case-sensitive
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 > In PostgreSQL, patterns are case-sensitive. For case-insensitive search, use the `ILIKE` operator
-
-</PostgreSQLOnly>
 
 ## Escaping special characters
 
@@ -110,5 +123,7 @@ Here, `!` plays the same role as `\` in the previous example.
 
 ## Interactive Exercise
 
-Now let's practice what we've learned!  
+Now let's practice what we've learned!\
 In the exercise below, you need to match the email addresses to the LIKE patterns by dragging them into the matching areas.
+
+The interactive demonstration is available [in the SQL Academy lesson](https://sql-academy.org/en/guide/operator-like).

@@ -1,7 +1,7 @@
 ---
 meta:
-    title: 'Data types for table columns'
-    description: 'Data types for table columns in SQL'
+    title: "Data types for table columns"
+    description: "Data types for table columns in SQL"
 ---
 
 # Data types for table columns

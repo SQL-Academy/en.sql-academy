@@ -1,23 +1,23 @@
 ---
 meta:
-    title: 'What is SQL injection and how to protect against it?'
-    description: 'SQL injection is a method of attacking databases. Learn how to protect yourself using parameterized queries, ORM, data validation, and access control restrictions.'
+    title: "What is SQL injection and how to protect against it?"
+    description: "SQL injection is a method of attacking databases. Learn how to protect yourself using parameterized queries, ORM, data validation, and access control restrictions."
 ---
 
 > **SQL Injection** is a method of attacking a database where an attacker inserts malicious SQL code through input fields, allowing unauthorized SQL queries to be executed.
 
 ## Consequences of SQL Injection:
 
--   Data theft.
--   Deletion or modification of data.
--   Gaining administrative access.
+- Data theft.
+- Deletion or modification of data.
+- Gaining administrative access.
 
 ## Methods of protection against SQL injection
 
 **1. Parameterized queries (Prepared Statements):**
 
--   Use parameters instead of string concatenation.
--   The DBMS automatically escapes special characters.
+- Use parameters instead of string concatenation.
+- The DBMS automatically escapes special characters.
 
 Example (in Java using JDBC):
 
@@ -31,19 +31,19 @@ ResultSet rs = stmt.executeQuery();
 
 **2. Using ORM (Object-Relational Mapping):**
 
--   ORM libraries often include built-in protection mechanisms against SQL injection.
+- ORM libraries often include built-in protection mechanisms against SQL injection.
 
 **3. Input Validation and Filtering:**
 
--   Validate input data to match the expected format.
--   Use validation both on the server and client side.
+- Validate input data to match the expected format.
+- Use validation both on the server and client side.
 
 **4. Restricting access rights:**
 
--   Grant only the minimum necessary privileges to database users.
--   Restrict access to system tables and operations.
+- Grant only the minimum necessary privileges to database users.
+- Restrict access to system tables and operations.
 
 **5. Using stored procedures:**
 
--   Encapsulates data logic within a procedure.
--   Users have access only to the procedures, not directly to the tables.
+- Encapsulates data logic within a procedure.
+- Users have access only to the procedures, not directly to the tables.

@@ -1,7 +1,7 @@
 ---
 meta:
-    title: 'IS NULL, BETWEEN, IN Operators'
-    description: 'Syntax and usage examples of SQL IS NULL, BETWEEN, IN operators'
+    title: "IS NULL, BETWEEN, IN Operators"
+    description: "Syntax and usage examples of SQL IS NULL, BETWEEN, IN operators"
 ---
 
 # IS NULL, BETWEEN, IN Operators
@@ -28,8 +28,8 @@ WHERE middle_name IS NULL;
 
 | id  | first_name | middle_name | last_name |
 | --- | ---------- | ----------- | --------- |
-| 10  | YUrij      | null        | Krylov    |
-| 11  | Andrej     | null        | Evseev    |
+| 10  | YUrij      |             | Krylov    |
+| 11  | Andrej     |             | Evseev    |
 
 To use negation, i.e. if we want to find all records where the field is not equal to `NULL`, we must use the following syntax:
 

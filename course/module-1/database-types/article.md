@@ -1,7 +1,7 @@
 ---
 meta:
-    title: 'Types of databases'
-    description: 'Types and classifications of databases, the most popular type of database management systems'
+    title: "Types of databases"
+    description: "Types and classifications of databases, the most popular type of database management systems"
 ---
 
 # Types of databases
@@ -17,6 +17,8 @@ Of course, we will pay special attention to relational databases in the future.
 
 There are quite a lot of database classifications, but let's focus on the most popular ones:
 
-- Relational databases
-- Key-value databases
-- Document-oriented databases
+| Database type     | Description                              |
+| ----------------- | ---------------------------------------- |
+| Relational        | Data in linked tables — rows and columns |
+| Key-value         | Fast access to a value by its key        |
+| Document-oriented | Flexible documents in JSON format        |

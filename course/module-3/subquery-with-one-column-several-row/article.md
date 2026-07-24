@@ -1,12 +1,12 @@
 ---
 meta:
-    title: 'Subqueries with multiple rows and one column'
-    description: 'Subqueries using ANY, IN, ALL operators'
+    title: "Subqueries with multiple rows and one column"
+    description: "Subqueries using ANY, IN, ALL operators"
 ---
 
 # Subqueries with multiple rows and one column
 
-If a subquery returns more than one row, it cannot be used with comparison operators in the same way as scalar subqueries could be used <a href="https://sql-academy.org/guide/subquery-with-one-column-one-row" target="_blank">as described here</a>.
+If a subquery returns more than one row, it cannot be used with comparison operators in the same way as scalar subqueries could be used <a href="https://sql-academy.org/en/guide/subquery-with-one-column-one-row" target="_blank">as described here</a>.
 
 However, with subqueries that return multiple rows and one column, there are three additional operators that can be used.
 
@@ -24,26 +24,30 @@ SELECT 200 > ALL(SELECT price FROM Rooms)
 Or a more practical example: we need to find the names of all property owners who have never rented out their property themselves.
 To obtain this list, we can proceed as follows:
 
+Airbnb database ER diagram: [open on SQL Academy](https://sql-academy.org/en/guide/subquery-with-one-column-several-row).
+
 - Get a list of names of all property owners
-  ```sql
-  SELECT DISTINCT name FROM Users INNER JOIN Rooms
-  ON Users.id = Rooms.owner_id
-  ```
+
+    ```sql
+    SELECT DISTINCT name FROM Users INNER JOIN Rooms
+    ON Users.id = Rooms.owner_id
+    ```
+
 - Get a list of identifiers of all users who have rented out property
 
-  ```sql
-  SELECT DISTINCT user_id FROM Reservations
-  ```
+    ```sql
+    SELECT DISTINCT user_id FROM Reservations
+    ```
 
 - Filter the first list of all property owners by the condition that the property owner identifier is not equal to any of the identifiers of users who have ever rented out property
 
-  ```sql
-  SELECT DISTINCT name FROM Users INNER JOIN Rooms
-      ON Users.id = Rooms.owner_id
-      WHERE Users.id <> ALL (
-          SELECT DISTINCT user_id FROM Reservations
-      )
-  ```
+    ```sql
+    SELECT DISTINCT name FROM Users INNER JOIN Rooms
+        ON Users.id = Rooms.owner_id
+        WHERE Users.id <> ALL (
+            SELECT DISTINCT user_id FROM Reservations
+        )
+    ```
 
 ## Subquery and IN operator
 
