@@ -14,67 +14,27 @@ queries to transfer money from one account to another, and, if all goes well, co
 
 However, if any problems arise, the `ROLLBACK` command is executed, which instructs the server to undo all actions taken since the start of the transaction.
 
-<MySQLOnly>
-
 The process might look like this:
 
 ```sql
 -- Start the transaction
 START TRANSACTION;
 
--- Check the sender's balance
-SELECT @balance := user_balance FROM accounts WHERE user_id = 1;
-
--- If insufficient funds, cancel the transaction
-IF @balance < 1000 THEN
-ROLLBACK;
-END IF;
-
--- Check for the existence of the recipient
-SELECT @exists := COUNT(*) FROM accounts WHERE user_id = 2;
-IF @exists = 0 THEN
-ROLLBACK;
-END IF;
-
--- Update account balances if all checks pass
+-- Debit the sender's account
 UPDATE accounts SET user_balance = user_balance - 1000 WHERE user_id = 1;
+
+-- Credit the recipient's account
 UPDATE accounts SET user_balance = user_balance + 1000 WHERE user_id = 2;
 
--- Apply changes
+-- Apply the changes
 COMMIT;
 ```
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
-
-The process might look like this:
+If either query fails, the transaction is rolled back instead of executing `COMMIT`:
 
 ```sql
--- Start the transaction
-BEGIN;
-
--- Check balance using WHERE condition
--- Debit money only if balance is sufficient
-UPDATE accounts
-SET user_balance = user_balance - 1000
-WHERE user_id = 1
-  AND user_balance >= 1000;
-
--- Check that the operation was successful
--- In real applications, the number of updated rows is checked
--- If 0 rows updated - insufficient funds, ROLLBACK needed
-
--- Credit money to recipient (if they exist)
-UPDATE accounts
-SET user_balance = user_balance + 1000
-WHERE user_id = 2;
-
--- Apply changes (or ROLLBACK on application error)
-COMMIT;
+ROLLBACK;
 ```
-
-</PostgreSQLOnly>
 
 With a transaction, the program ensures the safety of your $1,000, guaranteeing that they either stay in the original account or are transferred to another account, eliminating the risk of loss.
 
