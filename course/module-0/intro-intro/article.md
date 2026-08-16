@@ -71,4 +71,4 @@ You can open the completed certificate using its public link or download it as a
 
 ![Example of the certificate](https://sql-academy.org/static/guidePage/intro-intro/certificate_en.jpg)
 
-Good luck with learning SQL! The first step has already been successfully completed ✨
+Good luck with learning SQL! The first step has already been successfully completed 🚀
