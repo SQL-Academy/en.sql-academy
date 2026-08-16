@@ -1,7 +1,7 @@
 ---
 meta:
-    title: 'Course structure'
-    description: 'Detailed information about this SQL course'
+    title: "Course structure"
+    description: "Detailed information about this SQL course"
 ---
 
 # Course structure
@@ -28,13 +28,13 @@ SELECT 'Hi, I am code playground 😊' AS hello;
 
 If it has an active blue button, then this code can be executed. When you click on the request execution button, the code will open in a new tab in the sandbox.
 
-![Description of the block with executable code](https://sql-academy.org/static/guidePage/intro-structure-of-course/en_codeplayground_description.png 'Description of the block with executable code')
+![Description of the block with executable code](https://sql-academy.org/static/guidePage/intro-structure-of-course/en_codeplayground_description.png "Description of the block with executable code")
 
 ### Self-testing tasks
 
 It is strongly recommended not to skip the tasks at the end of each article, they look like this:
 
-![Description of self-test tasks](https://sql-academy.org/static/guidePage/intro-structure-of-course/en_exercises_description.png 'Description of self-test tasks')
+![Description of self-test tasks](https://sql-academy.org/static/guidePage/intro-structure-of-course/en_exercises_description.png "Description of self-test tasks")
 
 It is recommended to solve problems while logged in, so all your solutions will be saved.
 
@@ -44,16 +44,16 @@ We have a smart assistant powered by artificial intelligence that will gladly he
 
 **How to interact with the assistant:**
 
--   **Select text** on the page — an "Explain" button will appear for additional explanations of the selected text fragment
+- **Select text** on the page — an "Explain" button will appear for additional explanations of the selected text fragment
 
-    ![Clarify button when selecting text](https://sql-academy.org/static/guidePage/intro-structure-of-course/en_ai_explain.png 'Clarify button when selecting text')
+    ![«Explain» button when text is selected](https://sql-academy.org/static/guidePage/intro-structure-of-course/en_ai_explain.png "«Explain» button when text is selected")
 
--   **Quick actions** in the assistant window, for example "Ask a question" to check yourself on the current topic
+- **Quick actions** in the assistant window, for example "Ask a question" to check yourself on the current topic
 
-    ![AI assistant window with quick actions](https://sql-academy.org/static/guidePage/intro-structure-of-course/en_ai_window.png 'AI assistant window with quick actions')
+    ![AI assistant window with quick actions](https://sql-academy.org/static/guidePage/intro-structure-of-course/en_ai_window.png "AI assistant window with quick actions")
 
--   **Error explanations** — if you get an error while executing an SQL query in exercises, the assistant will help you understand the reason and suggest how to fix your query
+- **Error explanations** — if you get an error while executing an SQL query in exercises, the assistant will help you understand the reason and suggest how to fix your query
 
-    ![AI assistant explains SQL query error](https://sql-academy.org/static/guidePage/intro-structure-of-course/en_ai_explain_error.png 'AI assistant explains SQL query error')
+    ![AI assistant explaining SQL query error](https://sql-academy.org/static/guidePage/intro-structure-of-course/en_ai_explain_error.png "AI assistant explaining SQL query error")
 
-The assistant works for **registered users**. Each user gets a few free requests, and [premium users](https://sql-academy.org/premium) get unlimited requests! 😊
+The assistant works for **registered users**. Each user gets a few free requests, and <a href="https://sql-academy.org/en/premium" target="_blank">premium users</a> get unlimited requests! 😊

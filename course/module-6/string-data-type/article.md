@@ -1,14 +1,14 @@
 ---
 meta:
-  title: "String data type in SQL: MySQL and PostgreSQL"
-  description: "Working with strings in MySQL and PostgreSQL. Basic data types for text information."
+    title: "String data type in SQL: MySQL and PostgreSQL"
+    description: "Working with strings in MySQL and PostgreSQL. Basic data types for text information."
 ---
 
 # String data type
 
 The string data type is the most commonly used data type. Thanks to this, both text and various binary data (for example, pictures) are stored in the database.
 
-<MySQLOnly>
+**MySQL**
 
 In MySQL, it is represented by the following types:
 
@@ -50,9 +50,7 @@ The difference between them is that the sorts and comparisons of stored data for
 | `MEDIUMTEXT` | Maximum length 16,777,215    |
 | `LONGTEXT`   | Maximum length 4,294,967,295 |
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 In PostgreSQL, it is represented by the following types:
 
@@ -65,5 +63,3 @@ In PostgreSQL, it is represented by the following types:
 | `TEXT`       | Contains text strings of unlimited variable length.                            | Practically unlimited length (up to 1 GB)           |
 
 It's important to note that in PostgreSQL, the `TEXT` type is preferable to use instead of `VARCHAR` without length limitation, as they have the same performance.
-
-</PostgreSQLOnly>

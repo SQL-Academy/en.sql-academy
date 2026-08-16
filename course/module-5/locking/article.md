@@ -1,7 +1,7 @@
 ---
 meta:
-  title: "Locks in DBMS: MySQL and PostgreSQL"
-  description: "Understanding locks in MySQL and PostgreSQL: Discover how different types of locks help manage simultaneous data access and ensure correct transaction processing. Explore the various levels of lock granularity—from tables to rows—and their impact on performance and data consistency in your database."
+    title: "Locks in DBMS: MySQL and PostgreSQL"
+    description: "Understanding locks in MySQL and PostgreSQL: Discover how different types of locks help manage simultaneous data access and ensure correct transaction processing. Explore the various levels of lock granularity—from tables to rows—and their impact on performance and data consistency in your database."
 ---
 
 # Locks in DBMS
@@ -37,30 +37,30 @@ When data in the database is locked, other users who want to change or read the 
 There are several different strategies that can be used to lock a resource.
 The server can apply a lock at one of three different levels, or granularities:
 
-- Table locks  
-  Prevent multiple users from simultaneously modifying data in the same table.
-- Page locks  
-  Prevent multiple users from changing data on the same page (a page is a memory segment, usually ranging from 2 to 16 KB)
-  of a table simultaneously.
-- Row locks  
-  Prevent multiple users from simultaneously changing the same row in the table.
+- **Table lock.** While the change is in progress, the whole table is unavailable to everyone else
+- **Page lock.** Only those who hit the same memory segment — 2 to 16 KB — have to wait
+- **Row lock.** Only someone changing that very row has to wait
 
 These approaches have their advantages and disadvantages.
 Locking an entire table requires minimal time, but as the number of users increases, it can lead to long waits.
 Row locking requires more overhead, but it allows multiple users to modify the same table if they are working on different rows.
 
-<MySQLOnly>
+**MySQL**
 
 MySQL can use table, page, or row locking depending on your storage engine choice.
 By default, MySQL uses the InnoDB storage engine, which provides row-level locking.
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 PostgreSQL uses Multi-Version Concurrency Control (MVCC) and supports row-level locking by default.
 This ensures high performance with simultaneous access by multiple users to the data.
 
-</PostgreSQLOnly>
-
 Before moving on to the next article about creating transactions, let's check how well you understood this lesson.
+
+**Why are locks needed in a DBMS?**
+
+1. **Correct answer:** Locks in a DBMS are needed to manage simultaneous access to data resources. — The primary purpose of locking in databases is to prevent access conflicts and ensure data integrity by temporarily blocking access to the data.
+
+2. Locks in a DBMS are needed to speed up the operation of the database server. — This answer is incorrect because locking adds some delay in data access, not speeding it up. It is necessary to prevent conflicts and maintain data integrity, which can sometimes lead to delays in processing requests.
+
+3. Locks in a DBMS are needed to execute multiple SQL statements as one logical operation. — This answer is incorrect because locking is not necessarily related to performing multiple SQL instructions as one operation. It more so ensures consistent access to data during simultaneous modifications by multiple users.

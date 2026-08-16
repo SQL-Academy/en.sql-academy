@@ -1,7 +1,7 @@
 ---
 meta:
-    title: 'Stored Procedures and Functions in SQL'
-    description: 'Introduction to SQL stored procedures and functions. Their purpose, key differences, and when to use each type.'
+    title: "Stored Procedures and Functions in SQL"
+    description: "Introduction to SQL stored procedures and functions. Their purpose, key differences, and when to use each type."
 ---
 
 # Stored Procedures and Functions
@@ -18,16 +18,16 @@ Instead of rewriting it each time, you can create a procedure or function and si
 
 Stored procedures and functions solve several important tasks:
 
--   **🚀 Code Reusability** — write once, use everywhere. No more copies of the same code in different places.
--   **⚡ Performance** — code executes directly on the database server, which is often faster than regular queries.
--   **🔒 Security** — you can grant access to a procedure without giving direct access to tables.
--   **🛡️ Centralized Logic** — all business logic is in one place, in the database.
+- **🚀 Code Reusability** — write once, use everywhere. No more copies of the same code in different places.
+- **⚡ Performance** — code executes directly on the database server, which is often faster than regular queries.
+- **🔒 Security** — you can grant access to a procedure without giving direct access to tables.
+- **🛡️ Centralized Logic** — all business logic is in one place, in the database.
 
 ## Key Differences
 
 Although procedures and functions are similar, there are important differences between them:
 
-<MySQLOnly>
+**MySQL**
 
 | Characteristic        | Stored Procedures                        | Stored Functions                                         |
 | --------------------- | ---------------------------------------- | -------------------------------------------------------- |
@@ -36,9 +36,7 @@ Although procedures and functions are similar, there are important differences b
 | **Data Modification** | Can modify data in tables                | Designed only for reading data                           |
 | **Invocation**        | `CALL procedure_name()`                  | `SELECT function_name()`                                 |
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 | Characteristic        | Stored Procedures         | Stored Functions                                         |
 | --------------------- | ------------------------- | -------------------------------------------------------- |
@@ -47,16 +45,14 @@ Although procedures and functions are similar, there are important differences b
 | **Data Modification** | Can modify data in tables | Can modify data in tables                                |
 | **Invocation**        | `CALL procedure_name()`   | `SELECT function_name()`                                 |
 
-</PostgreSQLOnly>
-
 ## When to use procedures?
 
 **Stored procedures** work best when you need to:
 
--   Execute a sequence of operations (e.g., create order, deduct inventory, send notification)
--   Modify data in multiple tables simultaneously
--   Implement complex business logic
--   Return multiple result sets
+- Execute a sequence of operations (e.g., create order, deduct inventory, send notification)
+- Modify data in multiple tables simultaneously
+- Implement complex business logic
+- Return multiple result sets
 
 ### Procedure Usage Example
 
@@ -78,10 +74,10 @@ Such a procedure can:
 
 **Stored functions** are ideal when you need to:
 
--   Perform calculations and return a result
--   Create a reusable formula
--   Transform data in a specific way
--   Use the result in other SQL queries
+- Perform calculations and return a result
+- Create a reusable formula
+- Transform data in a specific way
+- Use the result in other SQL queries
 
 ### Function Usage Example
 
@@ -102,13 +98,14 @@ Such a function takes price and customer type, and returns the discount amount t
 
 If you're unsure what to choose, use this simple rule:
 
--   **Need to get a single value for use in a query?** → Function
--   **Need to execute a set of actions or modify data?** → Procedure
+- **Need to get a single value for use in a query?** → Function
+- **Need to execute a set of actions or modify data?** → Procedure
 
 ## Reinforce Your Knowledge
 
 Now that you know the key differences between procedures and functions, try classifying tasks in this interactive game:
 
+The interactive demonstration is available [in the SQL Academy lesson](https://sql-academy.org/en/guide/stored-procedures-and-functions).
 
 ## What's Next?
 

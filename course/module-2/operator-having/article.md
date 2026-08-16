@@ -1,12 +1,14 @@
 ---
 meta:
-    title: 'Operator HAVING'
-    description: 'Using the HAVING statement in SQL'
+    title: "operator HAVING"
+    description: "Using the HAVING statement in SQL"
 ---
 
-# Operator HAVING
+# operator HAVING
 
 We have already looked at a query to obtain the average rental cost of residential properties depending on the type of housing:
+
+Airbnb database ER diagram: [open on SQL Academy](https://sql-academy.org/en/guide/operator-having).
 
 ```sql
 SELECT home_type, AVG(price) as avg_price FROM Rooms
@@ -32,6 +34,16 @@ WHERE avg_price > 50
 
 In advance, to filter groups, we must use the `HAVING` operator:
 
+**MySQL**
+
+```sql
+SELECT home_type, AVG(price) as avg_price FROM Rooms
+GROUP BY home_type
+HAVING avg_price > 50
+```
+
+**PostgreSQL**
+
 ```sql
 SELECT home_type, AVG(price) as avg_price FROM Rooms
 GROUP BY home_type
@@ -43,13 +55,17 @@ HAVING AVG(price) > 50
 | Private room    | 89.4286   |
 | Entire home/apt | 148.6667  |
 
+**PostgreSQL**
+
+> In PostgreSQL, aliases declared in `SELECT` are not available in `HAVING`
+
 <br />
 
 ## Order of execution for SQL queries
 
 But why couldn't we use `WHERE`, and why do we need a separate operator for this purpose? It all has to do with the order of execution for SQL queries.
 
-![SQL query execution order scheme](https://sql-academy.org/static/guidePage/operator-having/sql_query_order_en.png 'SQL query execution order scheme')
+![SQL query execution order scheme](https://sql-academy.org/static/guidePage/operator-having/sql_query_order_en.png "SQL query execution order scheme")
 
 Our first query was incorrect because we tried to use the `avg_price` field for the formed groups before they were formed,
 as the execution of the `WHERE` operator precedes grouping.

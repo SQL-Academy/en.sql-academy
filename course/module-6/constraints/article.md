@@ -1,7 +1,7 @@
 ---
 meta:
-  title: "SQL Constraints: MySQL and PostgreSQL"
-  description: "A comprehensive guide to SQL constraints in MySQL and PostgreSQL, explaining how they ensure data correctness and integrity in database tables. Learn about different types of constraints including PRIMARY KEY, FOREIGN KEY, UNIQUE, NOT NULL, CHECK, and DEFAULT."
+    title: "SQL Constraints: MySQL and PostgreSQL"
+    description: "A comprehensive guide to SQL constraints in MySQL and PostgreSQL, explaining how they ensure data correctness and integrity in database tables. Learn about different types of constraints including PRIMARY KEY, FOREIGN KEY, UNIQUE, NOT NULL, CHECK, and DEFAULT."
 ---
 
 # Column Constraints in SQL
@@ -32,7 +32,7 @@ Let's look at each type in more detail.
 
 A primary key is a column or combination of columns that uniquely identifies each row in a table. It cannot contain NULL values and must be unique. A table can have only one primary key.
 
-<MySQLOnly>
+**MySQL**
 
 ```sql
 CREATE TABLE Users (
@@ -59,9 +59,7 @@ When attempting to add a record with an already existing primary key or with a N
 Error(1062) 23000: "Duplicate entry '1' for key 'users.PRIMARY'"
 ```
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 ```sql
 CREATE TABLE Users (
@@ -88,8 +86,6 @@ When attempting to add a record with an already existing primary key or with a N
 ERROR: duplicate key value violates unique constraint "users_pkey"
 DETAIL: Key (id)=(1) already exists.
 ```
-
-</PostgreSQLOnly>
 
 ## FOREIGN KEY
 
@@ -161,7 +157,7 @@ In this example, the `username` and `email` fields are required, while `bio` can
 
 ## CHECK
 
-<MySQLOnly>
+**MySQL**
 
 The CHECK constraint allows you to define a condition that values in a column must satisfy. This helps enforce business rules and prevent incorrect data entry.
 
@@ -189,9 +185,7 @@ CREATE TABLE Employees (
 );
 ```
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 The CHECK constraint allows you to define a condition that values in a column must satisfy. This helps enforce business rules and prevent incorrect data entry.
 
@@ -229,13 +223,11 @@ CREATE TABLE Users (
 );
 ```
 
-</PostgreSQLOnly>
-
 ## DEFAULT
 
 The DEFAULT constraint sets a value that will be used if no value is specified for this column when adding a new record.
 
-<MySQLOnly>
+**MySQL**
 
 ```sql
 CREATE TABLE Orders (
@@ -249,9 +241,7 @@ CREATE TABLE Orders (
 
 In this example, if no order date is specified, the current date will be used, and the status will default to "Pending".
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 ```sql
 CREATE TABLE Orders (
@@ -277,11 +267,9 @@ CREATE TABLE Users (
 );
 ```
 
-</PostgreSQLOnly>
-
 ## Adding and Removing Constraints
 
-<MySQLOnly>
+**MySQL**
 
 Constraints can be added not only when creating a table but also when modifying it:
 
@@ -339,9 +327,7 @@ ALTER TABLE Orders
 ALTER COLUMN status DROP DEFAULT;
 ```
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 Constraints can be added not only when creating a table but also when modifying it:
 
@@ -399,8 +385,6 @@ ALTER TABLE Orders
 ALTER COLUMN status DROP DEFAULT;
 ```
 
-</PostgreSQLOnly>
-
 ## Best Practices for Using Constraints 🚀
 
 When designing a database, follow these recommendations:
@@ -422,3 +406,11 @@ When designing a database, follow these recommendations:
 ## Test Your Knowledge About SQL Constraints:
 
 Which of the following SQL constraints CANNOT contain NULL values?
+
+1. UNIQUE — The UNIQUE constraint allows NULL values, although usually only one NULL value in a column.
+
+2. CHECK — The CHECK constraint only checks conditions for non-empty values; NULL values are usually bypassed by the check.
+
+3. **Correct answer:** PRIMARY KEY — A primary key cannot contain NULL values as it must uniquely identify each row in a table.
+
+4. FOREIGN KEY — A foreign key can contain NULL values unless specified otherwise, indicating no relationship with another table.

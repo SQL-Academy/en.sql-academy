@@ -1,7 +1,7 @@
 ---
 meta:
-  title: "SQL Indexes: speeding up data search in MySQL and PostgreSQL"
-  description: "A comprehensive guide to SQL indexes, explaining how they simplify and speed up data search in database tables in MySQL and PostgreSQL. Learn how to create, manage, and optimize indexes to improve the performance of your queries."
+    title: "SQL Indexes: speeding up data search in MySQL and PostgreSQL"
+    description: "A comprehensive guide to SQL indexes, explaining how they simplify and speed up data search in database tables in MySQL and PostgreSQL. Learn how to create, manage, and optimize indexes to improve the performance of your queries."
 ---
 
 # SQL Indexes
@@ -40,7 +40,7 @@ Returning to the `Users` table, you can add
 an index to the `email` column to speed up any queries that work
 with the value of this column.
 
-<MySQLOnly>
+**MySQL**
 
 Here's how you can add such an index to a MySQL database:
 
@@ -62,6 +62,11 @@ for a specific table, as shown in the example below:
 SHOW INDEX FROM Users;
 ```
 
+| Table | Non_unique | Key_name  | Seq_in_index | Column_name |
+| ----- | ---------- | --------- | ------------ | ----------- |
+| users | 0          | PRIMARY   | 1            | id          |
+| users | 1          | idx_email | 1            | email       |
+
 The output shows that there are 2 indexes in the `Users` table: one for the `id` column named `PRIMARY`
 and another for the `email` column that we just defined.
 
@@ -72,9 +77,7 @@ This is a special type of index used with the primary key constraint, which ensu
 that each value in the column or group of columns designated as the table's primary key
 is unique and cannot be `NULL`.
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 Here's how you can add such an index to a PostgreSQL database:
 
@@ -98,6 +101,11 @@ FROM pg_indexes
 WHERE tablename = 'users';
 ```
 
+| indexname  | indexdef                                                        |
+| ---------- | --------------------------------------------------------------- |
+| users_pkey | CREATE UNIQUE INDEX users_pkey ON public.users USING btree (id) |
+| idx_email  | CREATE INDEX idx_email ON public.users USING btree (email)      |
+
 PostgreSQL automatically creates an index for the primary key column, which in this case is
 `id`. This is a special type of index used with the primary key constraint, which ensures
 that each value in the column or group of columns designated as the table's primary key
@@ -111,11 +119,9 @@ PostgreSQL supports various index types:
 - **GiST** — for geometric data and full-text search
 - **BRIN** — for very large tables with natural sorting
 
-</PostgreSQLOnly>
-
 ## Dropping an Index
 
-<MySQLOnly>
+**MySQL**
 
 If after creating an index you decide that the index is no longer needed, you can
 remove it as follows:
@@ -124,9 +130,7 @@ remove it as follows:
 DROP INDEX idx_email ON Users;
 ```
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 If after creating an index you decide that the index is no longer needed, you can
 remove it as follows:
@@ -134,8 +138,6 @@ remove it as follows:
 ```sql
 DROP INDEX idx_email;
 ```
-
-</PostgreSQLOnly>
 
 ## Unique Indexes
 
@@ -163,7 +165,7 @@ CREATE UNIQUE INDEX idx_email
     ON Users (email);
 ```
 
-<MySQLOnly>
+**MySQL**
 
 With the index present, you will receive an error message if you attempt to add a new customer with an already existing email address:
 
@@ -171,9 +173,7 @@ With the index present, you will receive an error message if you attempt to add 
 Error(1062) 23000: "Duplicate entry 'duplicate@gmail.com' for key 'users.idx_email'"
 ```
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 With the index present, you will receive an error message if you attempt to add a new customer with an already existing email address:
 
@@ -181,8 +181,6 @@ With the index present, you will receive an error message if you attempt to add 
 ERROR: duplicate key value violates unique constraint "idx_email"
 DETAIL: Key (email)=(duplicate@gmail.com) already exists.
 ```
-
-</PostgreSQLOnly>
 
 Creating unique indexes for the column or columns defined as the primary key is redundant,
 as the database management system automatically ensures the uniqueness of the primary key values.
@@ -217,7 +215,7 @@ Indexes are often used by the database server for efficiently finding the necess
 and then for retrieving additional data from related tables upon user request.
 Take, for example, the query:
 
-```sql-executable-Schedule
+```sql
 SELECT id, first_name, last_name
   FROM Student
   WHERE first_name LIKE 'A%' AND last_name LIKE 'L%'
@@ -232,7 +230,7 @@ In response to such a query, the server can choose one of several approaches:
 The last method appears to be the most efficient, as it allows all necessary rows to be found
 in one pass, avoiding revisiting the table.
 
-<MySQLOnly>
+**MySQL**
 
 But how to determine which method the MySQL query optimizer will choose?
 This can be done using the `EXPLAIN` command, which shows how the server plans
@@ -246,13 +244,15 @@ EXPLAIN
   AND last_name LIKE 'L%';
 ```
 
+| id  | select_type | table   | partitions | possible_keys               | key           |
+| --- | ----------- | ------- | ---------- | --------------------------- | ------------- |
+| 1   | SIMPLE      | Student | null       | idx_full_name,idx_last_name | idx_full_name |
+
 Analyzing the results, it can be seen that the `possible_keys` column lists potentially
 applicable indexes `idx_last_name` or `idx_full_name`, and the `key` column indicates
 that the `idx_full_name` index was chosen.
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 But how to determine which method the PostgreSQL query optimizer will choose?
 This can be done using the `EXPLAIN` command, which shows how the database plans
@@ -266,6 +266,12 @@ EXPLAIN
   AND last_name LIKE 'L%';
 ```
 
+| QUERY PLAN                                                                  |
+| --------------------------------------------------------------------------- |
+| Index Scan using idx_full_name on student (cost=0.42..8.44 rows=1 width=68) |
+| Index Cond: ((last_name >= 'L'::text) AND (last_name \< 'M'::text))         |
+| Filter: ((first_name \~\~ 'A%'::text) AND (last_name \~\~ 'L%'::text))      |
+
 You can also use `EXPLAIN ANALYZE` to get real execution statistics:
 
 ```sql
@@ -276,10 +282,16 @@ EXPLAIN ANALYZE
   AND last_name LIKE 'L%';
 ```
 
+| QUERY PLAN                                                                                                            |
+| --------------------------------------------------------------------------------------------------------------------- |
+| Index Scan using idx_full_name on student (cost=0.42..8.44 rows=1 width=68) (actual time=0.025..0.027 rows=1 loops=1) |
+| Index Cond: ((last_name >= 'L'::text) AND (last_name \< 'M'::text))                                                   |
+| Filter: ((first_name \~\~ 'A%'::text) AND (last_name \~\~ 'L%'::text))                                                |
+| Planning Time: 0.156 ms                                                                                               |
+| Execution Time: 0.048 ms                                                                                              |
+
 Analyzing the `EXPLAIN` results, you can see which access method the optimizer chose —
 full table scan (Seq Scan) or index scan (Index Scan).
-
-</PostgreSQLOnly>
 
 ## The Flip Side of Indexes
 
@@ -307,3 +319,11 @@ as necessary.
 **Let's check how well we've understood the topic:**
 
 Which statement best explains why you should not index every column in a database table?
+
+1. Indexes increase the speed of all operations in the database, including inserting, updating, and deleting data. — While indexes can indeed speed up read query executions, they can slow down insert, update, and delete operations, as they require additional updates to the index structures.
+
+2. Indexes do not require additional disk space and therefore can be created without any drawbacks. — Indexes take up additional disk space, which is one of the reasons why not every column should be indiscriminately indexed.
+
+3. Indexes reduce the need for query optimization, as they automatically optimize all queries. — Although indexes can significantly improve the performance of some queries, they do not replace the need for careful query optimization and database schema design.
+
+4. **Correct answer:** Indexes speed up read operations but can slow down write operations, as each index needs to be updated when data changes. — This statement accurately reflects the trade-off associated with using indexes. They indeed speed up reading at the expense of potentially slowing down write operations, making it important to balance the number of indexes and their impact on the overall system performance.

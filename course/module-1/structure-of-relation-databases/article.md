@@ -1,12 +1,12 @@
 ---
 meta:
-    title: 'Structure of Relational Databases'
-    description: 'Structure of tables in relational databases, concepts of records and attributes. Definition of primary and foreign keys.'
+    title: "Structure of a Relational Database: Tables, Records and Keys"
+    description: "How a relational database is organized inside: tables, records and attributes, primary and foreign keys, column data types — explained with examples and exercises."
 ---
 
 # Structure of Relational Databases
 
-We have briefly introduced ourselves to relational databases in the <a href="https://sql-academy.org/guide/relation-databases" target="_blank">previous article</a>. But
+We have briefly introduced ourselves to relational databases in the <a href="https://sql-academy.org/en/guide/relation-databases" target="_blank">previous article</a>. But
 a superficial understanding is not enough for us, is it?
 Let's go beyond the surface and delve deeper into the structure and terminology of relational databases.
 
@@ -17,7 +17,7 @@ In relational databases, information is stored in tables linked to each other. T
 - rows, which are called "records"
 - columns, which are called "fields" or "attributes"
 
-![Table Structure](https://sql-academy.org/static/guidePage/structure-of-relation-databases/en_structure_db.png 'Table Structure')
+![Table Structure](https://sql-academy.org/static/guidePage/structure-of-relation-databases/en_structure_db.png "Table Structure")
 
 In each table, each column has a predetermined data type. For example, these types can be:
 
@@ -28,22 +28,22 @@ In each table, each column has a predetermined data type. For example, these typ
 
 And each row in the table must have the corresponding type for each column. The DBMS will not allow an attempt to add an arbitrary string to a field with the `DATETIME` type.
 
-To find out attribute data types, you can execute an SQL command and specify the table name.
+To find out attribute data types, you can execute an SQL command and specify the table name:
 
-For MySQL, you can execute the `DESCRIBE` SQL command:
+**MySQL**
 
 ```sql
 DESCRIBE FamilyMembers
 ```
 
-| Field       | Type        | Null | Key |
-| ----------- | ----------- | ---- | --- |
-| member_id   | int         | NO   | PRI |
-| status      | varchar(50) | NO   |     |
-| member_name | varchar(50) | NO   |     |
-| birthday    | datetime    | NO   |     |
+| Field       | Type        | Null | Key | Default | Extra |
+| ----------- | ----------- | ---- | --- | ------- | ----- |
+| member_id   | int         | NO   | PRI |         |       |
+| status      | varchar(50) | NO   |     |         |       |
+| member_name | varchar(50) | NO   |     |         |       |
+| birthday    | datetime    | NO   |     |         |       |
 
-For PostgreSQL, you can use an SQL query to the information schema:
+**PostgreSQL**
 
 ```sql
 SELECT column_name, data_type, is_nullable
@@ -60,6 +60,8 @@ WHERE table_name = 'familymembers'
 | birthday    | timestamp without time zone | NO          |
 
 Alternatively, you can look at the ERD diagram of the database schema:
+
+Family database ER diagram: [open on SQL Academy](https://sql-academy.org/en/guide/structure-of-relation-databases).
 
 ## Primary Key
 
@@ -83,10 +85,18 @@ The table with the foreign key is called the child table, and the table with the
 
 The foreign key rule guarantees that when creating records in the child table, the value of the field that is the foreign key exists in the parent table.
 
-![Examples of foreign keys](https://sql-academy.org/static/guidePage/structure-of-relation-databases/en_keys.png 'Examples of foreign keys')
+![Examples of foreign keys](https://sql-academy.org/static/guidePage/structure-of-relation-databases/en_keys.png "Examples of foreign keys")
 
 The presence of a foreign key is the same optional requirement as in the case of a primary key.
 
 If the foreign key is not defined, the database management system will still work, but it will not verify that, for example,
 when creating a record in the `Purchase` table, the `buyer_id` and `good_id` fields contain
 values that are defined in the corresponding tables in the `id` field.
+
+Which of the following statements is **false** regarding keys in relational databases?
+
+1. There can only be one primary key in each table — There can only be one primary key in each table, which uniquely identifies a record in the table. The primary key can consist of multiple fields in the table, but there is only one primary key.
+
+2. A table can contain multiple foreign keys or no foreign keys at all — Defining a foreign key constraint is optional, so a table may not have any foreign keys. At the same time, if a table has multiple fields that reference the identifiers of other tables, we can define multiple foreign keys.
+
+3. **Correct answer:** The purpose of primary key rules and foreign key rules is the same — The purposes of primary key rules and foreign key rules are different. The primary key ensures the uniqueness of each record within a single table, while the foreign key is used to maintain referential integrity.

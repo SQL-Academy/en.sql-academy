@@ -1,15 +1,15 @@
 ---
 meta:
-    title: 'Explain the difference between DELETE, TRUNCATE, and DROP'
-    description: 'DELETE removes selected records, TRUNCATE clears the entire table while preserving its structure, and DROP completely deletes the table. Learn the key differences between these commands.'
+    title: "Explain the difference between DELETE, TRUNCATE, and DROP"
+    description: "DELETE removes selected records, TRUNCATE clears the entire table while preserving its structure, and DROP completely deletes the table. Learn the key differences between these commands."
 ---
 
 ## DELETE
 
--   Removes selected records from a table.
--   A `WHERE` condition can be used to delete specific records.
--   The operation is logged in the transaction log row by row.
--   `ON DELETE` triggers are activated.
+- Removes selected records from a table.
+- A `WHERE` condition can be used to delete specific records.
+- The operation is logged in the transaction log row by row.
+- `ON DELETE` triggers are activated.
 
 ### Syntax
 
@@ -19,11 +19,11 @@ DELETE FROM table_name [WHERE condition];
 
 ## TRUNCATE
 
--   Removes all data from the table without the possibility of recovery.
--   `WHERE` cannot be used.
--   Faster because it does not log the deletion of each row.
--   Resets auto-increment identifiers.
--   Triggers are not activated.
+- Removes all data from the table without the possibility of recovery.
+- `WHERE` cannot be used.
+- Faster because it does not log the deletion of each row.
+- Resets auto-increment identifiers.
+- Triggers are not activated.
 
 ### Syntax
 
@@ -33,8 +33,8 @@ TRUNCATE TABLE table_name;
 
 ## DROP
 
--   Deletes the entire table along with its data, structure, indexes, and constraints.
--   The action is irreversible.
+- Deletes the entire table along with its data, structure, indexes, and constraints.
+- The action is irreversible.
 
 ### Syntax
 
@@ -44,6 +44,8 @@ DROP TABLE table_name;
 
 ## Choosing between commands
 
--   Use `DELETE` when you need to remove specific records.
--   Use `TRUNCATE` to quickly remove all data from the table while keeping its structure.
--   Use `DROP` to completely remove the table from the database.
+- Use `DELETE` when you need to remove specific records.
+- Use `TRUNCATE` to quickly remove all data from the table while keeping its structure.
+- Use `DROP` to completely remove the table from the database.
+
+For a deeper dive with examples, see the article [“TRUNCATE vs DELETE vs DROP: The Difference”](https://sql-academy.org/en/blog/sql-truncate-delete-drop).

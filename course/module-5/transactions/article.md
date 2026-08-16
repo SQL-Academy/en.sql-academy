@@ -1,7 +1,7 @@
 ---
 meta:
-  title: "Transactions"
-  description: "Discover the importance of transactions in database management and how they ensure the reliability of applications. Learn why transactions are necessary to maintain data integrity and how they help prevent errors during simultaneous access by multiple users."
+    title: "Transactions"
+    description: "Discover the importance of transactions in database management and how they ensure the reliability of applications. Learn why transactions are necessary to maintain data integrity and how they help prevent errors during simultaneous access by multiple users."
 ---
 
 # Transactions

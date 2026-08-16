@@ -1,7 +1,7 @@
 ---
 meta:
-    title: 'Document-oriented databases'
-    description: 'Definition of document-oriented databases, examples of data storage, features, and a rating of popular document-oriented DBMS.'
+    title: "Document-oriented databases"
+    description: "Definition of document-oriented databases, examples of data storage, features, and a rating of popular document-oriented DBMS."
 ---
 
 # Document-oriented databases

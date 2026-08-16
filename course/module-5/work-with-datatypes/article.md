@@ -1,7 +1,7 @@
 ---
 meta:
-    title: 'Working with Data Types'
-    description: 'Advanced exploration of working with data types in SQL'
+    title: "Working with Data Types"
+    description: "Advanced exploration of working with data types in SQL"
 ---
 
 # Working with Data Types

@@ -1,7 +1,7 @@
 ---
 meta:
-    title: 'Introduction to the SQL course'
-    description: 'Information about our free online SQL course, support for working on various devices and the option of purchasing a premium account'
+    title: "Introduction to the SQL course"
+    description: "Information about our free online SQL course, support for working on various devices and the option of purchasing a premium account"
 ---
 
 # About the course
@@ -14,7 +14,7 @@ To achieve this goal, the course is equipped with a large number of exercises th
 to think much when making queries to databases.
 
 During the course, we strongly recommend that you cultivate a "growth mindset": if you encounter any difficulties trying
-to understand a new topic or doing exercises, try to transform the frustrating experience into a productive one.  
+to understand a new topic or doing exercises, try to transform the frustrating experience into a productive one.\
 And the most important thing in this course is **have fun!**
 
 ## Take the course publicly
@@ -25,26 +25,26 @@ You can use the hashtag `#sql-academy` if you want.
 
 ## Device support
 
-This course is designed to pass from a computer and laptop - the most optimal devices for writing SQL queries. The course can also be taken from a tablet or from a phone,
+This course is designed to be taken on a computer or laptop — the best devices for writing SQL queries. The course can also be taken on a tablet or phone,
 but some functionality may not be available or work incorrectly. Please treat this with understanding.
 
 ## How our site is organized
 
-![How our site is organized](https://sql-academy.org/static/guidePage/intro-intro/connections.webp 'How our site is organized')
+![How our site is organized](https://sql-academy.org/static/guidePage/intro-intro/connections.webp "How our site is organized")
 
 There are four main sections on our resource, each of which will be useful in different ways:
 
--   **<a href="https://sql-academy.org/guide" target="_blank"> Course </a>** - is your step-by-step assistant when learning SQL. It presents consistent, structured materials, as well as related exercises to consolidate knowledge.
--   **<a href="https://sql-academy.org/guide#advanced-courses" target="_blank">Advanced courses</a>** - are separate practice-oriented programs for those who already know the basics and want to go deeper into applied topics, such as SQL query optimization or data analysis.
--   **<a href="https://sql-academy.org/trainer" target="_blank">Trainer </a>** the simulator is a tool to test your knowledge. The tasks in it are ranked by difficulty, so you can choose the ones that are suitable for your current level.
-    Also, solving tasks from the simulator is necessary to obtain a certificate confirming knowledge in the field of SQL.
--   **<a href="https://sql-academy.org/sandbox" target="_blank">Sandbox </a>** - is a space for free acquaintance with the structure of our databases.
+- **<a href="https://sql-academy.org/en/guide" target="_blank"> Course </a>** - is your step-by-step assistant when learning SQL. It presents consistent, structured materials, as well as related exercises to consolidate knowledge.
+- **<a href="https://sql-academy.org/en/guide#advanced-courses" target="_blank">Advanced courses</a>** - are separate practice-oriented programs for those who already know the basics and want to go deeper into applied topics, such as SQL query optimization or data analysis.
+- **<a href="https://sql-academy.org/en/trainer" target="_blank">Trainer </a>** the simulator is a tool to test your knowledge. The tasks in it are ranked by difficulty, so you can choose the ones that are suitable for your current level.
+  Also, solving tasks from the simulator is necessary to obtain a certificate confirming knowledge in the field of SQL.
+- **<a href="https://sql-academy.org/en/sandbox" target="_blank">Sandbox </a>** - is a space for free acquaintance with the structure of our databases.
 
 In addition, the header includes a global search that helps you find materials across all parts of the platform: courses, tasks, and functions from the handbook.
 
 ## Premium account
 
-The basic course, trainer, and sandbox are available for free. A <a href="https://sql-academy.org/premium" target="_blank">Premium account</a> is an optional upgrade for learners who want to go deeper and use all the platform’s features.
+The basic course, trainer, and sandbox are available for free. A <a href="https://sql-academy.org/en/premium" target="_blank">Premium account</a> is an optional upgrade for learners who want to go deeper and use all the platform’s features.
 
 With a Premium account, you get:
 
@@ -61,7 +61,7 @@ Purchasing Premium also supports the development of SQL Academy and helps us cre
 
 The trainer certificate confirms that you have not only studied the theory but can also solve practical SQL tasks independently. You can add it to your résumé or portfolio, and anyone can verify its authenticity using the public link.
 
-The certificate becomes available after you independently solve 50 tasks in the **<a href="https://sql-academy.org/trainer" target="_blank">Trainer</a>**. Tasks for which you viewed a ready-made solution do not count.
+The certificate becomes available after you independently solve 40 tasks in the **<a href="https://sql-academy.org/en/trainer" target="_blank">Trainer</a>**. Tasks for which you viewed a ready-made solution do not count.
 
 You can track the number of independently solved tasks using the progress bar in the trainer.
 

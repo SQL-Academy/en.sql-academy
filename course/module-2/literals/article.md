@@ -1,14 +1,14 @@
 ---
 meta:
-  title: "Literals in SQL"
-  description: 'Literal — an explicitly specified fixed value, for example, the number 12 or the string "SQL". In MySQL, there are the following types of literals: numeric, string, boolean, NULL, bit, hexadecimal, and date and time literal.'
+    title: "Literals in SQL"
+    description: 'Literal — an explicitly specified fixed value, for example, the number 12 or the string "SQL". In MySQL, there are the following types of literals: numeric, string, boolean, NULL, bit, hexadecimal, and date and time literal.'
 ---
 
 # Literals in SQL
 
 In the last lesson, a string was output, and if we speak in a more formal language, then the so-called string literal.
 
-```sql-executable
+```sql
 SELECT 'Hello world'
 ```
 
@@ -24,33 +24,55 @@ The main types of literals in SQL are:
 
 ## String literals
 
-<MySQLOnly>
+**MySQL**
 
 A string is a sequence of characters enclosed in single (') or double (") quotation marks.
 For example, `'this is a string'` and `"this is a string"`.
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 A string is a sequence of characters enclosed in single quotation marks (').
 For example, `'this is a string'`.
 
 In PostgreSQL, double quotes (") are used for identifiers (table names, column names), and cannot be used for string literals.
 
-</PostgreSQLOnly>
+**MySQL**
 
 Strings can contain special sequences of characters starting with `"\"` (escape character).
 They are needed in order for the DBMS to give ordinary symbols (letters and other signs) a new special meaning. For example, the sequence `"\n"`
 literally means "new line", and without the preceding slash it would be the usual letter `"n"`.
 
-- ```sql-Family-executable
+**PostgreSQL**
+
+Strings can contain special sequences of characters starting with `"\"` (escape character).
+They are needed in order for the DBMS to give ordinary symbols (letters and other signs) a new special meaning. For example, the sequence `"\n"`
+literally means "new line", and without the preceding slash it would be the usual letter `"n"`.
+
+To use escape sequences in PostgreSQL, you need to use E-strings (with the `E` prefix): `E'string \n with newline'`.
+
+- ```sql
   SELECT 'Line Another line' as String
   ```
 
-- ```sql-Family-executable
-  SELECT 'Line \n Another line' as String
-  ```
+    | String            |
+    | ----------------- |
+    | Line Another line |
+
+- **MySQL**
+
+    ```sql
+    SELECT 'Line \n Another line' as String
+    ```
+
+    **PostgreSQL**
+
+    ```sql
+    SELECT E'Line \n Another line' as String
+    ```
+
+    | String                 |
+    | ---------------------- |
+    | Line <br> Another line |
 
 ## Numeric literals
 
@@ -65,7 +87,7 @@ literally means "new line", and without the preceding slash it would be the usua
 
 For numeric literals, SQL has all the arithmetic operators we are familiar with:
 
-<MySQLOnly>
+**MySQL**
 
 |  Operator  | Description      | Example         |
 | :--------: | :--------------- | :-------------- |
@@ -76,9 +98,7 @@ For numeric literals, SQL has all the arithmetic operators we are familiar with:
 |    `/`     | Division         | `1 / 2 = 0.5`   |
 |   `DIV`    | Integer division | `10 DIV 4 = 2`  |
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 | Operator | Description      | Example         |
 | :------: | :--------------- | :-------------- |
@@ -88,36 +108,34 @@ For numeric literals, SQL has all the arithmetic operators we are familiar with:
 |   `-`    | Subtraction      | `50 - 51 = -1`  |
 |   `/`    | Division         | `1 / 2 = 0.5`   |
 
-</PostgreSQLOnly>
-
 Using these operators, you can construct any arithmetic expression by applying the standard rules of arithmetic.
 
 For example:
 
-```sql-Family-executable
+```sql
 SELECT (5 * 2 - 6) / 2 AS Result;
 ```
+
+| Result |
+| ------ |
+| 2      |
 
 ## Date and Time Literals
 
 Date and time values can be represented as strings or numbers.
 
-<MySQLOnly>
+**MySQL**
 
 For example, if we want to specify a date in a query, we can do this using the string `"1970-12-30"`, `"19701230"`, or the number `19701230`.
 In both cases, these values will be interpreted as the date "December 30th, 1970".
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 For example, if we want to specify a date in a query, we can do this using the string `'1970-12-30'`.
 
-</PostgreSQLOnly>
-
 Here is an example of using a date literal:
 
-```sql-Family-executable
+```sql
 SELECT * FROM FamilyMembers WHERE birthday > '1970-12-30'
 ```
 
@@ -125,7 +143,7 @@ You don't need to pay attention to what this query specifically does, we'll look
 
 Above, we looked at how to specify a date, but in addition to a date, we can also specify a time or both together.
 
-<MySQLOnly>
+**MySQL**
 
 |               | Description                                          | Format                                                                                                                                                                             |
 | :------------ | :--------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -133,9 +151,7 @@ Above, we looked at how to specify a date, but in addition to a date, we can als
 | Time          | Contains only time without a specific date           | `hh:mm:ss`, `hh:mm`, `hh`, `ss` <br /><br /> The separator can also be omitted. <br /><br /> For example: <br /> `12:11` = 12:11:00                                                |
 | Date and time | Date with the possibility of setting a specific time | `YYYY-MM-DD hh:mm:ss`, `YYYYMMDDhhmmss` <br /><br /> For example: <br /> `'20200101183030'` = January 1st, 2020, 18:30:30                                                          |
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 |               | Description                                          | Format                                                                                                       |
 | :------------ | :--------------------------------------------------- | :----------------------------------------------------------------------------------------------------------- |
@@ -143,16 +159,14 @@ Above, we looked at how to specify a date, but in addition to a date, we can als
 | Time          | Contains only time without a specific date           | `hh:mm:ss`, `hh:mm` <br /><br /> For example: <br /> `'12:11:00'`, `'12:11'`                                 |
 | Date and time | Date with the possibility of setting a specific time | `YYYY-MM-DD hh:mm:ss` <br /><br /> For example: <br /> `'2020-01-01 18:30:30'` = January 1st, 2020, 18:30:30 |
 
-</PostgreSQLOnly>
-
 ## Logical literals
 
 A logical literal is a value of `TRUE` or `FALSE`, which indicates the truthfulness or falsehood of a statement.
 
-<MySQLOnly>
-    When interpreting a query, MySQL converts them into numbers: `TRUE` and `FALSE` become
-    `1` and `0`, respectively.
-</MySQLOnly>
+**MySQL**
+
+When interpreting a query, MySQL converts them into numbers: `TRUE` and `FALSE` become
+`1` and `0`, respectively.
 
 ## NULL
 
