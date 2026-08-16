@@ -1,7 +1,7 @@
 ---
 meta:
-    title: 'What is a Self-Join and when is it used?'
-    description: 'A Self-Join in SQL joins a table with itself, useful for handling hierarchies and comparing rows. Learn how and when to use a Self-Join.'
+    title: "What is a Self-Join and when is it used?"
+    description: "A Self-Join in SQL joins a table with itself, useful for handling hierarchies and comparing rows. Learn how and when to use a Self-Join."
 ---
 
 > **A Self-Join** is a type of join in SQL where a table is joined with itself.
@@ -9,46 +9,21 @@ meta:
 
 ## When to use a Self-Join:
 
--   **Hierarchical structures**
-    For example, in an employee table where each employee may have a manager who is also an employee in the same table.
--   **Comparing records**
-    To find duplicates or compare values between different rows in the same table.
+- **Hierarchical structures**
+  For example, in an employee table where each employee may have a manager who is also an employee in the same table.
+- **Comparing records**
+  To find duplicates or compare values between different rows in the same table.
 
 ## Example
 
-export const exampleFields = ['employeeId', 'name', 'managerId'];
-export const exampleRows = [
-    {
-        employeeId: 1,
-        name: 'John',
-        managerId: null,
-    },
-    {
-        employeeId: 2,
-        name: 'Michail',
-        managerId: 1,
-    },
-    {
-        employeeId: 3,
-        name: 'Alisa',
-        managerId: 1,
-    },
-    {
-        employeeId: 4,
-        name: 'Max',
-        managerId: 2,
-    },
-];
-
 Consider the following employee data:
 
-<QueryTable
-    tableData={{
-        fields: exampleFields,
-        rows: exampleRows,
-    }}
-    maxLines={4}
-/>
+| employeeId | name    | managerId |
+| ---------- | ------- | --------- |
+| 1          | John    | null      |
+| 2          | Michail | 1         |
+| 3          | Alisa   | 1         |
+| 4          | Max     | 2         |
 
 To get a list of employees and their managers:
 

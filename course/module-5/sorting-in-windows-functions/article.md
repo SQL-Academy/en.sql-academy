@@ -1,7 +1,7 @@
 ---
 meta:
-    title: 'Sorting inside the window'
-    description: 'Sorting within a window is an important feature of SQL window functions. Learn how to use in-window sorting to organize your data and get more accurate aggregate calculations. An example of use and explanation of the features of sorting without specifying window frames.'
+    title: "Sorting inside the window"
+    description: "Sorting within a window is an important feature of SQL window functions. Learn how to use in-window sorting to organize your data and get more accurate aggregate calculations. An example of use and explanation of the features of sorting without specifying window frames."
 ---
 
 # Sorting within a window
@@ -22,11 +22,11 @@ Let's say we need to analyze data on room bookings to understand how the total a
 
 We have the following sample data of bookings:
 
-![Window function without sorting](https://sql-academy.org/static/guidePage/sorting-in-windows-functions/initial-data_en.png 'Window function without sorting')
+![Window function without sorting](https://sql-academy.org/static/guidePage/sorting-in-windows-functions/initial-data_en.png "Window function without sorting")
 
 And we want to see the change in expenses for each user over time, resulting in a table like this:
 
-![Using a window function with sorting](https://sql-academy.org/static/guidePage/sorting-in-windows-functions/final-result.png 'Using a window function with sorting')
+![Using a window function with sorting](https://sql-academy.org/static/guidePage/sorting-in-windows-functions/final-result.png "Using a window function with sorting")
 
 #### Splitting data into partitions
 
@@ -43,7 +43,7 @@ SELECT user_id,
 FROM Reservations;
 ```
 
-![Intermediate result](https://sql-academy.org/static/guidePage/sorting-in-windows-functions/result-1.png 'Intermediate result')
+![Intermediate result](https://sql-academy.org/static/guidePage/sorting-in-windows-functions/result-1.png "Intermediate result")
 
 The result of this query shows the total expenses with a breakdown by user in the `total_expenses` column.
 However, this is not exactly what we want: the data in the table is not ordered by date,
@@ -62,7 +62,7 @@ SELECT user_id,
 FROM Reservations;
 ```
 
-![Using a window function with sorting](https://sql-academy.org/static/guidePage/sorting-in-windows-functions/final-result.png 'Using a window function with sorting')
+![Using a window function with sorting](https://sql-academy.org/static/guidePage/sorting-in-windows-functions/final-result.png "Using a window function with sorting")
 
 Now we have achieved what we wanted. But what changed after adding `ORDER BY start_date`?
 
@@ -99,6 +99,6 @@ This means that the window starts from the first row and ends at the current row
 
 In the case of our query, the values for the `cumulative_total` column are calculated as follows:
 
-![Explanation of how sorting worked](https://sql-academy.org/static/guidePage/sorting-in-windows-functions/explanation.png 'Explanation of how sorting worked')
+![Explanation of how sorting worked](https://sql-academy.org/static/guidePage/sorting-in-windows-functions/explanation.png "Explanation of how sorting worked")
 
 We will dive into windows frames and their definitions in more detail in the next article.

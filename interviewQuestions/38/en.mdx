@@ -1,7 +1,7 @@
 ---
 meta:
-    title: 'How do the REVOKE and GRANT commands work?'
-    description: 'The GRANT and REVOKE commands in SQL manage access rights to database objects. Learn how to grant and revoke user privileges with examples.'
+    title: "How do the REVOKE and GRANT commands work?"
+    description: "The GRANT and REVOKE commands in SQL manage access rights to database objects. Learn how to grant and revoke user privileges with examples."
 ---
 
 The `GRANT` and `REVOKE` commands in SQL are used to manage user access rights to database objects.
@@ -18,12 +18,12 @@ The `GRANT` command provides users or roles with specific privileges on database
 GRANT privileges ON object TO user [WITH GRANT OPTION];
 ```
 
--   `privileges`: the actions allowed (e.g., `SELECT`, `INSERT`, `UPDATE`, `DELETE`, `ALL PRIVILEGES`).
--   `object`: the database, table, view, procedure, etc.
--   `user`: the username or role to which privileges are granted.
--   `WITH GRANT OPTION` (optional): allows the recipient of the privileges to grant them to others.
+- `privileges`: the actions allowed (e.g., `SELECT`, `INSERT`, `UPDATE`, `DELETE`, `ALL PRIVILEGES`).
+- `object`: the database, table, view, procedure, etc.
+- `user`: the username or role to which privileges are granted.
+- `WITH GRANT OPTION` (optional): allows the recipient of the privileges to grant them to others.
 
-**Example:**  
+**Example:**\
 To grant user `user1` the privilege to select data from the `employees` table:
 
 ```sql
@@ -40,7 +40,7 @@ The `REVOKE` command removes previously granted privileges from users or roles.
 REVOKE privileges ON object FROM user;
 ```
 
-**Example:**  
+**Example:**\
 To revoke the `SELECT` privilege from user `user1` on the `employees`
 
 ```sql

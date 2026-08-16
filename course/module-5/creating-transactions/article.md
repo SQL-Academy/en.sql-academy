@@ -1,7 +1,7 @@
 ---
 meta:
-  title: "Creating transactions: MySQL and PostgreSQL"
-  description: "Learn how to create secure transactions in MySQL and PostgreSQL databases to protect your funds and data. Discover the importance of COMMIT and ROLLBACK commands to manage changes and ensure data stability. Explore the use of savepoints for flexible control over transactions, minimizing risks and enhancing data processing efficiency."
+    title: "Creating transactions: MySQL and PostgreSQL"
+    description: "Learn how to create secure transactions in MySQL and PostgreSQL databases to protect your funds and data. Discover the importance of COMMIT and ROLLBACK commands to manage changes and ensure data stability. Explore the use of savepoints for flexible control over transactions, minimizing risks and enhancing data processing efficiency."
 ---
 
 # Creating transactions
@@ -40,17 +40,13 @@ With a transaction, the program ensures the safety of your $1,000, guaranteeing 
 
 ## Starting and completing transactions
 
-<MySQLOnly>
+**MySQL**
 
 Every explicit transaction in MySQL begins with the use of the `START TRANSACTION` or `BEGIN` statement.
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 Every explicit transaction in PostgreSQL begins with the use of the `BEGIN` or `START TRANSACTION` statement.
-
-</PostgreSQLOnly>
 
 A transaction can be completed by:
 
@@ -76,7 +72,7 @@ SAVEPOINT my_savepoint;
 To roll back to a specific savepoint, simply enter the command `ROLLBACK`, followed by the keywords `TO SAVEPOINT` and the name of the savepoint,
 for example:
 
-<MySQLOnly>
+**MySQL**
 
 ```sql
 START TRANSACTION;
@@ -98,9 +94,7 @@ UPDATE accounts SET balance = balance + 200 WHERE user_id = 2;
 COMMIT;
 ```
 
-</MySQLOnly>
-
-<PostgreSQLOnly>
+**PostgreSQL**
 
 ```sql
 BEGIN;
@@ -121,8 +115,6 @@ UPDATE accounts SET balance = balance + 200 WHERE user_id = 2;
 -- Complete the transaction
 COMMIT;
 ```
-
-</PostgreSQLOnly>
 
 As a result of this transaction, the balance of the first user remains unchanged due to the rollback to the savepoint,
 while the balance of the second user increases by 200.

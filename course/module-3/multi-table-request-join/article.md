@@ -1,7 +1,7 @@
 ---
 meta:
-    title: 'Multi-table queries, JOIN operator'
-    description: 'Description and syntax of SQL JOIN operator, examples of usage and self-check tasks'
+    title: "Multi-table queries, JOIN operator"
+    description: "Description and syntax of SQL JOIN operator, examples of usage and self-check tasks"
 ---
 
 # Multi-table queries, JOIN operator
@@ -38,7 +38,10 @@ SELECT family_member, amount * unit_price AS price FROM Payments
 The `family_member` field in the resulting selection displays the record identifiers from the `Payments` table, but they mean little to us.
 
 Instead of these identifiers, it would be much more informative to output the names of those who made the purchases (the `member_name` field from the `FamilyMember` table).
+
 This is exactly why table joining and the JOIN operator exist.
+
+Family database ER diagram: [open on SQL Academy](https://sql-academy.org/en/guide/multi-table-request-join).
 
 ## The general structure of a multi-table query
 
@@ -53,8 +56,8 @@ FROM table_1
 
 As can be seen from the structure, joining can be:
 
--   internal `INNER` (by default)
--   outer `OUTER`, in which case the outer connection is divided into `LEFT`, `RIGHT`, and `FULL`.
+- internal `INNER` (by default)
+- outer `OUTER`, in which case the outer connection is divided into `LEFT`, `RIGHT`, and `FULL`.
 
 We will learn in more detail in the next articles what the difference is between internal and external joining and how they work.
 
@@ -98,7 +101,7 @@ In our case, the `family_member` field points to the identifier in the `FamilyMe
 
 ## Output of all columns from a table in a multi-table query
 
-    Previously, when all queries were executed on one table, it was enough to specify the `*` character to output all fields from this table. Now, when there can be several tables, `*` will mean "output all columns from the tables listed in the expression `FROM`".
+Previously, when all queries were executed on one table, it was enough to specify the `*` character to output all fields from this table. Now, when there can be several tables, `*` will mean "output all columns from the tables listed in the expression `FROM`".
 
 In some cases, we may need to output columns belonging only to a particular table. For example, the connection of the `Payments` and `FamilyMembers` tables is given, and only the fields from the `FamilyMembers` table should be output to the final selection. How to do it? It's very simple! It is necessary to add the name of the table before the `*` symbol:
 
@@ -176,5 +179,5 @@ INNER JOIN Pass_in_trip
 
 When using aliases, always follow these simple rules to keep your queries concise and clear:
 
--   Use logical abbreviations (e.g., first letters of the table name)
--   Avoid overly short (single-character) or non-intuitive aliases
+- Use logical abbreviations (e.g., first letters of the table name)
+- Avoid overly short (single-character) or non-intuitive aliases

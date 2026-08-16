@@ -1,13 +1,13 @@
 ---
 meta:
-    title: 'Basic SQL query syntax'
-    description: 'An example of simple SQL queries to a database. Using aliases in SQL queries.'
+    title: "Basic SQL query syntax"
+    description: "An example of simple SQL queries to a database. Using aliases in SQL queries."
 ---
 
 # Basic SQL query syntax
 
 One of the main functions of SQL is to get data samples from the DBMS.
-To do this, SQL uses the `SELECT` operator. Let's look at a few simple queries with his participation.
+To do this, SQL uses the `SELECT` operator. Let's look at a few simple queries that use it.
 
 ## Output of arbitrary values
 
@@ -15,7 +15,7 @@ To begin with, it is important to understand that using the `SELECT` operator, y
 but also arbitrary rows, numbers, dates, etc. For example, this way you can output an arbitrary string:
 
 ```sql
-SELECT "Hello world"
+SELECT 'Hello world'
 ```
 
 ## Output of all data from the table
@@ -23,19 +23,21 @@ SELECT "Hello world"
 The `*` symbol is used to output all fields from a specific table. Let's take a look at the database schema and
 output the data from one of the tables.
 
+Family database ER diagram: [open on SQL Academy](https://sql-academy.org/en/guide/basic-syntax-sql-query).
+
 ```sql
 SELECT * FROM FamilyMembers
 ```
 
-| member_id | status    | member_name        | birthday              | 
-| --------- | --------- | ------------------ | --------------------- | 
-| 1         | father    | Headley Quincey    | 1960-05-13T00:00:00Z  | 
-| 2         | mother    | Flavia Quincey     | 1963-02-16T00:00:00Z  | 
-| 3         | son       | Andie Quincey      | 1983-06-05T00:00:00Z  | 
-| 4         | daughter  | Lela Quincey       | 1985-06-07T00:00:00Z  | 
-| 5         | daughter  | Annie Quincey      | 1988-04-10T00:00:00Z  | 
-| 6         | father    | Ernest Forrest     | 1961-09-11T00:00:00Z  | 
-| 7         | mother    | Constance Forrest  | 1968-09-06T00:00:00Z  | 
+| member_id | status   | member_name       | birthday                 |
+| --------- | -------- | ----------------- | ------------------------ |
+| 1         | father   | Headley Quincey   | 1960-05-13T00:00:00.000Z |
+| 2         | mother   | Flavia Quincey    | 1963-02-16T00:00:00.000Z |
+| 3         | son      | Andie Quincey     | 1983-06-05T00:00:00.000Z |
+| 4         | daughter | Lela Quincey      | 1985-06-07T00:00:00.000Z |
+| 5         | daughter | Annie Quincey     | 1988-04-10T00:00:00.000Z |
+| 6         | father   | Ernest Forrest    | 1961-09-11T00:00:00.000Z |
+| 7         | mother   | Constance Forrest | 1968-09-06T00:00:00.000Z |
 
 ## Output of data from certain columns of the table
 
@@ -46,15 +48,15 @@ this can be done by listing the column names separated by commas:
 SELECT member_id, member_name FROM FamilyMembers
 ```
 
-| member_id | member_name        | 
-| --------- | ------------------ | 
-| 1         | Headley Quincey    | 
-| 2         | Flavia Quincey     | 
-| 3         | Andie Quincey      | 
-| 4         | Lela Quincey       | 
-| 5         | Annie Quincey      | 
-| 6         | Ernest Forrest     | 
-| 7         | Constance Forrest  | 
+| member_id | member_name       |
+| --------- | ----------------- |
+| 1         | Headley Quincey   |
+| 2         | Flavia Quincey    |
+| 3         | Andie Quincey     |
+| 4         | Lela Quincey      |
+| 5         | Annie Quincey     |
+| 6         | Ernest Forrest    |
+| 7         | Constance Forrest |
 
 ## Aliases
 
@@ -90,5 +92,5 @@ SELECT member_id, member_name Name FROM FamilyMembers
 This is our first lesson of the practical module. Before that, there were only theoretical ones aimed at filling potential gaps in the theory of relational databases.
 After each practical lesson, we offer a group of tasks for self-testing work in order to immediately practise the information received.
 
-If you missed the module "Introduction", namely the article <a href="https://sql-academy.org/guide/intro-structure-of-course" target="_blank"> "Course structure"</a>, which described the principle of operation and interface of the block
-"Tasks for self-testing", then we recommend <a href="https://sql-academy.org/guide/intro-structure-of-course" target="_blank"> to return to it</a>.
+If you missed the module "Introduction", namely the article <a href="https://sql-academy.org/en/guide/intro-structure-of-course" target="_blank"> "Course structure"</a>, which described the principle of operation and interface of the block
+"Tasks for self-testing", then we recommend <a href="https://sql-academy.org/en/guide/intro-structure-of-course" target="_blank"> to return to it</a>.

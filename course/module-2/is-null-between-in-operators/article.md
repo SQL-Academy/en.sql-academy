@@ -1,7 +1,7 @@
 ---
 meta:
-    title: 'IS NULL, BETWEEN, IN Operators'
-    description: 'Syntax and usage examples of SQL IS NULL, BETWEEN, IN operators'
+    title: "IS NULL, BETWEEN, IN Operators"
+    description: "Syntax and usage examples of SQL IS NULL, BETWEEN, IN operators"
 ---
 
 # IS NULL, BETWEEN, IN Operators

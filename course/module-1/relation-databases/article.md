@@ -1,7 +1,7 @@
 ---
 meta:
-    title: 'Relational databases'
-    description: 'The concept of relational databases, their features and principles of operation. Ranking relational databases by popularity.'
+    title: "Relational databases"
+    description: "The concept of relational databases, their features and principles of operation. Ranking relational databases by popularity."
 ---
 
 # Relational databases
