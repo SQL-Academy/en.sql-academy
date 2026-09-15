@@ -12,16 +12,16 @@ Window functions are a powerful tool in SQL that allow you to perform complex ca
 
 You might be wondering, what does "window" mean? In a standard SQL query, all sets of rows are treated
 as one continuous block of data, and aggregate values are calculated for that block.
-However, when window functions are applied, the query is segmented into groups of rows, or "windows,"
-and individual aggregate values are calculated for each segment. The window that is passed
+However, when window functions are applied, a group of related rows, or a "window," is determined for each row,
+and an individual aggregate value is calculated for that group. The set of rows passed
 to the window function can be:
 
 - the entire table,
 - separate partitions of the table, which are groups of rows based on one or more fields,
-- or even a specific range of rows within the table or partition.
+- or a window frame: a specific range of rows within a table or partition.
 
-For example, you can define a window that consists of the previous row plus the current row of the table.
-In this case, the aggregate function value will be calculated differently for each row, as the data passed to the function dynamically changes from row to row. The window "slides" through the table.
+For example, you can define a window frame that consists of the previous row plus the current row of the table.
+In this case, the aggregate function value will be calculated differently for each row, as the data passed to the function dynamically changes from row to row. The frame "slides" through the table.
 
 ### Visualization
 
@@ -44,13 +44,13 @@ Now let's see how the window function works for different windows:
 
     ![Partitioning schema](https://sql-academy.org/static/guidePage/windows-functions/3_en.png "Partitioning schema")
 
-- A more specific set of rows can also be specified as the window. For example,
-  the window can be defined as the "previous row + current row" of the table.
+- A more specific set of rows can also be specified as a window frame. For example,
+  the frame can be defined as the "previous row + current row" of the table.
   In this case, it would look like this:
 
-    ![Partitioning schema](https://sql-academy.org/static/guidePage/windows-functions/4_en.png "Partitioning schema")
+    ![Window frame formation schema](https://sql-academy.org/static/guidePage/windows-functions/4_en.png "Window frame formation schema")
 
-    It's worth noting that for the first row, the window will consist of only one record, as there is no previous row.
+    It's worth noting that for the first row, the frame will consist of only one record, as there is no previous row.
 
 ## Syntax of window functions
 
@@ -67,13 +67,13 @@ Where:
 
 - `<window_function>(<table_field>)` is the window function being used, e.g., `AVG(price)`.
 - `OVER` is used to define the window (group of rows) that will be passed to the window function.
-  If `OVER()` is left without parameters, the window will be the entire table.
+  If `OVER ()` is left without parameters, the window will contain all rows in the query result.
 
 Within `OVER`, there are three optional parameters that allow you to customize the window:
 
 - `PARTITION BY <partition_columns>` divides the data into non-overlapping subsets, where each subset contains rows with the same values in one or more columns, creating partitions.
 - `ORDER BY <sort_columns>` sets the order of the rows within the window. This is particularly important for ranking window functions.
-- `ROWS|RANGE <range_definition>` defines the range of rows. This parameter allows you to specify how many rows to include before and after the current row in the window.
+- `ROWS|RANGE <range_definition>` defines the window frame. This parameter allows you to specify how many rows to include before and after the current row.
 
 We will delve into each of these parameters in more detail in the following articles.
 
@@ -294,7 +294,7 @@ The `COUNT` function returns the number of rows passed to it, giving us the numb
 
 ## Execution order of window functions in SELECT
 
-When using window functions, it is important to understand the order in which they are executed. As shown in the diagram below, windows are processed as the penultimate step, after filtering and grouping, but before the final sorting of the query results.
+When using window functions, it is important to understand the order in which they are executed. As shown in the diagram below, window functions are processed as the penultimate step, after filtering and grouping, but before the final sorting of the query results.
 
 ![Execution order of window functions in SELECT query](https://sql-academy.org/static/guidePage/windows-functions/query-order_en.png "Execution order of window functions in SELECT query")
 

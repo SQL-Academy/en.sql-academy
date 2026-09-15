@@ -1,20 +1,20 @@
 ---
 meta:
     title: "Window Frames, RANGE and ROWS"
-    description: "Window frames in SQL - a concept that defines a subset of rows considered in window functions. Learn the difference between a window and a partition, as well as how to define window frames using ROWS and RANGE. Understand the differences between ROWS and RANGE in the context of SQL window functions."
+    description: "Window frames in SQL - a concept that defines a subset of rows considered in window functions. Learn the difference between a window frame and a partition, as well as how to define frame boundaries using ROWS and RANGE. Understand the differences between ROWS and RANGE in the context of SQL window functions."
 ---
 
-# Window frames
+# Window Frames, RANGE and ROWS
 
-In the context of SQL window functions, a "window" defines a subset of rows
+In the context of SQL window functions, a "window frame" defines a subset of rows
 that are considered by the SQL function when performing calculations.
 
-In other words, a window is a dynamic set of rows that "slides" through your query result,
-forming different data sets for each row, depending on your defined window.
+In other words, a window frame is a dynamic set of rows that "slides" through your query result,
+forming different data sets for each row, depending on your defined frame.
 
-## Window vs Partition
+## Window frame vs Partition
 
-Although the terms "window" and "partition" may seem similar, they represent different concepts:
+Although the terms "window frame" and "partition" may seem similar, they represent different concepts:
 
 - Partition (`PARTITION BY`). This is the division of the entire result set into non-overlapping subsets,
   where each subset contains rows with the same values in one or more columns.
@@ -22,34 +22,41 @@ Although the terms "window" and "partition" may seem similar, they represent dif
 
     ![Partition divition schema](https://sql-academy.org/static/guidePage/windows-functions-frames/partitions_visualisation_en.png "Partition divition schema")
 
-- Window. Defines which specific rows in each partition will be used
+- Window frame. Defines which specific rows in each partition will be used
   for calculating the window function for each row.
-  The window can change from row to row.
+  The frame can change from row to row.
 
     For example, if the rule `ROWS BETWEEN 1 PRECEDING AND CURRENT ROW` is used,
-    for each row the window will consist of the row itself and one preceding row.
+    for each row the frame will consist of the row itself and one preceding row.
     This is like a "subpartition" within an existing partition.
 
-    ![Partition divition schema](https://sql-academy.org/static/guidePage/windows-functions-frames/windows_visualisation_en.png "Partition divition schema")
+    ![Window frame formation schema](https://sql-academy.org/static/guidePage/windows-functions-frames/windows_visualisation_en.png "Window frame formation schema")
 
     That is:
 
-    - The first window consists only of the 1st record, because there is no previous record.
+    - The first frame consists only of the 1st record, because there is no previous record.
       The single record is passed to the aggregate function `AVG(price)` and the result is added to the `avg_price` field.
-    - The second window already contains records 1 and 2, which are sent to `AVG(price)` and return `(170 + 220) / 2 = 195`.
-    - The third window contains records 2 and 3, resulting in `(220 + 150) / 2 = 185`.
+    - The second frame contains records 1 and 2, which are sent to `AVG(price)` and return `(170 + 220) / 2 = 195`.
+    - The third frame contains records 2 and 3, resulting in `(220 + 150) / 2 = 185`.
     - and so on.
 
-### Note on window without ROWS/RANGE
+### Note on window frame without ROWS/RANGE
 
 If `ROWS/RANGE` is missing in the definition of a window function,
-then by default the window coincides with the partition.
+then the default frame depends on whether `ORDER BY` is present.
+
+If `ORDER BY` is absent, the frame coincides with the partition.
 In this case, the window function will process all rows within the partition, not limited to a subset.
 This means that the function result will be the same for all rows within the same partition.
 
+If `ORDER BY` is present, the default rule is
+`RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW`.
+In this case, the window frame starts with the first row and ends with the current row,
+including all rows with the same sorting field values as the current row.
+
 ## Defining window frames
 
-Using the `ROWS` or `RANGE` syntax, we can define exactly which window of data will be passed to the window function
+Using the `ROWS` or `RANGE` syntax, we can define exactly which window frame will be passed to the window function
 for calculating the value for the current row.
 
 The syntax for defining window frames looks like specifying a range relative to the current row.
@@ -58,7 +65,7 @@ The syntax for defining window frames looks like specifying a range relative to 
 SELECT  <window_function>(<table_field>)
 OVER (
       ...
-      ROWS|RANGE BETWEEN <start of window frame> AND <<end of window frame>
+      ROWS|RANGE BETWEEN <frame start> AND <frame end>
 )
 ```
 
@@ -76,7 +83,7 @@ like this:
 ... ROWS|RANGE BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING
 ```
 
-### Possible window frames definitions
+### Possible window frame definitions
 
 - `UNBOUNDED PRECEDING`, all rows preceding the current one
 - `N PRECEDING`, N rows before the current row
@@ -96,12 +103,12 @@ For defining window frames, there are the keywords `ROWS` and `RANGE`. They work
 
 - Based on physical rows:
 
-    When using `ROWS`, the window definition is based on the physical position of rows relative to the current row.
-    For example, `1 PRECEDING `means one row before the current one.
+    When using `ROWS`, the frame definition is based on the physical position of rows relative to the current row.
+    For example, `1 PRECEDING` means one row before the current one.
 
 - Precise frame:
 
-    Defining a window with `ROWS` clearly limits the number of rows included in the window,
+    Defining a frame with `ROWS` clearly limits the number of rows included in the frame,
     making it predictable and specific.
 
 ![Window frame definition schema with rows](https://sql-academy.org/static/guidePage/windows-functions-frames/rows_example_en.png "Window frame definition schema with rows")
@@ -116,7 +123,7 @@ For defining window frames, there are the keywords `ROWS` and `RANGE`. They work
 - Dynamic frames:
 
     Frames defined with `RANGE` can vary
-    depending on the data, making the window flexible but potentially less predictable.
+    depending on the data, making the frame flexible but potentially less predictable.
 
 ![Window frame definition schema with range](https://sql-academy.org/static/guidePage/windows-functions-frames/range_example_en.png "Window frame definition schema with range")
 
@@ -124,7 +131,7 @@ Let's check if you understood the difference between `ROWS` and `RANGE` correctl
 
 **Which of the following statements best describes the difference between using `ROWS` and `RANGE` in the context of SQL window functions?**
 
-1. ROWS and RANGE are interchangeable, as both define physical rows in the window — This is incorrect, as ROWS is based on the physical position of rows, while RANGE focuses on column values.
+1. ROWS and RANGE are interchangeable, as both define physical rows in the window frame — This is incorrect, as ROWS is based on the physical position of rows, while RANGE focuses on column values.
 
 2. **Correct answer:** ROWS defines window frames based on the physical position of rows, while RANGE is based on column values. — ROWS focuses on the physical position of rows, while RANGE uses column values to define window frames.
 

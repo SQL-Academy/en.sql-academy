@@ -93,12 +93,12 @@ You can specify, for example, that when calculating values for the current row i
 only the `N` rows before the current row and `N` rows after it should be considered.
 
 When using `ORDER BY`, if nothing is specified in the `ROWS|RANGE` block, the window function
-
 automatically applies the rule `RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW`.
-This means that the window starts from the first row and ends at the current row.
+This means that the window frame starts from the first row and ends at the current row,
+including all rows with the same sorting field values as the current row.
 
 In the case of our query, the values for the `cumulative_total` column are calculated as follows:
 
 ![Explanation of how sorting worked](https://sql-academy.org/static/guidePage/sorting-in-windows-functions/explanation.png "Explanation of how sorting worked")
 
-We will dive into windows frames and their definitions in more detail in the next article.
+We will dive into window frames and their definitions in more detail in the next article.
