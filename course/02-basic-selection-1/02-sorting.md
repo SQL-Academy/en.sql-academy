@@ -29,6 +29,8 @@ For example, let's display the names of airlines in alphabetical order from the 
 SELECT name FROM Company ORDER BY name;
 ```
 
+**MySQL**
+
 | name       |
 | ---------- |
 | Aeroflot   |
@@ -36,6 +38,16 @@ SELECT name FROM Company ORDER BY name;
 | British_AW |
 | Dale_avia  |
 | Don_avia   |
+
+**PostgreSQL**
+
+| name       |
+| ---------- |
+| Aeroflot   |
+| British_AW |
+| Dale_avia  |
+| Don_avia   |
+| air_France |
 
 ## Sorting in ascending and descending order for main types
 
