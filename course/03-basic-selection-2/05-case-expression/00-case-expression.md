@@ -16,7 +16,7 @@ The concept of conditional logic means that the program has several execution pa
 
 The Schedule database has a `Student` table with a `birthday` field that reflects the student's date of birth. Let's say
 in the selection, it is necessary to display not the date of birth itself, but the text value "Adult" or "Minor", depending on whether
-if the student is 18 or not. This is an example of conditional logic, in which either one value or another should be displayed
+the student is 18 or older. This is an example of conditional logic, in which either one value or another should be displayed
 depending on the specific condition.
 
 Schedule database ER diagram: [open on SQL Academy](https://sql-academy.org/en/guide/case-expression).
