@@ -77,6 +77,10 @@ Data in the `Schedule` table (schedule of classes):
 | 38  | 2019-09-04T00:00:00.000Z | 8     | 4           | 8       | 2       | 42        |
 | 39  | 2019-09-04T00:00:00.000Z | 8     | 5           | 11      | 1       | 43        |
 | 40  | 2019-09-05T00:00:00.000Z | 8     | 2           | 11      | 1       | 43        |
+| 41  | 2019-09-03T00:00:00.000Z | 7     | 1           | 8       | 2       | 42        |
+| 42  | 2019-09-03T00:00:00.000Z | 7     | 2           | 4       | 3       | 13        |
+| 43  | 2019-09-03T00:00:00.000Z | 7     | 3           | 15      | 10      | 40        |
+| 44  | 2019-09-02T00:00:00.000Z | 7     | 2           | 6       | 5       | 35        |
 
 ```sql
 SELECT Timepair.id "timepair.id", start_pair, end_pair,
@@ -87,6 +91,7 @@ FROM Timepair
 
 | timepair.id | start_pair | end_pair | schedule.id | date                     | class | number_pair | teacher | subject | classroom |
 | ----------- | ---------- | -------- | ----------- | ------------------------ | ----- | ----------- | ------- | ------- | --------- |
+| 1           | 08:30:00   | 09:15:00 | 41          | 2019-09-03T00:00:00.000Z | 7     | 1           | 8       | 2       | 42        |
 | 1           | 08:30:00   | 09:15:00 | 35          | 2019-09-04T00:00:00.000Z | 8     | 1           | 1       | 11      | 4         |
 | 1           | 08:30:00   | 09:15:00 | 32          | 2019-09-03T00:00:00.000Z | 8     | 1           | 10      | 10      | 40        |
 | 1           | 08:30:00   | 09:15:00 | 21          | 2019-08-30T00:00:00.000Z | 8     | 1           | 7       | 9       | 53        |
@@ -96,6 +101,8 @@ FROM Timepair
 | 1           | 08:30:00   | 09:15:00 | 7           | 2019-09-03T00:00:00.000Z | 9     | 1           | 5       | 6       | 36        |
 | 1           | 08:30:00   | 09:15:00 | 4           | 2019-09-02T00:00:00.000Z | 9     | 1           | 4       | 3       | 13        |
 | 1           | 08:30:00   | 09:15:00 | 1           | 2019-09-01T00:00:00.000Z | 9     | 1           | 11      | 1       | 47        |
+| 2           | 09:20:00   | 10:05:00 | 44          | 2019-09-02T00:00:00.000Z | 7     | 2           | 6       | 5       | 35        |
+| 2           | 09:20:00   | 10:05:00 | 42          | 2019-09-03T00:00:00.000Z | 7     | 2           | 4       | 3       | 13        |
 | 2           | 09:20:00   | 10:05:00 | 40          | 2019-09-05T00:00:00.000Z | 8     | 2           | 11      | 1       | 43        |
 | 2           | 09:20:00   | 10:05:00 | 36          | 2019-09-04T00:00:00.000Z | 8     | 2           | 1       | 12      | 42        |
 | 2           | 09:20:00   | 10:05:00 | 33          | 2019-09-03T00:00:00.000Z | 8     | 2           | 7       | 9       | 53        |
@@ -107,6 +114,7 @@ FROM Timepair
 | 2           | 09:20:00   | 10:05:00 | 8           | 2019-09-03T00:00:00.000Z | 9     | 2           | 13      | 7       | 37        |
 | 2           | 09:20:00   | 10:05:00 | 5           | 2019-09-02T00:00:00.000Z | 9     | 2           | 2       | 4       | 34        |
 | 2           | 09:20:00   | 10:05:00 | 2           | 2019-09-01T00:00:00.000Z | 9     | 2           | 8       | 2       | 13        |
+| 3           | 10:15:00   | 11:00:00 | 43          | 2019-09-03T00:00:00.000Z | 7     | 3           | 15      | 10      | 40        |
 | 3           | 10:15:00   | 11:00:00 | 37          | 2019-09-04T00:00:00.000Z | 8     | 3           | 3       | 13      | 43        |
 | 3           | 10:15:00   | 11:00:00 | 34          | 2019-09-03T00:00:00.000Z | 8     | 3           | 7       | 9       | 53        |
 | 3           | 10:15:00   | 11:00:00 | 30          | 2019-09-02T00:00:00.000Z | 8     | 3           | 6       | 8       | 38        |
@@ -131,7 +139,7 @@ FROM Timepair
 | 7           | 14:35:00   | 15:20:00 | null        | null                     | null  | null        | null    | null    | null      |
 | 8           | 15:25:00   | 16:10:00 | null        | null                     | null  | null        | null    | null    | null      |
 
-All eight calls made it into the result, exactly as a left join promises. But the result has 43 rows, not 8.
+All eight calls made it into the result, exactly as a left join promises. But the result has 47 rows, not 8: 44 rows for the lessons in `Schedule` and another 3 for calls without lessons.
 
 A join does not supplement the left table — it goes through every matching pair of rows. The same pair number appears in the schedule many times, on different days and for different classes, and every match produces its own row. When the key is not unique in the right table, the result has more rows than the left table.
 
@@ -169,7 +177,7 @@ FROM Timepair
     RIGHT JOIN Schedule ON Schedule.number_pair = Timepair.id;
 ```
 
-The result has 40 rows — exactly as many as there are records in `Schedule` — and not a single row with `NULL`. In other words, it matches the inner join completely.
+The result has 44 rows — exactly as many as there are records in `Schedule` — and not a single row with `NULL`. In other words, it matches the inner join completely.
 
 That happened because every class refers to an existing call: the right table simply has no unmatched rows. The kind of join sets the rule, but what ends up in the result is decided by the data.
 
@@ -192,7 +200,7 @@ FROM Timepair
     FULL OUTER JOIN Schedule ON Schedule.number_pair = Timepair.id;
 ```
 
-On the data of this database the result matches the left join — the same 43 rows: here the unmatched rows exist only on the left.
+On the data of this database the result matches the left join — the same 47 rows: here the unmatched rows exist only on the left.
 
 **MySQL**
 
