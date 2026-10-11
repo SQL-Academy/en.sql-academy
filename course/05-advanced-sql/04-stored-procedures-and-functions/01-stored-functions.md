@@ -15,27 +15,43 @@ Stored functions are a powerful SQL tool that allows you to create reusable code
 **MySQL**
 
 ```sql
-CREATE FUNCTION function_name(parameter1 TYPE, parameter2 TYPE, ...)
+CREATE FUNCTION function_name([parameter type [, ...]])
 RETURNS return_type
 BEGIN
     -- function logic
-    RETURN calculation_result;
+    RETURN result;
 END;
 ```
+
+- `function_name` — the name you use to call the function in queries, for example `is_adult`.
+- `parameter` (optional) — the name of an input value, used to access it inside the function. You can list several
+  parameters separated by commas, or leave the parentheses empty if you need none.
+- `type` — the parameter's data type: `INT`, `DATE`, `VARCHAR(50)`, and so on.
+- `return_type` — the type of the value the function returns, for example `BOOLEAN` or `INT`.
+- `result` — the value or expression the function returns. It is converted to the type given after
+  `RETURNS`.
 
 **PostgreSQL**
 
 ```sql
-CREATE OR REPLACE FUNCTION function_name(parameter1 TYPE, parameter2 TYPE, ...)
+CREATE OR REPLACE FUNCTION function_name([parameter type [, ...]])
 RETURNS return_type
 LANGUAGE plpgsql
 AS $$
 BEGIN
     -- function logic
-    RETURN calculation_result;
+    RETURN result;
 END;
 $$;
 ```
+
+- `function_name` — the name you use to call the function in queries, for example `is_adult`.
+- `parameter` (optional) — the name of an input value, used to access it inside the function. You can list several
+  parameters separated by commas, or leave the parentheses empty if you need none.
+- `type` — the parameter's data type: `INT`, `DATE`, `VARCHAR(50)`, and so on.
+- `return_type` — the type of the value the function returns, for example `BOOLEAN` or `INT`.
+- `result` — the value or expression the function returns. It is converted to the type given after
+  `RETURNS`.
 
 `LANGUAGE plpgsql` — specifies that the function is written in **PL/pgSQL** (PostgreSQL's procedural language).
 

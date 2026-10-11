@@ -12,10 +12,15 @@ To edit existing records in tables, there is an SQL operator `UPDATE`.
 
 ```sql
 UPDATE table_name
-SET table_field1 = table_field_value1,
-    table_fieldN = table_field_valueN
-[WHERE the_conditions_of_the_limitations]
+SET table_field = value [, ...]
+[WHERE condition];
 ```
+
+- `table_name` — the table whose records are changed.
+- `table_field` — the column that gets a new value. You can list several `table_field = value` pairs
+  separated by commas.
+- `value` — the new value: a number, a string, an expression like `price * 1.1`, or `NULL`.
+- `condition` (optional) — which rows to change. Without `WHERE`, every row of the table is changed.
 
 So, for example, if you need to change the name, the request will look like this:
 

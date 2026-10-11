@@ -76,13 +76,22 @@ Now we have achieved what we wanted. But what changed after adding `ORDER BY sta
 As we remember, the full syntax of a window function looks like this:
 
 ```sql
-SELECT <window_function>(<table_field>)
+SELECT window_function(table_field)
 OVER (
-      [PARTITION BY <partition_columns>]
-      [ORDER BY <sort_columns>]
-      [ROWS|RANGE <range_definition>]
+    [PARTITION BY partition_column [, ...]]
+    [ORDER BY sort_column [, ...]]
+    [{ROWS | RANGE} window_frame]
 )
 ```
+
+- `window_function` — the function calculated over the window, for example `AVG` or `SUM`.
+- `table_field` — the column whose values are passed to the function, for example `price` in
+  `AVG(price)`.
+- `partition_column` (optional) — divides the data into non-overlapping partitions: each one gets the rows with the same
+  values in these columns.
+- `sort_column` (optional) — sets the order of rows within the window. This is especially important for ranking
+  window functions.
+- `window_frame` (optional) — defines the window frame: how many rows to include before and after the current row.
 
 In addition to the `PARTITION BY` and `ORDER BY` blocks, there is an optional `ROWS|RANGE` block.
 We will discuss this block in more detail in the next article, but for now, let's focus on its purpose.

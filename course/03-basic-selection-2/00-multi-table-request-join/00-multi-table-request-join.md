@@ -48,16 +48,23 @@ Family database ER diagram: [open on SQL Academy](https://sql-academy.org/en/gui
 ```sql
 SELECT table_fields
 FROM table_1
-[INNER] | [[LEFT | RIGHT | FULL][OUTER]] JOIN table_2
+[INNER | {LEFT | RIGHT | FULL} [OUTER]] JOIN table_2
     ON join_condition
-[[INNER] | [[LEFT | RIGHT | FULL][OUTER]] JOIN table_n
-    ON join_condition]
+[...]
 ```
 
-As can be seen from the structure, joining can be:
-
-- internal `INNER` (by default)
-- outer `OUTER`, in which case the outer connection is divided into `LEFT`, `RIGHT`, and `FULL`.
+- `table_fields` — the columns from any of the joined tables that go into the result.
+- `table_1` — the first table that the other tables are joined to.
+- `INNER` (keyword, optional) — inner join: only rows that found a match get into the result. This is the default join
+  type, so you can omit `INNER`.
+- `LEFT | RIGHT | FULL` (keyword, optional) — outer join: left, right or full. Besides the matched pairs, the result also gets the
+  unmatched rows of the left, the right or both tables.
+- `OUTER` (keyword, optional) — only emphasizes that the join is outer. It goes after `LEFT`, `RIGHT` or `FULL` and
+  does not change the result.
+- `table_2` — the table being joined. To join more tables, add a separate `JOIN ... ON ...` for each
+  of them.
+- `join_condition` — the rule by which rows of the two tables find each other, for example
+  `Payments.family_member = FamilyMembers.member_id`.
 
 We will learn in more detail in the next articles what the difference is between internal and external joining and how they work.
 

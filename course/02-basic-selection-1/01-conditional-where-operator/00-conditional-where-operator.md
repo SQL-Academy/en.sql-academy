@@ -14,9 +14,16 @@ If a record satisfies this condition, it appears in the result; otherwise, it is
 
 ```sql
 SELECT [DISTINCT] table_fields FROM table_name
-WHERE row_limit_conditions
-[logical_operator other_row_limit_conditions];
+WHERE condition [logical_operator condition] [...];
 ```
+
+- `DISTINCT` (keyword, optional) — removes duplicate rows from the result.
+- `table_fields` — the columns to include in the result, or `*` for all columns.
+- `table_name` — the table to select rows from.
+- `condition` — a check applied to each row, for example `price > 100`. Only the rows where the
+  condition is true make it into the result.
+- `logical_operator` (optional) — joins several conditions, for example `AND` means both must hold, `OR` means at least
+  one.
 
 For example, a query using the `WHERE` operator may look like this:
 

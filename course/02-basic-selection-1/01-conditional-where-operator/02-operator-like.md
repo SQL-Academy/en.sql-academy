@@ -33,8 +33,12 @@ For such non-trivial searches on string fields, we need the `LIKE` operator.
 ## Syntax
 
 ```sql
-... WHERE table_field [NOT] LIKE string_pattern
+WHERE table_field [NOT] LIKE string_pattern
 ```
+
+- `table_field` — the text column whose values are compared with the pattern.
+- `NOT` (keyword, optional) — reverses the condition: only rows that do not match the pattern remain.
+- `string_pattern` — a string in quotes that the value should look like, for example `'%@hotmail.%'`.
 
 The pattern may include two special characters — `%` and `_`. Here is what each of them means:
 
@@ -109,8 +113,14 @@ If you want to use a different escape character instead of the default one, you 
 ### Syntax with ESCAPE
 
 ```sql
-... WHERE table_field LIKE 'string_pattern' ESCAPE 'escape_character'
+WHERE table_field LIKE string_pattern ESCAPE escape_character
 ```
+
+- `table_field` — the text column whose values are compared with the pattern.
+- `string_pattern` — the search pattern. The escape character before `%` or `_` turns them into ordinary
+  characters.
+- `escape_character` — a single character that escapes `%` and `_` in this pattern instead of `\`, for
+  example `'!'`.
 
 The same query can be written with an explicitly specified escape character:
 

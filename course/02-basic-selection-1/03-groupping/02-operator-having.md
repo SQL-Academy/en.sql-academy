@@ -90,13 +90,22 @@ GROUP BY home_type
 ## General Query Structure with HAVING Operator
 
 ```sql
-SELECT [constants, aggregate_functions, grouping_fields]
+SELECT select_fields
 FROM table_name
-WHERE row_limit_conditions
-GROUP BY grouping_fields
-HAVING row_limit_conditions_after_grouping
-ORDER BY sorting_condition
+[WHERE row_condition]
+GROUP BY grouping_field [, ...]
+HAVING group_condition
+[ORDER BY sort_field];
 ```
+
+- `select_fields` — what to output for each group: literals, aggregate functions, and grouping fields.
+- `table_name` — the table the rows are taken from.
+- `row_condition` (optional) — filters table rows before grouping. You can't use aggregate functions in it.
+- `grouping_field` — the column that splits rows into groups. You can list several columns separated by
+  commas.
+- `group_condition` — filters groups after grouping, for example `COUNT(*) >= 5`. You can use aggregate
+  functions in it.
+- `sort_field` (optional) — the column or expression the result is sorted by.
 
 ## Example of Using HAVING
 

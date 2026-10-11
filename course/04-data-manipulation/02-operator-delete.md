@@ -13,18 +13,21 @@ For this, SQL provides operators `DELETE` and `TRUNCATE`, of which the first opt
 
 ```sql
 DELETE FROM table_name
-[WHERE the_conditions_of_the_limitations];
+[WHERE condition];
 ```
 
-If there is no `WHERE` record selection condition, then all records in the specified table will be deleted.
+- `table_name` — the table from which records are deleted.
+- `condition` (optional) — which rows to delete. Without `WHERE`, every row of the table is deleted.
 
-The same operation (deleting all records) can also be done using `TRUNCATE` operator. It will drop the table and re-create it - this option is much faster, than deleting all records one by one (as is the case with `DELETE`) especially for large tables.
+You can also delete all records of a table using the `TRUNCATE` operator. It will drop the table and re-create it - this option is much faster, than deleting all records one by one (as is the case with `DELETE`) especially for large tables.
 
 ## General structure of a query with the TRUNCATE statement
 
 ```sql
 TRUNCATE TABLE table_name;
 ```
+
+- `table_name` — the table to clear completely.
 
 **MySQL**
 
@@ -53,11 +56,18 @@ However, the `TRUNCATE` statement has several differences:
 If the `DELETE` query uses a `JOIN`, you need to specify which tables should have their rows removed.
 
 ```sql
-DELETE table_name_1 FROM
+DELETE table_name_1 [, table_name_2] FROM
 table_name_1 JOIN table_name_2
-ON table_name_1.field = table_name_2.field
-[WHERE the_conditions_of_the_limitations];
+ON join_condition
+[WHERE condition];
 ```
+
+- `table_name_1` — the table from which records are deleted. Its name goes both after `DELETE` and in the
+  `JOIN`.
+- `table_name_2` — the joined table whose data helps select the records to delete. If you also list it
+  after `DELETE`, records are deleted from both tables.
+- `join_condition` — how the rows are linked, for example `table_name_1.field = table_name_2.field`.
+- `condition` (optional) — which records to delete. The condition can check columns of both tables.
 
 **PostgreSQL**
 
@@ -66,9 +76,16 @@ If the `DELETE` query uses `USING`, specify the additional tables that help sele
 ```sql
 DELETE FROM table_name_1
 USING table_name_2
-WHERE table_name_1.field = table_name_2.field
-[AND the_conditions_of_the_limitations];
+WHERE join_condition
+[AND condition];
 ```
+
+- `table_name_1` — the table from which records are deleted.
+- `table_name_2` — an additional table whose data helps select the records to delete. Nothing is deleted
+  from it.
+- `join_condition` — how the rows are linked, for example `table_name_1.field = table_name_2.field`.
+- `condition` (optional) — an extra condition: which of the linked records to delete. It can check columns of
+  both tables.
 
 For example, we need to delete all reservations for a home that does not have a kitchen. Then the request will look like this:
 

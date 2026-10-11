@@ -17,28 +17,42 @@ The `LIMIT` operator allows you to extract a specific range of records from one 
 ```sql
 SELECT table_fields
 FROM table_name
-LIMIT [number_of_skipped_records,] number_of_records_to_output;
+LIMIT [skip_count,] row_count;
 ```
+
+- `table_fields` — the columns to include in the result.
+- `table_name` — the table to select data from.
+- `skip_count` (optional) — how many rows to skip before the output starts. If omitted, the output starts from the
+  first row.
+- `row_count` — how many rows to return. If the result has fewer rows, all of them are returned.
 
 **OFFSET syntax:**
 
 ```sql
 SELECT table_fields
 FROM table_name
-LIMIT number_of_records_to_output [OFFSET number_of_skipped_records];
+LIMIT row_count [OFFSET skip_count];
 ```
 
-If you do not specify the number of skipped records, they will be counted from the beginning of the table.
+- `table_fields` — the columns to include in the result.
+- `table_name` — the table to select data from.
+- `row_count` — how many rows to return. If the result has fewer rows, all of them are returned.
+- `skip_count` (optional) — how many rows to skip before the output starts. If omitted, the output starts from the
+  first row.
 
 **PostgreSQL**
 
 ```sql
 SELECT table_fields
 FROM table_name
-LIMIT number_of_records_to_output [OFFSET number_of_skipped_records];
+LIMIT row_count [OFFSET skip_count];
 ```
 
-If you do not specify `OFFSET`, they will be counted from the beginning of the table.
+- `table_fields` — the columns to include in the result.
+- `table_name` — the table to select data from.
+- `row_count` — how many rows to return. If the result has fewer rows, all of them are returned.
+- `skip_count` (optional) — how many rows to skip before the output starts. If omitted, the output starts from the
+  first row.
 
 ## Examples
 

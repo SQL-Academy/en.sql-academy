@@ -11,7 +11,7 @@ The complexity arises due to several reasons, and here are some of them:
 
 - many ways to set the date and time
 - availability of time zones
-- non-obviousness of calculations of some values ​​based on date and time.
+- non-obviousness of calculations of some values based on date and time.
   For example, the complexity of calculating age.
 
 ## Generation of date and time data
@@ -28,13 +28,13 @@ The following formats are used to set the date and time:
 
 **MySQL**
 
-| Type        | Default Format                                                                                                                                                     |
-| :---------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `DATE`      | `YYYY-MM-DD`                                                                                                                                                       |
-| `DATETIME`  | `YYYY-MM-DD hh:mm:ss`                                                                                                                                              |
-| `TIMESTAMP` | `YYYY-MM-DD hh:mm:ss`                                                                                                                                              |
-| `TIME`      | `hhh:mm:sss`                                                                                                                                                       |
-| `YEAR`      | `YYYY` - full format <br /> `YY` or `Y` - shorthand format that returns a year between 2000-2069 for values ​​0-69 and a year between 1970-1999 for values ​​70-99 |
+| Type        | Default Format                                                                                                                                                 |
+| :---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `DATE`      | `YYYY-MM-DD`                                                                                                                                                   |
+| `DATETIME`  | `YYYY-MM-DD hh:mm:ss`                                                                                                                                          |
+| `TIMESTAMP` | `YYYY-MM-DD hh:mm:ss`                                                                                                                                          |
+| `TIME`      | `hhh:mm:sss`                                                                                                                                                   |
+| `YEAR`      | `YYYY` - full format <br /> `YY` or `Y` - shorthand format that returns a year between 2000-2069 for values 0-69 and a year between 1970-1999 for values 70-99 |
 
 **PostgreSQL**
 
@@ -47,7 +47,7 @@ The following formats are used to set the date and time:
 Moreover, when specifying a date, it is allowed to use any punctuation mark as a separator between parts of the date or time sections.
 It is also possible to set the date without a separator character at all, together.
 
-Examples of valid setting of values ​​for date and time via string representation:
+Examples of valid setting of values for date and time via string representation:
 
 **MySQL**
 
@@ -208,7 +208,7 @@ SET time_zone = '+03:00';           // for the current user
 SET @@session.time_zone = '+03:00'; // for the current user session
 ```
 
-Accordingly, when changing the time zone, all values ​​of the `TIMESTAMP` type will be displayed taking into account the current active time zone.
+Accordingly, when changing the time zone, all values of the `TIMESTAMP` type will be displayed taking into account the current active time zone.
 
 **PostgreSQL**
 
@@ -219,7 +219,7 @@ SET TIME ZONE 'Europe/Moscow';                       // for current session
 SET TIME ZONE '+03:00';                              // for current session
 ```
 
-Accordingly, when changing the time zone, all values ​​of the `TIMESTAMPTZ` type will be displayed taking into account the current active time zone.
+Accordingly, when changing the time zone, all values of the `TIMESTAMPTZ` type will be displayed taking into account the current active time zone.
 
 ## Examples of tasks for date and time
 

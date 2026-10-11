@@ -134,24 +134,31 @@ WHERE table_name = 'viewusers';
 
 ```sql
 CREATE [OR REPLACE]
-VIEW view_name [(view_column_names)]
-AS select_expression
+VIEW view_name [(view_column [, ...])]
+AS select_expression;
 ```
 
-`OR REPLACE` — When using this optional parameter, if a view with the same
-name already exists, the old view will be deleted and a new one will be created. Otherwise, if you try to create
-a view with an existing name, an error will occur.
+- `OR REPLACE` (keyword, optional) — if a view with this name already exists, it is replaced with the new one. Without it,
+  creating a view with a taken name fails.
+- `view_name` — the name of the new view. Queries refer to the view by this name, just like a table.
+- `view_column` (optional) — column names of the view. If you omit them, the columns get their names from the
+  `SELECT` query.
+- `select_expression` (subquery) — the `SELECT` query whose result the view shows.
 
 **PostgreSQL**
 
 ```sql
-CREATE [OR REPLACE] VIEW view_name [(view_column_names)]
-AS select_expression
+CREATE [OR REPLACE] VIEW view_name [(view_column [, ...])]
+AS select_expression;
 ```
 
-`OR REPLACE` — When using this optional parameter, if a view with the same
-name already exists, the old view will be deleted and a new one will be created. Otherwise, if you try to create
-a view with an existing name, an error will occur.
+- `OR REPLACE` (keyword, optional) — if a view with this name already exists, it is replaced with the new one. Without it,
+  creating a view with a taken name fails. The new query must return the same columns in
+  the same order; new columns can only be added at the end.
+- `view_name` — the name of the new view. Queries refer to the view by this name, just like a table.
+- `view_column` (optional) — column names of the view. If you omit them, the columns get their names from the
+  `SELECT` query.
+- `select_expression` (subquery) — the `SELECT` query whose result the view shows.
 
 ## Why are views needed
 

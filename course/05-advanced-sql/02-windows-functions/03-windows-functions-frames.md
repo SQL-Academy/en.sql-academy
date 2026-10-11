@@ -62,12 +62,25 @@ for calculating the value for the current row.
 The syntax for defining window frames looks like specifying a range relative to the current row.
 
 ```sql
-SELECT  <window_function>(<table_field>)
+SELECT window_function(table_field)
 OVER (
-      ...
-      ROWS|RANGE BETWEEN <frame start> AND <frame end>
+    [PARTITION BY partition_column [, ...]]
+    [ORDER BY sort_column [, ...]]
+    {ROWS | RANGE} BETWEEN frame_start AND frame_end
 )
 ```
+
+- `window_function` — the function calculated over the window, for example `AVG` or `SUM`.
+- `table_field` — the column whose values are passed to the function, for example `price` in
+  `AVG(price)`.
+- `partition_column` (optional) — divides the data into non-overlapping partitions: each one gets the rows with the same
+  values in these columns.
+- `sort_column` (optional) — sets the order of rows within the window. This is especially important for ranking
+  window functions.
+- `ROWS | RANGE` (keyword) — how the bounds are counted: `ROWS` by rows, `RANGE` by the values of the sort columns.
+- `frame_start` — the bound where the frame starts, for example `2 PRECEDING`. The possible options are
+  listed below.
+- `frame_end` — the bound where the frame ends, for example `CURRENT ROW`.
 
 For example, if we want only the two preceding records and the current row to be included in the window function calculation, then
 the syntax would look like this:

@@ -13,10 +13,16 @@ In the article about grouping, we discussed that when using the `GROUP BY` opera
 ## General structure of a query with an aggregate function
 
 ```sql
-SELECT [literals, aggregate_functions, grouping_fields]
+SELECT { literal | aggregate_function | grouping_field } [, ...]
 FROM table_name
-GROUP BY grouping_fields;
+GROUP BY grouping_field [, ...];
 ```
+
+- `literal` — a fixed value such as `'text'` or `1`. It is the same for every group.
+- `aggregate_function` — a function that computes one value from all rows of a group, for example `AVG(price)`.
+- `grouping_field` — the column that splits rows into groups: rows with the same value end up in one group.
+  You can list several columns separated by commas.
+- `table_name` — the table whose rows are grouped.
 
 For example, a query using the `AVG` aggregate function might look like this:
 

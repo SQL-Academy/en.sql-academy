@@ -102,6 +102,11 @@ To avoid such duplication when selecting data, there is the `DISTINCT` operator.
 SELECT [DISTINCT] table_fields FROM table_name;
 ```
 
+- `DISTINCT` (keyword, optional) — keeps only unique rows in the result: out of several identical rows, one is returned.
+- `table_fields` — the columns to include in the result. Uniqueness is checked across all listed columns
+  together.
+- `table_name` — the table to select data from.
+
 > Square brackets in syntax descriptions indicate an optional part of the query. They are not written in the SQL query itself.
 
 So in our case, the query to retrieve unique classes that have at least one student would look like this:

@@ -15,11 +15,12 @@ It's time to turn our attention to the `IF` function.
 ## IF Syntax
 
 ```sql
-IF(conditional_expression, value_1, value_2);
+IF(condition, value_if_true, value_if_false)
 ```
 
-If the conditional expression passed as the first argument to the `IF` function is true,
-the function will return the value of the second argument `value_1`, otherwise the value of the third argument `value_2` is returned.
+- `condition` — the logical expression being checked, for example `price > 100`.
+- `value_if_true` — the value `IF` returns if the condition is true.
+- `value_if_false` — the value `IF` returns if the condition is false or `NULL`.
 
 **PostgreSQL**
 
@@ -339,11 +340,12 @@ aimed at processing `NULL` values.
 ### IFNULL syntax
 
 ```sql
-IFNULL(value, alternative_value);
+IFNULL(value, alternative_value)
 ```
 
-The `IFNULL` function returns the `value` passed by the first argument if it is not equal to `NULL`, otherwise it returns
-the `alternative_value`.
+- `value` — the value being checked, for example a column that may contain `NULL`. If it is not
+  `NULL`, the function returns it.
+- `alternative_value` — the value the function returns if `value` is `NULL`.
 
 **PostgreSQL**
 
@@ -355,8 +357,11 @@ It returns the first non-NULL value from the list of arguments.
 ### Syntax
 
 ```sql
-COALESCE(value1, value2, ..., valueN);
+COALESCE(value [, ...])
 ```
+
+- `value` — values separated by commas, for example table columns. They are checked from left to
+  right, and you can put a fallback value last.
 
 This is much more convenient than writing long CASE expressions to handle NULL.
 
@@ -452,10 +457,11 @@ This can be helpful for filtering or processing "empty" values.
 ### NULLIF syntax
 
 ```sql
-NULLIF(value_1, value_2);
+NULLIF(value_1, value_2)
 ```
 
-The `NULLIF` function returns `NULL` if `value_1` is equal to `value_2`, otherwise it returns `value_1`.
+- `value_1` — the value the function returns if it is not equal to `value_2`.
+- `value_2` — the value to compare with. If `value_1` equals it, the function returns `NULL`.
 
 ### Examples with the NULLIF function
 

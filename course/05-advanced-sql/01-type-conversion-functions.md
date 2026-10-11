@@ -6,8 +6,8 @@ meta:
 
 # Type conversion functions, CAST
 
-When we perform operations on values ​​with different data types, the DBMS tries to perform a conversion and cast the values ​​used to the desired type.
-For example, in the example below we are comparing values ​​with `STRING` and `INT` types. To perform this comparison, the DBMS automatically
+When we perform operations on values with different data types, the DBMS tries to perform a conversion and cast the values used to the desired type.
+For example, in the example below we are comparing values with `STRING` and `INT` types. To perform this comparison, the DBMS automatically
 will convert a string value to a numeric value.
 
 **MySQL**
@@ -45,9 +45,12 @@ To do this, PostgreSQL has the `CAST` function and the `::` operator.
 **MySQL**
 
 ```sql
-CAST(value AS conversion_type);
-CONVERT(value, conversion_type);
+CAST(value AS type)
+CONVERT(value, type)
 ```
+
+- `value` — what to convert: a number, a string, a date, or a table column.
+- `type` — the type the value is converted to. The available types are listed below.
 
 Example,
 
@@ -62,9 +65,12 @@ SELECT CAST(12005.6 AS DECIMAL) AS cast_example, CONVERT(12005.4, DECIMAL) AS co
 **PostgreSQL**
 
 ```sql
-CAST(value AS conversion_type);
-value::conversion_type;
+CAST(value AS type)
+value::type
 ```
+
+- `value` — what to convert: a number, a string, a date, or a table column.
+- `type` — the type the value is converted to. The available types are listed below.
 
 Example,
 

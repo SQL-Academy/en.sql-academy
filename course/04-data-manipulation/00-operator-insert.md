@@ -11,10 +11,18 @@ The operator `INSERT` is used to add new records to the table.
 ## General query structure with the INSERT operator
 
 ```sql
-INSERT INTO table_name [(table_field, ...)]
-VALUES (value_of_table_field, ...)
-| SELECT table_field, ... FROM table_name ...
+INSERT INTO table_name [(table_field [, ...])]
+{ VALUES (value [, ...]) [, ...] | select_expression };
 ```
+
+- `table_name` — the table that new records are added to.
+- `table_field` (optional) — the columns that receive values. Without the list, you pass values for every column of
+  the table.
+- `value` — a value for a column: a number, a string, an expression, or `NULL`. Values go in the
+  same order as the columns. Each pair of parentheses is one row; separate several rows
+  with commas.
+- `select_expression` (subquery) — a `SELECT` query whose result rows are added to the table. It must return as many
+  columns as you listed.
 
 Values can be inserted by enumeration using the word `VALUES` listing them in parentheses separated by commas or using the operator `SELECT`.
 
@@ -23,9 +31,13 @@ Values can be inserted by enumeration using the word `VALUES` listing them in pa
 When using the `INSERT` operator, you can explicitly specify which fields of the table the data will be inserted into. This is done by listing the field names in parentheses after the table name:
 
 ```sql
-INSERT INTO table_name (field1, field2, field3)
-VALUES (value1, value2, value3);
+INSERT INTO table_name (table_field [, ...])
+VALUES (value [, ...]);
 ```
+
+- `table_name` — the table that new records are added to.
+- `table_field` — a column that the value is written to. List columns separated by commas, in any order.
+- `value` — a value for the column at the same position in the field list.
 
 **Important rules:**
 

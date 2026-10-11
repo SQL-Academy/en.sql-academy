@@ -14,14 +14,16 @@ so it cannot be relied upon. The `ORDER BY` construct is used to order the recor
 
 ```sql
 SELECT table_fields FROM table_name
-WHERE ...
-ORDER BY column_1 [ASC | DESC][, column_n [ASC | DESC]]
+[WHERE condition]
+ORDER BY column [ASC | DESC] [, ...];
 ```
 
-Where `ASC` and `DESC` are sorting directions:
-
-- `ASC` - sorting in ascending order (by default)
-- `DESC` - sorting in descending order
+- `table_fields` — the columns to include in the result.
+- `table_name` — the table to select data from.
+- `condition` (optional) — which rows to keep before sorting.
+- `column` — the column whose values define the order of rows. You can list several columns
+  separated by commas.
+- `ASC | DESC` (keyword, optional) — sorting direction: `ASC` for ascending (the default), `DESC` for descending. Values: `ASC`, `DESC`.
 
 For example, let's display the names of airlines in alphabetical order from the `Company` table:
 
@@ -76,8 +78,12 @@ SELECT name FROM Company ORDER BY name;
 To sort results by two or more columns, they should be specified separated by commas.
 
 ```sql
-...ORDER BY column_1 [ASC | DESC], column_2 [ASC | DESC];
+ORDER BY column_1 [ASC | DESC], column_2 [ASC | DESC];
 ```
+
+- `column_1` — the column rows are sorted by first.
+- `column_2` — the column used to sort rows that have the same value in `column_1`.
+- `ASC | DESC` (keyword, optional) — sorting direction for the column it follows. The default is `ASC`. Values: `ASC`, `DESC`.
 
 Data will be sorted by the first column, but in case there are multiple records with identical values in the first column, they will be sorted by the second column.
 The number of columns that can be sorted is unlimited.

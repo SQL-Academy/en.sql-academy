@@ -24,11 +24,17 @@ By partitioning, for example, based on the type of housing in a table with housi
 To use a partition with a window function, you need to follow the following syntax:
 
 ```sql
-SELECT <window_function>(<table_field>)
+SELECT window_function(table_field)
 OVER (
-    PARTITION BY <partition_columns>
+    PARTITION BY partition_column [, ...]
 )
 ```
+
+- `window_function` — the function calculated over the window, for example `AVG` or `SUM`.
+- `table_field` — the column whose values are passed to the function, for example `price` in
+  `AVG(price)`.
+- `partition_column` — the column used to split rows into partitions: rows with the same value end up in the
+  same one. You can list several columns separated by commas.
 
 ### Example usage
 

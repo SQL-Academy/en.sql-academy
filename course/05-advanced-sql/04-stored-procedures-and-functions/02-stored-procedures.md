@@ -21,16 +21,23 @@ Unlike functions, procedures can modify data, perform complex business logic, bu
 **MySQL**
 
 ```sql
-CREATE PROCEDURE procedure_name(parameter1 TYPE, parameter2 TYPE, ...)
+CREATE PROCEDURE procedure_name([[IN | OUT | INOUT] parameter type [, ...]])
 BEGIN
     -- procedure logic
 END;
 ```
 
+- `procedure_name` — the name you use to call the procedure with `CALL`.
+- `IN | OUT | INOUT` (keyword, optional) — the parameter's direction: into the procedure, out of it, or both ways. `IN` is the
+  default; see below for details.
+- `parameter` (optional) — the parameter name, used to access its value inside the procedure. You can list several
+  parameters separated by commas, or leave the parentheses empty if you need none.
+- `type` — the parameter's data type: `INT`, `DATE`, `VARCHAR(50)`, and so on.
+
 **PostgreSQL**
 
 ```sql
-CREATE OR REPLACE PROCEDURE procedure_name(parameter1 TYPE, parameter2 TYPE, ...)
+CREATE OR REPLACE PROCEDURE procedure_name([parameter type [, ...]])
 LANGUAGE plpgsql
 AS $$
 BEGIN
@@ -38,6 +45,11 @@ BEGIN
 END;
 $$;
 ```
+
+- `procedure_name` — the name you use to call the procedure with `CALL`.
+- `parameter` (optional) — the parameter name, used to access its value inside the procedure. You can list several
+  parameters separated by commas, or leave the parentheses empty if you need none.
+- `type` — the parameter's data type: `INT`, `DATE`, `VARCHAR(50)`, and so on.
 
 `LANGUAGE plpgsql` — specifies that the procedure is written in **PL/pgSQL** (PostgreSQL's procedural language).
 

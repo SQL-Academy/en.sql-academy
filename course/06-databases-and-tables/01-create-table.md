@@ -16,16 +16,22 @@ Before creating the table, you need to select the database to which the table wi
 USE database_name;
 ```
 
+- `database_name` — the database where tables will be created.
+
 The `CREATE TABLE` statement is used to create the table. Its simplest use is as follows:
 
 ```sql
 CREATE TABLE [IF NOT EXISTS] table_name (
-     column_1 data type,
-    [column_2 data type,]
-    ...
-    [column_n data type,]
+    column data_type [, ...]
 );
 ```
+
+- `IF NOT EXISTS` (keyword, optional) — skip creating the table if a table with this name already exists. Without it, the
+  query fails in that case.
+- `table_name` — the name of the new table.
+- `column` — the column name. You can list several `column data_type` pairs separated by commas.
+- `data_type` — what values the column stores, for example `INTEGER` for numbers or `VARCHAR(255)` for
+  strings.
 
 For example, let's create a table of users.
 
@@ -188,184 +194,200 @@ In addition to the description of the columns, when creating a table, you can ad
 
 **MySQL**
 
-- Primary key.
+**Primary key**
 
-    If you have not defined the primary key using the column parameters, then you can do this using additional table parameters by adding the entry `PRIMARY KEY (<column_1>, <column_n>)` after enumerating the columns:
+If you have not defined the primary key using the column parameters, then you can do this using additional table parameters by adding the entry `PRIMARY KEY (column [, ...])` after enumerating the columns:
 
-    ```sql
-    CREATE TABLE Users (
-        id INTEGER,
-        name VARCHAR(255) NOT NULL,
-        age INTEGER NOT NULL DEFAULT 18,
-        PRIMARY KEY (id)
-    );
-    ```
+```sql
+CREATE TABLE Users (
+    id INTEGER,
+    name VARCHAR(255) NOT NULL,
+    age INTEGER NOT NULL DEFAULT 18,
+    PRIMARY KEY (id)
+);
+```
 
 **PostgreSQL**
 
-- Primary key.
+**Primary key**
 
-    If you have not defined the primary key using the column parameters, then you can do this using additional table parameters by adding the entry `PRIMARY KEY (<column_1>, <column_n>)` after enumerating the columns:
+If you have not defined the primary key using the column parameters, then you can do this using additional table parameters by adding the entry `PRIMARY KEY (column [, ...])` after enumerating the columns:
 
-    ```sql
-    CREATE TABLE Users (
-        id INTEGER,
-        name VARCHAR(255) NOT NULL,
-        age INTEGER NOT NULL DEFAULT 18,
-        PRIMARY KEY (id)
-    );
-    ```
+```sql
+CREATE TABLE Users (
+    id INTEGER,
+    name VARCHAR(255) NOT NULL,
+    age INTEGER NOT NULL DEFAULT 18,
+    PRIMARY KEY (id)
+);
+```
 
 **MySQL**
 
-- Foreign keys.
+**Foreign keys**
 
-    Suppose we want to store data about the company our users work for. Let's create a small table `Companies` in which we will store a unique identifier and the name of the company:
+Suppose we want to store data about the company our users work for. Let's create a small table `Companies` in which we will store a unique identifier and the name of the company:
 
-    ```sql
-    CREATE TABLE Companies (
-        id INTEGER,
-        name VARCHAR(255) NOT NULL,
-        PRIMARY KEY (id)
-    );
-    ```
+```sql
+CREATE TABLE Companies (
+    id INTEGER,
+    name VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
+);
+```
 
-    Next, you need to add the `company` field to the `Users` table – the place of work of our user, which will refer to the entry in the `Companies` table. The full query for creating a table will look like this:
+Next, you need to add the `company` field to the `Users` table – the place of work of our user, which will refer to the entry in the `Companies` table. The full query for creating a table will look like this:
 
-    ```sql
-    CREATE TABLE Users (
-        id INTEGER,
-        name VARCHAR(255) NOT NULL,
-        age INTEGER NOT NULL DEFAULT 18,
-        company INTEGER,
-        PRIMARY KEY (id)
-    );
-    ```
+```sql
+CREATE TABLE Users (
+    id INTEGER,
+    name VARCHAR(255) NOT NULL,
+    age INTEGER NOT NULL DEFAULT 18,
+    company INTEGER,
+    PRIMARY KEY (id)
+);
+```
 
-    A foreign key is used to ensure that the company column contains an identifier that exists in the `Companies` table when new entries are added to the `Users` table.
-    It has the following syntax:
+A foreign key is used to ensure that the company column contains an identifier that exists in the `Companies` table when new entries are added to the `Users` table.
+It has the following syntax:
 
-    ```sql
-    FOREIGN KEY (<column_1>, <column_n>)
-    REFERENCES <external_table> (<external_table_column_1>, <external_table_column_n>)
-    [ON DELETE reference_option]
-    [ON UPDATE reference_option]
-    ```
+```sql
+FOREIGN KEY (column [, ...])
+REFERENCES external_table (external_table_column [, ...])
+[ON DELETE action]
+[ON UPDATE action]
+```
 
-    The full query for creating a table with a foreign key will be as follows:
+- `column` — the column of this table that refers to another table. For a composite key, list the
+  columns separated by commas.
+- `external_table` — the table whose records the foreign key refers to.
+- `external_table_column` — the column of the external table that values are checked against, usually its primary
+  key. List as many columns, in the same order, as in `FOREIGN KEY`.
+- `ON DELETE action` (optional) — what happens to the records of this table when the record they refer to is deleted. Values: `RESTRICT`, `CASCADE`, `SET NULL`, `NO ACTION`.
+- `ON UPDATE action` (optional) — what happens to the records of this table when the value they refer to changes. Values: `RESTRICT`, `CASCADE`, `SET NULL`, `NO ACTION`.
 
-    ```sql
-    CREATE TABLE Users (
-        id INTEGER,
-        name VARCHAR(255) NOT NULL,
-        age INTEGER NOT NULL DEFAULT 18,
-        company INTEGER,
-        PRIMARY KEY (id),
-        FOREIGN KEY (company) REFERENCES Companies (id)
-    );
-    ```
+The full query for creating a table with a foreign key will be as follows:
 
-    If you have foreign keys, you can determine the behavior of the current record when changing or deleting the record to which it refers.
+```sql
+CREATE TABLE Users (
+    id INTEGER,
+    name VARCHAR(255) NOT NULL,
+    age INTEGER NOT NULL DEFAULT 18,
+    company INTEGER,
+    PRIMARY KEY (id),
+    FOREIGN KEY (company) REFERENCES Companies (id)
+);
+```
 
-    ```sql
-    CREATE TABLE Users (
-        id INTEGER,
-        name VARCHAR(255) NOT NULL,
-        age INTEGER NOT NULL DEFAULT 18,
-        company INTEGER,
-        PRIMARY KEY (id),
-        FOREIGN KEY (company) REFERENCES Companies (id)
-        ON DELETE RESTRICT ON UPDATE CASCADE
-    );
-    ```
+If you have foreign keys, you can determine the behavior of the current record when changing or deleting the record to which it refers.
 
-    `ON DELETE RESTRICT` means that if you try to delete a company that has data in the Users table, the database won't let you do this:
+```sql
+CREATE TABLE Users (
+    id INTEGER,
+    name VARCHAR(255) NOT NULL,
+    age INTEGER NOT NULL DEFAULT 18,
+    company INTEGER,
+    PRIMARY KEY (id),
+    FOREIGN KEY (company) REFERENCES Companies (id)
+    ON DELETE RESTRICT ON UPDATE CASCADE
+);
+```
 
-    ```sql
-    Cannot delete or update a parent row: a foreign key constraint fails
-    ```
+`ON DELETE RESTRICT` means that if you try to delete a company that has data in the Users table, the database won't let you do this:
 
-    If `ON DELETE CASCADE` was specified, then when deleting the company, all users would be deleted, referring to this company.
+```sql
+Cannot delete or update a parent row: a foreign key constraint fails
+```
 
-    There is one more option - `ON DELETE SET NULL`. When used, the database will write `NULL` as the value of the company field for all users who worked at the remote company.
+If `ON DELETE CASCADE` was specified, then when deleting the company, all users would be deleted, referring to this company.
 
-    `ON UPDATE CASCADE` means that if a company changes its ID, then all Users will get a new ID in the company field.
+There is one more option - `ON DELETE SET NULL`. When used, the database will write `NULL` as the value of the company field for all users who worked at the remote company.
+
+`ON UPDATE CASCADE` means that if a company changes its ID, then all Users will get a new ID in the company field.
 
 **PostgreSQL**
 
-- Foreign keys.
+**Foreign keys**
 
-    Suppose we want to store data about the company our users work for. Let's create a small table `Companies` in which we will store a unique identifier and the name of the company:
+Suppose we want to store data about the company our users work for. Let's create a small table `Companies` in which we will store a unique identifier and the name of the company:
 
-    ```sql
-    CREATE TABLE Companies (
-        id INTEGER,
-        name VARCHAR(255) NOT NULL,
-        PRIMARY KEY (id)
-    );
-    ```
+```sql
+CREATE TABLE Companies (
+    id INTEGER,
+    name VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
+);
+```
 
-    Next, you need to add the `company` field to the `Users` table – the place of work of our user, which will refer to the entry in the `Companies` table. The full query for creating a table will look like this:
+Next, you need to add the `company` field to the `Users` table – the place of work of our user, which will refer to the entry in the `Companies` table. The full query for creating a table will look like this:
 
-    ```sql
-    CREATE TABLE Users (
-        id INTEGER,
-        name VARCHAR(255) NOT NULL,
-        age INTEGER NOT NULL DEFAULT 18,
-        company INTEGER,
-        PRIMARY KEY (id)
-    );
-    ```
+```sql
+CREATE TABLE Users (
+    id INTEGER,
+    name VARCHAR(255) NOT NULL,
+    age INTEGER NOT NULL DEFAULT 18,
+    company INTEGER,
+    PRIMARY KEY (id)
+);
+```
 
-    A foreign key is used to ensure that the company column contains an identifier that exists in the `Companies` table when new entries are added to the `Users` table.
-    It has the following syntax:
+A foreign key is used to ensure that the company column contains an identifier that exists in the `Companies` table when new entries are added to the `Users` table.
+It has the following syntax:
 
-    ```sql
-    FOREIGN KEY (<column_1>, <column_n>)
-    REFERENCES <external_table> (<external_table_column_1>, <external_table_column_n>)
-    [ON DELETE reference_option]
-    [ON UPDATE reference_option]
-    ```
+```sql
+FOREIGN KEY (column [, ...])
+REFERENCES external_table (external_table_column [, ...])
+[ON DELETE action]
+[ON UPDATE action]
+```
 
-    The full query for creating a table with a foreign key will be as follows:
+- `column` — the column of this table that refers to another table. For a composite key, list the
+  columns separated by commas.
+- `external_table` — the table whose records the foreign key refers to.
+- `external_table_column` — the column of the external table that values are checked against, usually its primary
+  key. List as many columns, in the same order, as in `FOREIGN KEY`.
+- `ON DELETE action` (optional) — what happens to the records of this table when the record they refer to is deleted. Values: `RESTRICT`, `CASCADE`, `SET NULL`, `SET DEFAULT`, `NO ACTION`.
+- `ON UPDATE action` (optional) — what happens to the records of this table when the value they refer to changes. Values: `RESTRICT`, `CASCADE`, `SET NULL`, `SET DEFAULT`, `NO ACTION`.
 
-    ```sql
-    CREATE TABLE Users (
-        id INTEGER,
-        name VARCHAR(255) NOT NULL,
-        age INTEGER NOT NULL DEFAULT 18,
-        company INTEGER,
-        PRIMARY KEY (id),
-        FOREIGN KEY (company) REFERENCES Companies (id)
-    );
-    ```
+The full query for creating a table with a foreign key will be as follows:
 
-    If you have foreign keys, you can determine the behavior of the current record when changing or deleting the record to which it refers.
+```sql
+CREATE TABLE Users (
+    id INTEGER,
+    name VARCHAR(255) NOT NULL,
+    age INTEGER NOT NULL DEFAULT 18,
+    company INTEGER,
+    PRIMARY KEY (id),
+    FOREIGN KEY (company) REFERENCES Companies (id)
+);
+```
 
-    ```sql
-    CREATE TABLE Users (
-        id INTEGER,
-        name VARCHAR(255) NOT NULL,
-        age INTEGER NOT NULL DEFAULT 18,
-        company INTEGER,
-        PRIMARY KEY (id),
-        FOREIGN KEY (company) REFERENCES Companies (id)
-        ON DELETE RESTRICT ON UPDATE CASCADE
-    );
-    ```
+If you have foreign keys, you can determine the behavior of the current record when changing or deleting the record to which it refers.
 
-    `ON DELETE RESTRICT` means that if you try to delete a company that has data in the Users table, the database won't let you do this:
+```sql
+CREATE TABLE Users (
+    id INTEGER,
+    name VARCHAR(255) NOT NULL,
+    age INTEGER NOT NULL DEFAULT 18,
+    company INTEGER,
+    PRIMARY KEY (id),
+    FOREIGN KEY (company) REFERENCES Companies (id)
+    ON DELETE RESTRICT ON UPDATE CASCADE
+);
+```
 
-    ```sql
-    ERROR:  update or delete on table "companies" violates foreign key constraint "users_company_fkey" on table "users"
-    DETAIL:  Key (id)=(1) is still referenced from table "users".
-    ```
+`ON DELETE RESTRICT` means that if you try to delete a company that has data in the Users table, the database won't let you do this:
 
-    If `ON DELETE CASCADE` was specified, then when deleting the company, all users would be deleted, referring to this company.
+```sql
+ERROR:  update or delete on table "companies" violates foreign key constraint "users_company_fkey" on table "users"
+DETAIL:  Key (id)=(1) is still referenced from table "users".
+```
 
-    There is one more option - `ON DELETE SET NULL`. When used, the database will write `NULL` as the value of the company field for all users who worked at the remote company.
+If `ON DELETE CASCADE` was specified, then when deleting the company, all users would be deleted, referring to this company.
 
-    `ON UPDATE CASCADE` means that if a company changes its ID, then all Users will get a new ID in the company field.
+There is one more option - `ON DELETE SET NULL`. When used, the database will write `NULL` as the value of the company field for all users who worked at the remote company.
+
+`ON UPDATE CASCADE` means that if a company changes its ID, then all Users will get a new ID in the company field.
 
 ## Deleting a table
 
@@ -374,6 +396,9 @@ Deleting a table is done using the `DROP TABLE` operator.
 ```sql
 DROP TABLE [IF EXISTS] table_name;
 ```
+
+- `IF EXISTS` (keyword, optional) — don't raise an error if there is no table with this name.
+- `table_name` — the table to delete together with all its data.
 
 ## Interactive exercise
 

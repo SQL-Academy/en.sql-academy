@@ -26,17 +26,16 @@ It is only valid in the query it belongs to, allowing you to improve the structu
 ## WITH statement syntax
 
 ```sql
-WITH name_cte [(column_1 [, column_2 ] …)] AS (subquery)
-    [, name_cte [(column_1 [, column_2 ] …)] AS (subquery)] …
+WITH cte_name [(column [, ...])] AS (subquery)
+    [, cte_name [(column [, ...])] AS (subquery)] ...
 ```
 
-How to use the `WITH` operator:
-
-1. Initiate the `WITH`
-2. Specify the name of common table expression
-3. Optional: specify column names separated by commas
-4. Enter `AS` operator and subquery, the result of which can be used in other parts of the SQL query, using the name defined in step 2
-5. Optional: if more than one table expression is needed, then put a comma and repeat steps 2-4
+- `cte_name` — the name of the common table expression. If you need several expressions, list them
+  separated by commas.
+- `column` (optional) — column names of the table expression, separated by commas. If you omit them, they are
+  taken from the subquery.
+- `subquery` (subquery) — a query whose result can be used in other parts of the SQL query by the name
+  `cte_name`.
 
 ## Query examples
 
@@ -108,23 +107,36 @@ A recursive CTE consists of two parts separated by the `UNION ALL` operator:
 - The recursive part: a query that refers to the CTE to continue the recursion.
 
 ```sql
-WITH RECURSIVE cte_name (column_1, column_2, ...) AS (
+WITH RECURSIVE cte_name [(column [, ...])] AS (
     -- Initial dataset
-    SELECT column_1, column_2, ...
-    FROM table
-    WHERE condition
+    SELECT expression [, ...]
+    FROM table_name
+    [WHERE condition]
 
     UNION ALL
 
     -- Recursive part
-    SELECT column_1, column_2, ...
+    SELECT expression [, ...]
     FROM cte_name
-    INNER JOIN table ON cte_name.column = table.column
-    WHERE condition
+    INNER JOIN table_name ON join_condition
+    [WHERE condition]
 )
 
 SELECT * FROM cte_name;
 ```
+
+- `cte_name` — the name of the table expression. The recursive part refers to it to continue the
+  recursion.
+- `column` (optional) — column names of the table expression. Without the list, the names come from the
+  initial part.
+- `expression` — columns and calculations that each part selects. Both parts select the same number of
+  columns. The initial part sets the column types, and the recursive part's values must
+  fit them. The recursive part often calculates something like `level + 1`.
+- `table_name` — the table with the source data, for example `Employees`.
+- `join_condition` — how the table rows are linked to the rows found at the previous step, for example
+  `e.managerId = s.id`.
+- `condition` (optional) — filters rows: in the initial part, which rows to start from; in the recursive part,
+  which rows to add at the next step.
 
 ### Example: manager-subordinate hierarchy
 

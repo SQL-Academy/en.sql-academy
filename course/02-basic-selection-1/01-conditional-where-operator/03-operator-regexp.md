@@ -35,19 +35,21 @@ It is important to remember that `LIKE` compares the whole string against its pa
 **MySQL**
 
 ```sql
-... WHERE table_field REGEXP 'pattern';
+WHERE table_field REGEXP pattern;
 ```
 
-Where `pattern` is the regular expression that defines the search pattern.
+- `table_field` — the text column whose values are searched for a match.
+- `pattern` — a regular expression in quotes that defines the search pattern, for example `'^John'`.
 
 **PostgreSQL**
 
 ```sql
-... WHERE table_field ~ 'pattern';   -- case-sensitive
-... WHERE table_field ~* 'pattern';  -- case-insensitive
+WHERE table_field {~ | ~*} pattern;
 ```
 
-Where `pattern` is the regular expression that defines the search pattern.
+- `table_field` — the text column whose values are searched for a match.
+- `~ | ~*` — the regular expression match operator: `~` is case-sensitive, `~*` is not.
+- `pattern` — a regular expression in quotes that defines the search pattern, for example `'^John'`.
 
 ## Important Considerations
 

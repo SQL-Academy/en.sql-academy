@@ -16,6 +16,8 @@ Database creation has the following syntax:
 CREATE DATABASE database_name;
 ```
 
+- `database_name` — the name of the new database.
+
 **MySQL**
 
 Database names usually use letters, numbers, and the characters "\_" and "$". The maximum name length is 64 characters.
@@ -63,6 +65,8 @@ Deleting a database is done using the `DROP DATABASE` operator:
 DROP DATABASE database_name;
 ```
 
+- `database_name` — the database to delete together with all its tables.
+
 **PostgreSQL**
 
 > You cannot drop a database if the current session is connected to it. The command will also fail if other active sessions are connected to that database.
@@ -79,11 +83,19 @@ That is, if we want to create a database only on the condition that it does not 
 CREATE DATABASE IF NOT EXISTS database_name;
 ```
 
+- `IF NOT EXISTS` (keyword) — create the database only if there is no database with this name yet. Otherwise the
+  query does nothing and doesn't fail.
+- `database_name` — the name of the new database.
+
 If we want to delete the database only if it exists, then we use following syntax:
 
 ```sql
 DROP DATABASE IF EXISTS database_name;
 ```
+
+- `IF EXISTS` (keyword) — delete the database only if it exists. Otherwise the query does nothing and doesn't
+  fail.
+- `database_name` — the database to delete.
 
 **PostgreSQL**
 
@@ -96,3 +108,7 @@ When deleting a database, you can use the `IF EXISTS` construction:
 ```sql
 DROP DATABASE IF EXISTS database_name;
 ```
+
+- `IF EXISTS` (keyword) — delete the database only if it exists. Otherwise the query does nothing and doesn't
+  fail.
+- `database_name` — the database to delete.

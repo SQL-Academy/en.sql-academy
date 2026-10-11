@@ -74,16 +74,19 @@ FROM Student
 
 ```sql
 CASE
-    WHEN condition_1 THEN return_value_1
-    WHEN condition_2 THEN return_value_2
-    WHEN condition_n THEN return_value_n
-    [ELSE default-return_value]
+    WHEN condition THEN result
+    [WHEN ...]
+    [ELSE default_result]
 END
 ```
 
-If `condition_1` returns true, then the `CASE` expression will return `return_value_1`, otherwise a check will be made
-to `condition_2` and so on. If none of the proposed conditions is met, then `NULL` or `default_return_value` will be returned,
-if the `ELSE` construct was used.
+- `condition` — a logical expression of the `WHEN` branch, for example `price > 100`.
+- `result` — the value `CASE` returns if the branch condition is true.
+- `default_result` (optional) — the value returned when none of the conditions is met. Without `ELSE`, `NULL` is
+  returned.
+
+The `WHEN` branches are checked in order: if the `condition` of the first branch is true, the `CASE` expression
+returns its `result`, otherwise the next branch is checked and so on.
 
 ### Example
 
@@ -158,15 +161,18 @@ is a little less flexible. Here is its syntax:
 
 ```sql
 CASE value
-    WHEN compare_value_1 THEN return_value_1
-    WHEN compare_value_2 THEN return_value_2
-    WHEN compare_value_n THEN return_value_n
-    [ELSE default_return_value]
+    WHEN compare_value THEN result
+    [WHEN ...]
+    [ELSE default_result]
 END
 ```
 
-In this syntax, the `value` in `CASE` is compared in turn with the passed values ​​in `WHEN` and, if a match is found,
-value, the value following `THEN` is returned.
+- `value` — the expression being checked, for example a table column.
+- `compare_value` — a specific value of the `WHEN` branch, for example a number or a string.
+- `result` — the value `CASE` returns if `value` matches the value of the branch.
+- `default_result` (optional) — the value returned when there is no match. Without `ELSE`, `NULL` is returned.
+
+In this syntax, the `value` in `CASE` is compared in turn with the values in `WHEN`, and if one matches, the value following `THEN` is returned.
 
 Using this syntax, we can rewrite our previous example:
 
@@ -235,8 +241,8 @@ CASE 2
 END
 ```
 
-1. Zero — The CASE statement cannot return "Zero" because the values ​​"2" and "0" are not equal
+1. Zero — The CASE statement cannot return "Zero" because the values "2" and "0" are not equal
 
-2. One — The CASE statement cannot return "One" because the values ​​"2" and "1" are not equal
+2. One — The CASE statement cannot return "One" because the values "2" and "1" are not equal
 
-3. **Correct answer:** Many — That's right, the CASE statement will indeed return "Many", because none of the values ​​passed to WHEN matched "2"
+3. **Correct answer:** Many — That's right, the CASE statement will indeed return "Many", because none of the values passed to WHEN matched "2"

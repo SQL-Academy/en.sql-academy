@@ -11,15 +11,18 @@ The results of executing SQL queries can be combined. There is a `UNION` operato
 ## The general structure of a query with the operator UNION
 
 ```sql
-SELECT table_fields FROM list_of_tables ...
+SELECT table_fields FROM table_name
 UNION [ALL]
-SELECT table_fields FROM list_of_tables ... ;
+SELECT table_fields FROM table_name;
 ```
 
-`UNION` removes repetitions in the resulting table by default. There is an optional `ALL` parameter for repeat display.
+- `table_fields` — the columns each query selects. Both queries must select the same number of columns,
+  and columns in the same position must have compatible types.
+- `table_name` — the table each query takes its data from.
+- `ALL` (keyword, optional) — keeps duplicate rows in the result. Without `ALL`, duplicates are removed.
 
-- Do not confuse query join operations with table join operations. To do this, use the `JOIN` operator.
-- Do not confuse query merge operations with subqueries. Subqueries are executed for linked tables.
+* Do not confuse query join operations with table join operations. To do this, use the `JOIN` operator.
+* Do not confuse query merge operations with subqueries. Subqueries are executed for linked tables.
 
 Table joining with the `UNION` operator is performed for tables that are not related in any way, but with a similar structure.
 

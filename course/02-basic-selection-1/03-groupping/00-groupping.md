@@ -74,10 +74,16 @@ To answer all these and many other questions, there is the `GROUP BY` operator.
 ## The general structure of a query with GROUP BY
 
 ```sql
-SELECT [literals, aggregate_functions, grouping_fields]
+SELECT { literal | aggregate_function | grouping_field } [, ...]
 FROM table_name
-GROUP BY grouping_fields;
+GROUP BY grouping_field [, ...];
 ```
+
+- `literal` — a fixed value such as `'text'` or `1`. It is the same for every group.
+- `aggregate_function` — a function that computes one value from all rows of a group, for example `AVG(price)`.
+- `grouping_field` — the column that splits rows into groups: rows with the same value end up in one group.
+  You can list several columns separated by commas.
+- `table_name` — the table whose rows are grouped.
 
 To group records by the type of housing, we need to specify `home_type` after `GROUP BY`, i.e., the field by which grouping will occur.
 

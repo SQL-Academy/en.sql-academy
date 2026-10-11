@@ -26,25 +26,39 @@ The `IF` operator allows you to execute code based on whether a condition is met
 
 ```sql
 IF condition THEN
-    -- code executed when condition is true
-ELSEIF another_condition THEN
-    -- code for alternative condition
-ELSE
-    -- default code
+    statements
+[ELSEIF condition THEN
+    statements] ...
+[ELSE
+    statements]
 END IF;
 ```
+
+- `condition` — a logical expression, for example `student_age < 18`. The first branch whose condition
+  is true runs, the rest are skipped.
+- `statements` — one or more SQL statements, each ending with `;`. They run if this branch is chosen.
+- `ELSEIF` (keyword, optional) — another branch with its own condition. It's checked only if all the conditions above
+  are false. You can add several of these branches.
+- `ELSE` (keyword, optional) — the branch that runs if none of the conditions turned out to be true.
 
 **PostgreSQL**
 
 ```sql
 IF condition THEN
-    -- code executed when condition is true
-ELSIF another_condition THEN
-    -- code for alternative condition
-ELSE
-    -- default code
+    statements
+[ELSIF condition THEN
+    statements] ...
+[ELSE
+    statements]
 END IF;
 ```
+
+- `condition` — a logical expression, for example `student_age < 18`. The first branch whose condition
+  is true runs, the rest are skipped.
+- `statements` — one or more SQL statements, each ending with `;`. They run if this branch is chosen.
+- `ELSIF` (keyword, optional) — another branch with its own condition. It's checked only if all the conditions above
+  are false. You can add several of these branches.
+- `ELSE` (keyword, optional) — the branch that runs if none of the conditions turned out to be true.
 
 ### IF Usage Example
 
@@ -133,21 +147,33 @@ The `CASE` operator provides a more elegant way to handle multiple conditions.
 
 ```sql
 CASE
-    WHEN condition1 THEN result1
-    WHEN condition2 THEN result2
-    ELSE default_result
-END CASE;
+    WHEN condition THEN result
+    [WHEN ...]
+    [ELSE default_result]
+END
 ```
+
+- `condition` — a logical expression checked in its own `WHEN` branch. There can be several branches:
+  the first one whose condition is true wins.
+- `result` — the value `CASE` takes if this branch's condition is true.
+- `default_result` (optional) — the value returned when none of the conditions is met. Without `ELSE`, `NULL` is
+  returned.
 
 **PostgreSQL**
 
 ```sql
 CASE
-    WHEN condition1 THEN result1
-    WHEN condition2 THEN result2
-    ELSE default_result
-END CASE;
+    WHEN condition THEN result
+    [WHEN ...]
+    [ELSE default_result]
+END
 ```
+
+- `condition` — a logical expression checked in its own `WHEN` branch. There can be several branches:
+  the first one whose condition is true wins.
+- `result` — the value `CASE` takes if this branch's condition is true.
+- `default_result` (optional) — the value returned when none of the conditions is met. Without `ELSE`, `NULL` is
+  returned.
 
 ### CASE Usage Example
 
@@ -232,17 +258,27 @@ The `WHILE` loop allows you to execute code repeatedly while a certain condition
 
 ```sql
 WHILE condition DO
-    -- code executed in the loop
+    statements
 END WHILE;
 ```
+
+- `condition` — a logical expression checked before each pass of the loop. The statements repeat while
+  it's true.
+- `statements` — the SQL statements in the loop body. One of them should eventually make the condition
+  false, otherwise the loop never ends.
 
 **PostgreSQL**
 
 ```sql
 WHILE condition LOOP
-    -- code executed in the loop
+    statements
 END LOOP;
 ```
+
+- `condition` — a logical expression checked before each pass of the loop. The statements repeat while
+  it's true.
+- `statements` — the SQL statements in the loop body. One of them should eventually make the condition
+  false, otherwise the loop never ends.
 
 ### WHILE Usage Example
 

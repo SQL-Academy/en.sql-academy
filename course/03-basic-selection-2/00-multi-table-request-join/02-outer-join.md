@@ -219,6 +219,14 @@ FROM left_table
 WHERE left_table.key IS NULL;
 ```
 
+- `table_fields` — the columns that go into the result. Both parts must list the same number of columns
+  in the same order.
+- `left_table` — the left table of the join: its unmatched rows also get into the result.
+- `right_table` — the right table of the join: its unmatched rows get into the result too.
+- `left_table.key` — the column of the left table used to find a match. In the second part, `IS NULL` on it
+  keeps only the rows of the right table that have no match.
+- `right_table.key` — the column of the right table whose value must equal the key of the left one.
+
 The condition in the second part is required: without it the matched rows would appear in the result twice.
 
 ## All types of table joins

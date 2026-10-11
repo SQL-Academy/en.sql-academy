@@ -55,26 +55,27 @@ Now let's see how the window function works for different windows:
 ## Syntax of window functions
 
 ```sql
-SELECT <window_function>(<table_field>)
+SELECT window_function(table_field)
 OVER (
-      [PARTITION BY <partition_columns>]
-      [ORDER BY <sort_columns>]
-      [ROWS|RANGE <range_definition>]
+    [PARTITION BY partition_column [, ...]]
+    [ORDER BY sort_column [, ...]]
+    [{ROWS | RANGE} window_frame]
 )
 ```
 
-Where:
+- `window_function` — the function calculated over the window, for example `AVG` or `SUM`.
+- `table_field` — the column whose values are passed to the function, for example `price` in
+  `AVG(price)`.
+- `partition_column` (optional) — divides the data into non-overlapping partitions: each one gets the rows with the same
+  values in these columns.
+- `sort_column` (optional) — sets the order of rows within the window. This is especially important for ranking
+  window functions.
+- `window_frame` (optional) — defines the window frame: how many rows to include before and after the current row.
 
-- `<window_function>(<table_field>)` is the window function being used, e.g., `AVG(price)`.
-- `OVER` is used to define the window (group of rows) that will be passed to the window function.
-  If `OVER ()` is left without parameters, the window will contain all rows in the query result.
+`OVER` is used to define the window (group of rows) that will be passed to the window function.
+If `OVER ()` is left without parameters, the window will contain all rows in the query result.
 
-Within `OVER`, there are three optional parameters that allow you to customize the window:
-
-- `PARTITION BY <partition_columns>` divides the data into non-overlapping subsets, where each subset contains rows with the same values in one or more columns, creating partitions.
-- `ORDER BY <sort_columns>` sets the order of the rows within the window. This is particularly important for ranking window functions.
-- `ROWS|RANGE <range_definition>` defines the window frame. This parameter allows you to specify how many rows to include before and after the current row.
-
+Within `OVER`, there are three optional parameters that allow you to customize the window.
 We will delve into each of these parameters in more detail in the following articles.
 
 ## Example of using window functions
