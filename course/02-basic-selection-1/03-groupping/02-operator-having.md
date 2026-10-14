@@ -124,14 +124,14 @@ To get this result, we must:
 
     ```sql
     SELECT ... FROM Rooms
-    WHERE has_tv = True
+    WHERE has_tv = true
     ```
 
 - Then group the data on residential properties by their type
 
     ```sql
     SELECT ... FROM Rooms
-    WHERE has_tv = True
+    WHERE has_tv = true
     GROUP BY home_type
     ```
 
@@ -139,7 +139,7 @@ To get this result, we must:
 
     ```sql
     SELECT ... FROM Rooms
-    WHERE has_tv = True
+    WHERE has_tv = true
     GROUP BY home_type
     HAVING COUNT(*) >= 5
     ```
@@ -149,7 +149,7 @@ To get this result, we must:
 
     ```sql
     SELECT home_type, MIN(price) as min_price FROM Rooms
-    WHERE has_tv = True
+    WHERE has_tv = true
     GROUP BY home_type
     HAVING COUNT(*) >= 5;
     ```

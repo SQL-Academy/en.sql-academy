@@ -9,8 +9,9 @@ meta:
 ## Characteristics of NULL:
 
 - `NULL` is not equivalent to an empty string or zero.
-- Operations with `NULL` return `NULL`.
-- Comparing `NULL = NULL` returns `FALSE`.
+- Arithmetic, comparisons, and most functions return `NULL` when one of the operands is `NULL`: `5 + NULL` is `NULL`.
+- Comparing `NULL = NULL` also returns `NULL`, not `true`: it is unknown whether two unknown values are equal. That is why `WHERE field = NULL` finds no rows — use `IS NULL` instead.
+- Logical operators are an exception: `NULL OR true` returns `true`, and `NULL AND false` returns `false`.
 
 ## Working with NULL
 

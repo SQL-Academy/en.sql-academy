@@ -60,7 +60,7 @@ SELECT name FROM Company ORDER BY name;
 | String type   | Lexicographic (alphabetical) order from "A" to "Z" <br /> <br /> Records starting with "a" come first, then "b", etc. | Lexicographic order from "Z" to "A" <br /> <br /> Records starting with "z" come first, then "y", etc. |
 | Numeric type  | From smallest to largest                                                                                              | From largest to smallest                                                                               |
 | Date and time | From earlier date/time to later <br /> <br /> For example, first `01.01.2024`, then `01.02.2024`                      | From later date/time to earlier <br /> <br /> For example, first `01.02.2024`, then `01.01.2024`       |
-| Boolean type  | `False` comes before `True`                                                                                           | `True` comes before `False`                                                                            |
+| Boolean type  | `false` comes before `true`                                                                                           | `true` comes before `false`                                                                            |
 | NULL values   | `NULL` values come first                                                                                              | `NULL` values come first                                                                               |
 
 **PostgreSQL**

@@ -161,11 +161,11 @@ Above, we looked at how to specify a date, but in addition to a date, we can als
 
 ## Logical literals
 
-A logical literal is a value of `TRUE` or `FALSE`, which indicates the truthfulness or falsehood of a statement.
+A logical literal is a value of `true` or `false`, which indicates the truthfulness or falsehood of a statement.
 
 **MySQL**
 
-When interpreting a query, MySQL converts them into numbers: `TRUE` and `FALSE` become
+When interpreting a query, MySQL converts them into numbers: `true` and `false` become
 `1` and `0`, respectively.
 
 ## NULL

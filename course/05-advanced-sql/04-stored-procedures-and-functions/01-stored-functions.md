@@ -154,7 +154,7 @@ SELECT
     birthday,
     is_adult(birthday) AS is_adult
 FROM Student
-WHERE is_adult(birthday) = TRUE
+WHERE is_adult(birthday) = true
 LIMIT 5;
 ```
 
@@ -178,7 +178,7 @@ SELECT
     birthday,
     is_adult(birthday) AS is_adult
 FROM Student
-WHERE is_adult(birthday) = TRUE
+WHERE is_adult(birthday) = true
 LIMIT 5;
 ```
 

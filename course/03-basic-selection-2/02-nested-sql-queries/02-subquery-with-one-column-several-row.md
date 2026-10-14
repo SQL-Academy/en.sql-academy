@@ -13,7 +13,7 @@ However, with subqueries that return multiple rows and one column, there are thr
 ## Subquery and ALL operator
 
 With the `ALL` operator, we can compare an individual value to each value in the set obtained by the subquery.
-In this case, this condition will return `TRUE` only if all comparisons of an individual value with values in the set return `TRUE`.
+In this case, this condition will return `true` only if all comparisons of an individual value with values in the set return `true`.
 
 For example, the synthetic query below checks whether the condition that a residential unit is cheaper than 200 is true for all residential units.
 
@@ -63,7 +63,7 @@ SELECT * FROM Users WHERE id IN (
 
 ## Subquery and ANY operator
 
-The conditional expression with `ANY` has similar behavior, but it returns `TRUE` if at least one comparison of an individual value with a value in the set returns `TRUE`.
+The conditional expression with `ANY` has similar behavior, but it returns `true` if at least one comparison of an individual value with a value in the set returns `true`.
 
 Let's use it to write the same query that we did with the `IN` operator: find users who own at least one residential unit that costs more than 150.
 
