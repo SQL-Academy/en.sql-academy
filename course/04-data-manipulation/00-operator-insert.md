@@ -101,15 +101,6 @@ INSERT INTO Goods (good_id, good_name, type)
 SELECT 20, 'Table', 8;
 ```
 
-More often, though, this way is used when the data **comes from the database**: to copy existing rows or insert calculation results. For example, let's duplicate all food products under new numbers:
-
-```sql
-INSERT INTO Goods (good_id, good_name, type)
-SELECT good_id + 100, good_name, type
-FROM Goods
-WHERE type = 2;
-```
-
 Both ways add the same row:
 
 | good_id | good_name            | type  |
@@ -133,6 +124,15 @@ Both ways add the same row:
 | 17      | airsoft game session | 4     |
 | 18      | netflix subscription | 4     |
 | **20**  | **Table**            | **8** |
+
+More often, though, `INSERT ... SELECT` is used when the data **comes from the database**: to copy existing rows or insert calculation results. For example, let's duplicate all food products under new numbers:
+
+```sql
+INSERT INTO Goods (good_id, good_name, type)
+SELECT good_id + 100, good_name, type
+FROM Goods
+WHERE type = 2;
+```
 
 ## Primary key when adding a new record
 
