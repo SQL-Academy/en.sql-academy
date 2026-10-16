@@ -69,39 +69,25 @@ VALUES (20, 'Table', 8);
 
 ## Differences between INSERT syntaxes
 
-Let's add a dining table to the goods list. There are two ways to do it.
+Say we need to add a new item to the `Goods` list: a dining table. There are two ways to do it.
 
 Family database ER diagram: [open on SQL Academy](https://sql-academy.org/en/guide/operator-insert).
 
-### INSERT INTO ... VALUES
-
-The values are listed in parentheses after `VALUES`. This way suits data that is **known in advance**:
+The familiar way is to list the values after `VALUES`:
 
 ```sql
 INSERT INTO Goods (good_id, good_name, type)
 VALUES (20, 'Table', 8);
 ```
 
-You can also add several rows at once, each in its own parentheses:
-
-```sql
-INSERT INTO Goods (good_id, good_name, type)
-VALUES
-    (20, 'Table', 8),
-    (21, 'Chair', 8),
-    (22, 'Lamp', 8);
-```
-
-### INSERT INTO ... SELECT
-
-The values are returned by a `SELECT` query. It can even be written without a table, in which case it simply returns the listed values:
+But `INSERT` accepts more than a ready-made list. You can put a `SELECT` query in place of `VALUES`, and everything it returns goes into the table. `SELECT` can even do without `FROM`. If you just list values in it, it returns them as a single row:
 
 ```sql
 INSERT INTO Goods (good_id, good_name, type)
 SELECT 20, 'Table', 8;
 ```
 
-Both ways add the same row:
+Both queries give the same result — a dining table appears in `Goods`:
 
 | good_id | good_name            | type  |
 | ------- | -------------------- | ----- |
@@ -125,7 +111,19 @@ Both ways add the same row:
 | 18      | netflix subscription | 4     |
 | **20**  | **Table**            | **8** |
 
-More often, though, `INSERT ... SELECT` is used when the data **comes from the database**: to copy existing rows or insert calculation results. For example, let's duplicate all food products under new numbers:
+### When to use which
+
+If the values are known in advance (say, a user has entered them), `INSERT ... VALUES` is the simplest choice. It can also add several rows at once, each in its own parentheses:
+
+```sql
+INSERT INTO Goods (good_id, good_name, type)
+VALUES
+    (20, 'Table', 8),
+    (21, 'Chair', 8),
+    (22, 'Lamp', 8);
+```
+
+`INSERT ... SELECT`, on the other hand, comes in handy when new rows have to be built from what's already in the database: to copy records, within a table or into another one, or to save calculation results. For example, let's duplicate all food products and give the copies IDs 100 higher:
 
 ```sql
 INSERT INTO Goods (good_id, good_name, type)
@@ -133,6 +131,8 @@ SELECT good_id + 100, good_name, type
 FROM Goods
 WHERE type = 2;
 ```
+
+Run it and look at the end of the table: one query added three rows at once — copies of bread, milk and potato.
 
 ## Primary key when adding a new record
 
