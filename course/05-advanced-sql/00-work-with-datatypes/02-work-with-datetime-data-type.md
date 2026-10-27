@@ -36,6 +36,9 @@ The following formats are used to set the date and time:
 | `TIME`      | `hhh:mm:sss`                                                                                                                                                   |
 | `YEAR`      | `YYYY` - full format <br /> `YY` or `Y` - shorthand format that returns a year between 2000-2069 for values 0-69 and a year between 1970-1999 for values 70-99 |
 
+Moreover, when specifying a date, it is allowed to use any punctuation mark as a separator between parts of the date or time sections.
+It is also possible to set the date without a separator character at all, together.
+
 **PostgreSQL**
 
 | Type        | Default Format        |
@@ -44,8 +47,8 @@ The following formats are used to set the date and time:
 | `TIMESTAMP` | `YYYY-MM-DD hh:mm:ss` |
 | `TIME`      | `hh:mm:ss`            |
 
-Moreover, when specifying a date, it is allowed to use any punctuation mark as a separator between parts of the date or time sections.
-It is also possible to set the date without a separator character at all, together.
+Parts of the date go in year-month-day order and are separated by a hyphen, a slash or a dot, while parts of the time can only be separated by a colon.
+The date and time can also be written as continuous digits, but then the date is separated from the time by a space or the letter `T`: for example, `20220616T163723`.
 
 Examples of valid setting of values for date and time via string representation:
 
@@ -69,7 +72,7 @@ SELECT  CAST("2022-06-16 16:37:23" AS DATETIME) AS datetime_1,
 ```sql
 SELECT  CAST('2022-06-16 16:37:23' AS TIMESTAMP) AS timestamp_1,
         CAST('2014/02/22 16:37:22' AS TIMESTAMP) AS timestamp_2,
-        CAST('20220616163723' AS TIMESTAMP) AS timestamp_3,
+        CAST('20220616T163723' AS TIMESTAMP) AS timestamp_3,
         CAST('2021-02-12' AS DATE) AS date_1,
         CAST('16:23:13' AS TIME) AS time_1
 ```
@@ -170,10 +173,10 @@ To do this, PostgreSQL uses the `EXTRACT` function:
 There are very similar data types: `DATETIME` and `TIMESTAMP`. Both are aimed at storing the date and time.
 But they have a number of differences that determine which of these data types is best to use when.
 
-| Criteria  | `DATETIME`                                                 | `TIMESTAMP`                                                                                                                        |
-| :-------- | :--------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------- |
-| Range     | from `1000-01-01 00:00:00` <br /> to `9999-12-31 23:59:59` | from `1970-01-01 00:00:00` <br /> to `2038-01-19 03:14:07`                                                                         |
-| Time zone | Ignored <br /> Displayed as the date was set               | Taken into account <br /> When making selections, it is displayed taking into account the current time zone of the database server |
+| Criteria  | `DATETIME`                                                 | `TIMESTAMP`                                                                                                                |
+| :-------- | :--------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------- |
+| Range     | from `1000-01-01 00:00:00` <br /> to `9999-12-31 23:59:59` | from `1970-01-01 00:00:00` <br /> to `2038-01-19 03:14:07`                                                                 |
+| Time zone | Ignored <br /> Displayed as the date was set               | Taken into account <br /> When making selections, it is displayed taking into account the time zone of the current session |
 
 **PostgreSQL**
 
@@ -181,10 +184,10 @@ But they have a number of differences that determine which of these data types i
 
 The main types for storing date and time are `TIMESTAMP` (without time zone) and `TIMESTAMPTZ` (with time zone).
 
-| Criteria  | `TIMESTAMP`                                  | `TIMESTAMPTZ`                                                                                                                      |
-| :-------- | :------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------- |
-| Range     | from `4713 BC` to `294276 AD`                | from `4713 BC` to `294276 AD`                                                                                                      |
-| Time zone | Ignored <br /> Displayed as the date was set | Taken into account <br /> When making selections, it is displayed taking into account the current time zone of the database server |
+| Criteria  | `TIMESTAMP`                                  | `TIMESTAMPTZ`                                                                                                              |
+| :-------- | :------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------- |
+| Range     | from `4713 BC` to `294276 AD`                | from `4713 BC` to `294276 AD`                                                                                              |
+| Time zone | Ignored <br /> Displayed as the date was set | Taken into account <br /> When making selections, it is displayed taking into account the time zone of the current session |
 
 ## Time zones
 
@@ -196,27 +199,29 @@ by the number of hours offset from UTC. For example, the Moscow time zone can be
 
 The time zone is one of the database server settings and can be set:
 
-- globally
-- for the current user
-- for the current user session
-
 **MySQL**
 
+- globally
+- for the current session
+
 ```sql
-SET GLOBAL time_zone = '+03:00';    // globally
-SET time_zone = '+03:00';           // for the current user
-SET @@session.time_zone = '+03:00'; // for the current user session
+SET GLOBAL time_zone = '+03:00'; -- globally
+SET time_zone = '+03:00';        -- for the current session
 ```
 
 Accordingly, when changing the time zone, all values of the `TIMESTAMP` type will be displayed taking into account the current active time zone.
 
 **PostgreSQL**
 
+- for the database
+- for a specific user
+- for the current session
+
 ```sql
-ALTER DATABASE mydb SET timezone = 'Europe/Moscow';  // globally for database
-ALTER USER myuser SET timezone = 'Europe/Moscow';    // for specific user
-SET TIME ZONE 'Europe/Moscow';                       // for current session
-SET TIME ZONE '+03:00';                              // for current session
+ALTER DATABASE mydb SET timezone = 'Europe/Moscow'; -- for the database
+ALTER USER myuser SET timezone = 'Europe/Moscow';   -- for a specific user
+SET TIME ZONE 'Europe/Moscow';                      -- for the current session by zone name
+SET TIME ZONE INTERVAL '+03:00' HOUR TO MINUTE;     -- for the current session by UTC offset
 ```
 
 Accordingly, when changing the time zone, all values of the `TIMESTAMPTZ` type will be displayed taking into account the current active time zone.

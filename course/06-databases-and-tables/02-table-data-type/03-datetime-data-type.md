@@ -26,7 +26,7 @@ PostgreSQL has several data types for working with dates and times: `DATE`, `TIM
 | `DATE`        | Stores date values as YYYY-MM-DD. <br /> For example, 2022-12-05                      | from 4713 BC to 5874897 AD               | 4 bytes        |
 | `TIME`        | Stores time values in the format HH:MM:SS. <br /> For example, 14:30:45               | from 00:00:00 to 24:00:00                | 8 bytes        |
 | `TIMESTAMP`   | Stores date and time value without time zone. <br /> For example, 2022-12-05 10:37:22 | from 4713 BC to 294276 AD                | 8 bytes        |
-| `TIMESTAMPTZ` | Stores date and time value with time zone. <br /> For example, 2022-12-05 10:37:22+03 | from 4713 BC to 294276 AD                | 8 bytes        |
+| `TIMESTAMPTZ` | Stores a point in time converted to UTC. <br /> For example, 2022-12-05 10:37:22+03   | from 4713 BC to 294276 AD                | 8 bytes        |
 | `INTERVAL`    | Stores time intervals. <br /> For example, 1 year 2 months 3 days 4 hours             | from -178000000 years to 178000000 years | 16 bytes       |
 
 **MySQL**
@@ -99,8 +99,8 @@ Result: `2022-06-16 16:37:23` (value did not change)
 
 ## TIMESTAMPTZ
 
-The `TIMESTAMPTZ` type (or `TIMESTAMP WITH TIME ZONE`) stores date and time with time zone information.
-PostgreSQL automatically converts time to UTC for storage and back to local time zone for output.
+The `TIMESTAMPTZ` type (or `TIMESTAMP WITH TIME ZONE`) stores date and time with the time zone taken into account, but does not store the time zone itself.
+PostgreSQL automatically converts time to UTC for storage and back to the time zone of the current session for output.
 
 ```sql
 CREATE TABLE timestamptz_table (timestamptz_field TIMESTAMPTZ);
@@ -178,4 +178,4 @@ INSERT INTO date_table VALUES(
 SELECT * FROM date_table;
 ```
 
-PostgreSQL strictly follows the ISO 8601 standard and prefers to use standard date formats.
+PostgreSQL also understands other date formats, but ISO 8601 is the most reliable: it is read unambiguously regardless of settings.

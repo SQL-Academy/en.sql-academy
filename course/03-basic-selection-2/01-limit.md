@@ -63,7 +63,7 @@ Let's take a `Company` table:
 | 1   | Don_avia   |
 | 2   | Aeroflot   |
 | 3   | Dale_avia  |
-| 4   | air_France |
+| 4   | Air_France |
 | 5   | British_AW |
 
 To output lines 3 to 5, you need to use this request:
@@ -91,7 +91,7 @@ The query returns the following selection:
 | id  | name       |
 | --- | ---------- |
 | 3   | Dale_avia  |
-| 4   | air_France |
+| 4   | Air_France |
 | 5   | British_AW |
 
 This query skips the first two rows of the table (1, 2), and then outputs the next three entries (3, 4, 5).
