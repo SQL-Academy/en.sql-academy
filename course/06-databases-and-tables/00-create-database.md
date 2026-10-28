@@ -112,3 +112,29 @@ DROP DATABASE IF EXISTS database_name;
 - `IF EXISTS` (keyword) — delete the database only if it exists. Otherwise the query does nothing and doesn't
   fail.
 - `database_name` — the database to delete.
+
+## Test yourself
+
+The `shop` database has tables with data. What happens when you run this query?
+
+```sql
+DROP DATABASE shop;
+```
+
+1. The query fails: the tables have to be dropped first — There is no need to empty the database first: DROP DATABASE deletes it together with all its tables.
+
+2. **Correct answer:** The database is deleted together with all its tables and data — DROP DATABASE deletes the whole database. After that, the tables and data can only be restored from a backup.
+
+3. The tables are deleted, but the empty database remains — DROP DATABASE deletes not only the contents but the database itself: after the query it is no longer in the list of databases.
+
+There is no `shop` database on the server. What happens when you run this query?
+
+```sql
+DROP DATABASE IF EXISTS shop;
+```
+
+1. The query fails because the database does not exist — This is how DROP DATABASE behaves without IF EXISTS. The IF EXISTS clause is there exactly to avoid this error.
+
+2. **Correct answer:** The query does nothing and does not fail — IF EXISTS deletes the database only if it exists, otherwise it skips the deletion without an error.
+
+3. An empty shop database is created — DROP DATABASE never creates databases, and IF EXISTS only checks whether the database exists before deleting it.

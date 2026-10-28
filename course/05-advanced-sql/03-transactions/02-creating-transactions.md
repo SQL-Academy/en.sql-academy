@@ -126,3 +126,42 @@ When using savepoints, remember the following points:
   To make your changes within the transaction permanent, you must execute the `COMMIT` command.
 - When performing a transaction rollback without specifying a specific savepoint,
   all previously set savepoints will be ignored, and the entire transaction will be rolled back.
+
+## Test yourself
+
+Before the transaction starts, both users have a balance of 500. What will the first and second users' balances be after these queries run?
+
+```sql
+START TRANSACTION;
+
+UPDATE accounts SET balance = balance - 100 WHERE user_id = 1;
+SAVEPOINT after_debit;
+UPDATE accounts SET balance = balance + 100 WHERE user_id = 2;
+ROLLBACK TO SAVEPOINT after_debit;
+
+COMMIT;
+```
+
+1. 500 and 500 — Rolling back to a savepoint undoes only the changes made after it. The debit ran before the savepoint, so COMMIT makes it permanent.
+
+2. **Correct answer:** 400 and 500 — The debit stays, while the credit made after the savepoint is undone. The money simply vanished, which is why a savepoint should be placed so that rolling back to it does not split related changes.
+
+3. 400 and 600 — The credit ran after the after_debit savepoint, so ROLLBACK TO SAVEPOINT undid it.
+
+The same queries, but at the end only `ROLLBACK` runs instead of `ROLLBACK TO SAVEPOINT` and `COMMIT`. What will be kept in the database?
+
+```sql
+START TRANSACTION;
+
+UPDATE accounts SET balance = balance - 100 WHERE user_id = 1;
+SAVEPOINT after_debit;
+UPDATE accounts SET balance = balance + 100 WHERE user_id = 2;
+
+ROLLBACK;
+```
+
+1. The first user’s debit — A savepoint saves nothing, it only marks a place for a partial rollback. ROLLBACK without a savepoint name undoes the whole transaction.
+
+2. **Correct answer:** Nothing: both balances stay at 500 — ROLLBACK without a savepoint ignores all savepoints and returns the data to its state before the transaction started.
+
+3. Both changes — A transaction’s changes become permanent only after COMMIT. ROLLBACK does the opposite and undoes them.
