@@ -37,7 +37,7 @@ SELECT family_member, amount * unit_price AS price FROM Payments
 
 The `family_member` field in the resulting selection displays the record identifiers from the `Payments` table, but they mean little to us.
 
-Instead of these identifiers, it would be much more informative to output the names of those who made the purchases (the `member_name` field from the `FamilyMember` table).
+Instead of these identifiers, it would be much more informative to output the names of those who made the purchases (the `member_name` field from the `FamilyMembers` table).
 
 This is exactly why table joining and the JOIN operator exist.
 
@@ -171,7 +171,7 @@ INNER JOIN Pass_in_trip AS pit
     ON pit.passenger = pass.id
 ```
 
-In this example, the Passenger and Pass_in_trip tables are assigned aliases `pass` and `pit` respectively, which are then used to reference columns from these tables. Note that both tables contain a column named `id`. If you don't specify which table to take it from, the DBMS will automatically select the value from the **last table** in the JOIN chain (in this case, `Pass_in_trip`).
+In this example, the Passenger and Pass_in_trip tables are assigned aliases `pass` and `pit` respectively, which are then used to reference columns from these tables. Note that both tables contain a column named `id`. If you don't specify which table to take it from, the DBMS can't choose on its own and returns an ambiguous column error. That's why columns with the same name must always be qualified with the table or its alias: `pass.id`.
 
 Compare this with the version without aliases. Isn't this much better? 🔥
 

@@ -21,7 +21,7 @@ For example, the synthetic query below checks whether the condition that a resid
 SELECT 200 > ALL(SELECT price FROM Rooms)
 ```
 
-Or a more practical example: we need to find the names of all property owners who have never rented out their property themselves.
+Or a more practical example: we need to find the names of all property owners who have never rented a place themselves.
 To obtain this list, we can proceed as follows:
 
 Airbnb database ER diagram: [open on SQL Academy](https://sql-academy.org/en/guide/subquery-with-one-column-several-row).
@@ -33,13 +33,13 @@ Airbnb database ER diagram: [open on SQL Academy](https://sql-academy.org/en/gui
     ON Users.id = Rooms.owner_id
     ```
 
-- Get a list of identifiers of all users who have rented out property
+- Get a list of identifiers of all users who have rented a place
 
     ```sql
     SELECT DISTINCT user_id FROM Reservations
     ```
 
-- Filter the first list of all property owners by the condition that the property owner identifier is not equal to any of the identifiers of users who have ever rented out property
+- Filter the first list of all property owners by the condition that the property owner identifier is not equal to any of the identifiers of users who have ever rented a place
 
     ```sql
     SELECT DISTINCT name FROM Users INNER JOIN Rooms

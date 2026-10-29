@@ -9,7 +9,7 @@ meta:
 ## Types of JOINs:
 
 - `INNER JOIN`:\
-  Returns records that have matching values in both tables..
+  Returns records that have matching values in both tables.
 
 - `LEFT JOIN (or LEFT OUTER JOIN)`:\
   Returns all records from the left table and the matching records from the right table. If there is no match, it returns NULL for the right table.
@@ -18,7 +18,7 @@ meta:
   Returns all records from the right table and the matching records from the left table. If there is no match, it returns NULL for the left table.
 
 - `FULL OUTER JOIN`:\
-  Returns all records where there is a match in one of the tables.
+  Returns all records from both tables. Matching rows are combined, and for rows without a match the columns of the other table are filled with `NULL`. MySQL doesn't support `FULL OUTER JOIN`: combine a `LEFT JOIN` and a `RIGHT JOIN` with `UNION`.
 
 - `CROSS JOIN`:\
   Performs a Cartesian product of two tables, combining each row of the first table with each row of the second table.

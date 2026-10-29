@@ -9,7 +9,7 @@ meta:
 - Removes selected records from a table.
 - A `WHERE` condition can be used to delete specific records.
 - The operation is logged in the transaction log row by row.
-- `ON DELETE` triggers are activated.
+- `DELETE` triggers are activated.
 
 ### Syntax
 
@@ -19,11 +19,12 @@ DELETE FROM table_name [WHERE condition];
 
 ## TRUNCATE
 
-- Removes all data from the table without the possibility of recovery.
+- Removes all data from the table.
 - `WHERE` cannot be used.
 - Faster because it does not log the deletion of each row.
-- Resets auto-increment identifiers.
-- Triggers are not activated.
+- Resets the auto-increment counter: always in MySQL, with `RESTART IDENTITY` in PostgreSQL.
+- `DELETE` triggers are not activated (PostgreSQL lets you create a separate trigger for `TRUNCATE`).
+- Can be undone with `ROLLBACK` in PostgreSQL, but not in MySQL: the command implicitly commits the transaction.
 
 ### Syntax
 
@@ -34,7 +35,7 @@ TRUNCATE TABLE table_name;
 ## DROP
 
 - Deletes the entire table along with its data, structure, indexes, and constraints.
-- The action is irreversible.
+- In MySQL the action is irreversible; in PostgreSQL dropping a table inside a transaction can be undone with `ROLLBACK`.
 
 ### Syntax
 

@@ -128,7 +128,7 @@ Possible options for `ON DELETE` and `ON UPDATE`:
 
 ## UNIQUE
 
-The UNIQUE constraint ensures that all values in a column or group of columns are unique. Unlike PRIMARY KEY, it allows NULL values (usually only one NULL value, since NULL != NULL).
+The UNIQUE constraint ensures that all values in a column or group of columns are unique. Unlike PRIMARY KEY, it allows NULL values, and any number of them: NULL is not equal to another NULL, so such values don't count as duplicates.
 
 ```sql
 CREATE TABLE Users (
@@ -407,7 +407,7 @@ When designing a database, follow these recommendations:
 
 Which of the following SQL constraints CANNOT contain NULL values?
 
-1. UNIQUE — The UNIQUE constraint allows NULL values, although usually only one NULL value in a column.
+1. UNIQUE — The UNIQUE constraint allows NULL values, even in several rows at once: NULL doesn't count as a duplicate.
 
 2. CHECK — The CHECK constraint only checks conditions for non-empty values; NULL values are usually bypassed by the check.
 

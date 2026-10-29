@@ -49,7 +49,7 @@ SELECT name FROM Company ORDER BY name;
 | Numeric type  | From smallest to largest                                                                                              | From largest to smallest                                                                               |
 | Date and time | From earlier date/time to later <br /> <br /> For example, first `01.01.2024`, then `01.02.2024`                      | From later date/time to earlier <br /> <br /> For example, first `01.02.2024`, then `01.01.2024`       |
 | Boolean type  | `false` comes before `true`                                                                                           | `true` comes before `false`                                                                            |
-| NULL values   | `NULL` values come first                                                                                              | `NULL` values come first                                                                               |
+| NULL values   | `NULL` values come first                                                                                              | `NULL` values come last                                                                                |
 
 **PostgreSQL**
 

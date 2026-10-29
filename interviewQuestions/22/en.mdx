@@ -51,8 +51,9 @@ RIGHT JOIN departments d ON e.department_id = d.id;
 
 **FULL OUTER JOIN (FULL JOIN):**
 
-- Returns all records where there is a match in either of the tables.
-- If there is no match, the corresponding columns will be `NULL`.
+- Returns all records from both tables, combining the matching rows.
+- If a row has no match, the columns of the other table will be `NULL`.
+- MySQL doesn't support `FULL OUTER JOIN`: combine a `LEFT JOIN` and a `RIGHT JOIN` with `UNION`.
 
 ```sql
 SELECT *

@@ -1,7 +1,7 @@
 ---
 meta:
     title: "What are the key differences between DELETE and TRUNCATE?"
-    description: "DELETE removes individual records with a WHERE condition, while TRUNCATE removes all records from a table with no possibility of recovery. Learn the key differences between these commands."
+    description: "DELETE removes individual records with a WHERE condition, while TRUNCATE removes all records from a table at once. Learn the key differences between these commands."
 ---
 
 ## DELETE:
@@ -9,7 +9,7 @@ meta:
 - Removes selected records from a table.
 - A `WHERE` condition can be used to delete specific records.
 - The operation is logged row by row in the transaction log.
-- `ON DELETE` triggers are activated.
+- `DELETE` triggers are activated.
 - Slower compared to `TRUNCATE`.
 
 Example:
@@ -20,11 +20,12 @@ DELETE FROM employees WHERE salary < 30000;
 
 ## TRUNCATE:
 
-- Removes all records from a table with no possibility of recovery via `ROLLBACK` (in most DBMS).
+- Removes all records from a table.
 - Cannot use `WHERE`.
 - Faster since it is not logged row by row.
-- Resets identity values (if auto-increment is used).
-- Triggers are not activated.
+- Resets the auto-increment counter: always in MySQL, with `RESTART IDENTITY` in PostgreSQL.
+- `DELETE` triggers are not activated (PostgreSQL lets you create a separate trigger for `TRUNCATE`).
+- Whether it can be rolled back depends on the DBMS: in PostgreSQL `TRUNCATE` can be undone with `ROLLBACK`, in MySQL it can't — the command implicitly commits the transaction.
 
 Example:
 

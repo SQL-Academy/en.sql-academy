@@ -19,11 +19,11 @@ CREATE TEMPORARY TABLE TempTable (
 
 ```sql
 -- inserting data into the temporary table
-INSERT INTO #TempTable (id, name)
+INSERT INTO TempTable (id, name)
 VALUES (1, 'Иван'), (2, 'Петр');
 
 -- selecting data from the temporary table
-SELECT * FROM #TempTable;
+SELECT * FROM TempTable;
 
 -- the temporary table will be automatically deleted after the session ends
 ```

@@ -11,8 +11,9 @@ This transformation is called **hashing**, and it is widely used to ensure secur
 
 ### 1. Storing passwords
 
-- Instead of storing passwords in plain text, they are stored as hashes. This increases security since, even if the database is compromised, attackers cannot recover the original passwords.
-- Cryptographic hash functions like `SHA-256`, `SHA-512`, and others are commonly used.
+- Instead of storing passwords in plain text, they are stored as hashes. Even if the database leaks, an attacker has to brute-force each password.
+- Passwords are hashed with dedicated slow algorithms that use a salt: `bcrypt`, `scrypt`, `Argon2`. A salt is a random string added to the password before hashing, so identical passwords produce different hashes.
+- Plain `SHA-256` and `SHA-512` are not suitable for passwords: they are too fast, and without a salt identical passwords produce identical hashes that are easy to crack with a dictionary. Passwords are usually hashed by the application, and the database only stores the result.
 
 ### 2. Data integrity verification
 
@@ -22,39 +23,44 @@ Hash functions allow detecting whether data has been altered. By creating a hash
 
 Hash values can be used for quick comparison of large amounts of data or to create indexes for faster searches.
 
-### 4. Creating unique identifiers
+### 4. Content-based identifiers
 
-Hashing helps generate unique identifiers for records based on their content.
+Hashing helps generate record identifiers based on their content. With a strong hash function they are practically unique, although collisions are theoretically possible.
 
 ## Example of using hash functions in SQL:
 
+Let's check whether the content of documents has changed since it was saved. Example for MySQL: the `SHA2(string, 256)` function returns the hash as 64 hexadecimal characters.
+
 ```sql
--- Create a users table
-CREATE TABLE Users (
-    UserID INT PRIMARY KEY,
-    Username VARCHAR(50) NOT NULL,
-    PasswordHash VARBINARY(512) NOT NULL
+-- Create a documents table with a content hash
+CREATE TABLE Documents (
+    id INT PRIMARY KEY,
+    content TEXT NOT NULL,
+    content_hash CHAR(64) NOT NULL
 );
 
--- When adding a new user, hash the password
-INSERT INTO Users (UserID, Username, PasswordHash)
-VALUES (1, 'user1', HASHBYTES('SHA2_512', 'password123'));
+-- When adding a document, save the hash of its content
+INSERT INTO Documents (id, content, content_hash)
+VALUES (1, 'Contract No. 1', SHA2('Contract No. 1', 256));
 
--- Verify that the entered password matches the hash in the database
-SELECT UserID FROM Users
-WHERE Username = 'user1' AND PasswordHash = HASHBYTES('SHA2_512', 'password123');
+-- Find documents whose content has changed since the hash was saved
+SELECT id FROM Documents
+WHERE content_hash <> SHA2(content, 256);
 ```
+
+In PostgreSQL the same hash is computed by `encode(sha256(convert_to(content, 'UTF8')), 'hex')`.
 
 ## Recommendations and considerations
 
 ### Choosing a hash function
 
-- Prefer modern and robust algorithms like `SHA-256` or `SHA-512`.
-- Avoid using outdated functions like `MD5` or `SHA1` due to known vulnerabilities.
+- For integrity checks and data comparison, prefer `SHA-256` or `SHA-512`.
+- Avoid `MD5` and `SHA1` where security matters: practical ways to find collisions are known for them.
+- For passwords, use `bcrypt`, `scrypt`, or `Argon2` with a salt.
 
-### Secure storage
+### Storage format
 
-Store hashes in binary format (`VARBINARY`) instead of string format (`VARCHAR`) to preserve accuracy and save space.
+A hash can be stored in binary form (`VARBINARY` in MySQL, `BYTEA` in PostgreSQL): it takes half the space of its hexadecimal representation.
 
 ### Irreversibility of hashes
 

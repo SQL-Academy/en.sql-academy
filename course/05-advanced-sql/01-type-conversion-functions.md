@@ -86,33 +86,33 @@ SELECT CAST(12005.6 AS INTEGER) AS cast_example, 12005.4::INTEGER AS operator_ex
 
 The CAST function can convert the passed value to any of the following types:
 
-| Type               | Description                                                                                                                                                                                                   |
-| :----------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `DATE`             | Converts a value to `DATE`. Format: "YYYY-MM-DD".                                                                                                                                                             |
-| `DATETIME`         | Converts a value to `DATETIME`. Format: "YYYY-MM-DD hh:mm:ss".                                                                                                                                                |
-| `TIME`             | Converts a value to `TIME`. Format: "hh:mm:ss".                                                                                                                                                               |
-| `DECIMAL[(M[,D])]` | Converts a value to `DECIMAL`. It has two optional arguments `M` and `D`, which define the maximum number of characters before and after the decimal point, respectively. By default, `D` is 0 and `M` is 10. |
-| `CHAR[(N)]`        | Converts value to `CHAR`. You can pass the maximum length of the string as an optional argument.                                                                                                              |
-| `SIGNED`           | Converts a value to a `BIGINT` value.                                                                                                                                                                         |
-| `UNSIGNED`         | Converts a value to an unsigned `BIGINT` value.                                                                                                                                                               |
-| `BINARY`           | Converts a value to `BINARY`.                                                                                                                                                                                 |
-| `YEAR`             | Converts a value to a year.                                                                                                                                                                                   |
+| Type               | Description                                                                                                                                                                                                                   |
+| :----------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `DATE`             | Converts a value to `DATE`. Format: "YYYY-MM-DD".                                                                                                                                                                             |
+| `DATETIME`         | Converts a value to `DATETIME`. Format: "YYYY-MM-DD hh:mm:ss".                                                                                                                                                                |
+| `TIME`             | Converts a value to `TIME`. Format: "hh:mm:ss".                                                                                                                                                                               |
+| `DECIMAL[(M[,D])]` | Converts a value to `DECIMAL`. It has two optional arguments `M` and `D`, which define the maximum total number of digits and the number of digits after the decimal point, respectively. By default, `D` is 0 and `M` is 10. |
+| `CHAR[(N)]`        | Converts value to `CHAR`. You can pass the maximum length of the string as an optional argument.                                                                                                                              |
+| `SIGNED`           | Converts a value to a `BIGINT` value.                                                                                                                                                                                         |
+| `UNSIGNED`         | Converts a value to an unsigned `BIGINT` value.                                                                                                                                                                               |
+| `BINARY`           | Converts a value to `BINARY`.                                                                                                                                                                                                 |
+| `YEAR`             | Converts a value to a year.                                                                                                                                                                                                   |
 
 **PostgreSQL**
 
 The CAST function can convert the passed value to any of the following types:
 
-| Type               | Description                                                                                                                                                               |
-| :----------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `DATE`             | Converts a value to `DATE`. Format: "YYYY-MM-DD".                                                                                                                         |
-| `TIMESTAMP`        | Converts a value to `TIMESTAMP`. Format: "YYYY-MM-DD hh:mm:ss".                                                                                                           |
-| `TIME`             | Converts a value to `TIME`. Format: "hh:mm:ss".                                                                                                                           |
-| `NUMERIC[(M[,D])]` | Converts a value to `NUMERIC`. It has two optional arguments `M` and `D`, which define the maximum number of characters before and after the decimal point, respectively. |
-| `VARCHAR[(N)]`     | Converts value to `VARCHAR`. You can pass the maximum length of the string as an optional argument.                                                                       |
-| `INTEGER`          | Converts a value to an integer.                                                                                                                                           |
-| `BIGINT`           | Converts a value to a big integer.                                                                                                                                        |
-| `BOOLEAN`          | Converts a value to a boolean type.                                                                                                                                       |
-| `TEXT`             | Converts a value to a text type.                                                                                                                                          |
+| Type               | Description                                                                                                                                                                               |
+| :----------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `DATE`             | Converts a value to `DATE`. Format: "YYYY-MM-DD".                                                                                                                                         |
+| `TIMESTAMP`        | Converts a value to `TIMESTAMP`. Format: "YYYY-MM-DD hh:mm:ss".                                                                                                                           |
+| `TIME`             | Converts a value to `TIME`. Format: "hh:mm:ss".                                                                                                                                           |
+| `NUMERIC[(M[,D])]` | Converts a value to `NUMERIC`. It has two optional arguments `M` and `D`, which define the maximum total number of digits and the number of digits after the decimal point, respectively. |
+| `VARCHAR[(N)]`     | Converts value to `VARCHAR`. You can pass the maximum length of the string as an optional argument.                                                                                       |
+| `INTEGER`          | Converts a value to an integer.                                                                                                                                                           |
+| `BIGINT`           | Converts a value to a big integer.                                                                                                                                                        |
+| `BOOLEAN`          | Converts a value to a boolean type.                                                                                                                                                       |
+| `TEXT`             | Converts a value to a text type.                                                                                                                                                          |
 
 ## Impossibility of any conversion
 
